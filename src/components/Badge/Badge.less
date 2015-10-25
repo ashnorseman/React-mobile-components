@@ -1,0 +1,19 @@
+/**
+ * Created by AshZhang on 15/10/25.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+@import '../../common/styles/modules/_mixins';
+
+
+@badge-size: @font-base;
+
+.badge {
+  .square(@badge-size);
+  background: @color-primary;
+  border-radius: @badge-size / 2 @badge-size / 2 @badge-size / 2 0;
+  color: @color-bg;
+  font-size: @font-xs;
+  padding: (@badge-size - @font-sm) / 4 0.25rem 0;
+}

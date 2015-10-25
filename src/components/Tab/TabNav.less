@@ -1,0 +1,58 @@
+/**
+ * Created by AshZhang on 15/10/25.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+@import '../../common/styles/modules/_mixins';
+
+
+@tab-nav-icon:  2.5rem;
+
+.tab-nav {
+
+  .iconfont {
+    .square(@tab-nav-icon);
+    border-radius: 50%;
+    color: @color-bg;
+    margin-top: 0.75rem;
+  }
+
+  .tab-text {
+    font-size: @font-sm;
+    line-height: @font-base;
+    margin: 0.5rem 0 @gap;
+  }
+}
+
+
+// Styles
+// ---------------------------
+
+.tab-item-type-1 {
+
+  > .iconfont {
+    background: @color-style-1;
+  }
+}
+
+.tab-item-type-2 {
+
+  > .iconfont {
+    background: @color-style-2;
+  }
+}
+
+.tab-item-type-3 {
+
+  > .iconfont {
+    background: @color-style-3;
+  }
+}
+
+.tab-item-type-4 {
+
+  > .iconfont {
+    background: @color-style-4;
+  }
+}

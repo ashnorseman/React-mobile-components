@@ -1,0 +1,42 @@
+/**
+ * Created by AshZhang on 15/10/25.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+@import '../../common/styles/modules/_mixins';
+
+
+@tab-icon-size: @font-xl;
+
+.tab-item {
+  color: @color-text-styled;
+  position: relative;
+
+  > .badge {
+    margin-left: @tab-icon-size / 4;
+    margin-top: 0.125rem;
+    position: absolute;
+      left: 50%;
+  }
+
+  > .iconfont {
+    .square(@tab-icon-size);
+    display: block;
+    font-size: @font-icon;
+  }
+
+  // Active Style
+  &.active {
+
+    &,
+    & > .tab-text {
+      color: @color-primary;
+    }
+  }
+}
+
+.tab-text {
+  color: @color-text-lighter;
+  display: block;
+}

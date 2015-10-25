@@ -1,0 +1,28 @@
+/**
+ * Created by AshZhang on 15/10/25.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+
+
+.table-row {
+  line-height: @control-base-size;
+  padding-left: @gap * 2;
+
+  .iconfont {
+    float: right;
+    text-align: center;
+    width: @control-base-size;
+  }
+}
+
+.table-row-link {
+  border-top: @border-width solid @color-border;
+  color: @color-text-lighter;
+  display: block;
+
+  :first-child > & {
+    border-top: 0;
+  }
+}

@@ -1,0 +1,27 @@
+/**
+ * Common styles
+ */
+
+
+@import "modules/_variables";
+@import "modules/_starter";
+@import "modules/_grid";
+@import "modules/_gap";
+@import "modules/_typography";
+
+
+// Clearfix
+// ---------------------------
+
+.clearfix {
+
+  &::before,
+  &::after {
+    content: ' ';
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}

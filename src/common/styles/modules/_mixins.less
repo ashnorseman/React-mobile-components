@@ -1,0 +1,23 @@
+/**
+ * Mixins
+ */
+ 
+
+.justify-layout() {
+  display: table;
+  table-layout: fixed;
+  text-align: center;
+  width: 100%;
+
+  > * {
+    display: table-cell;
+  }
+}
+
+.square(@size) {
+  display: inline-block;
+  height: @size;
+  line-height: @size;
+  text-align: center;
+  width: @size;
+}

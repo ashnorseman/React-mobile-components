@@ -1,0 +1,22 @@
+/**
+ * Created by AshZhang on 15/10/25.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+@import '../../common/styles/modules/_mixins';
+
+
+@top-action-size: 2.375rem;
+
+.top-action {
+  .square(@top-action-size);
+  background: @color-bg;
+  box-shadow: 0 1px 2px rgba(142, 142, 142, 50);
+  border-radius: 50%;
+  font-size: @font-icon;
+  opacity: 0.95;
+  position: fixed;
+    bottom: 3rem + @gap * 2;
+    right: 1rem;
+}

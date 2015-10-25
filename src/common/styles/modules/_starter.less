@@ -1,0 +1,100 @@
+/**
+ * Mobile CSS Starter
+ */
+
+
+
+*,
+::before,
+::after {
+  border: 0 solid;
+  box-sizing: border-box; // 必备
+  font-size: inherit;     // 文字配置全部继承，在父元素统一配置
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  background: @color-bg;
+  color: @color-text;
+  height: 100%;
+  font-family: sans-serif;  // 移动端全部使用设备默认字体
+  font-size: 100%;
+  line-height: @line-height;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100%; // 方便配置页面背景色、遮罩层等等
+}
+
+a {
+  text-decoration: none;
+}
+
+audio:not([controls]) {
+  display: none;
+}
+
+// 除 checkbox 和 radio 之外的全部表单控件
+button,
+[type="date"],
+[type="datetime"],
+[type="datetime-local"],
+[type="email"],
+[type="file"],
+[type="month"],
+[type="number"],
+[type="password"],
+[type="reset"],
+[type="search"],
+[type="tel"],
+[type="text"],
+[type="time"],
+[type="url"],
+[type="week"],
+select,
+textarea {
+  background: @form-control-bg;
+  color: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  outline: 0;
+  min-height: @control-base-size; // 手指点击最小区间
+  width: 100%;                    // 普通情况下，移动端不适合一行放多个表单控件
+}
+
+hr {
+  border-top: @border-width solid @color-border;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+[type=search] {
+  -webkit-appearance: textfield;
+
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+}
+
+select {
+  -moz-appearance: none;    // 统一 select 与文本框的样式
+  -webkit-appearance: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+textarea {
+  resize: vertical;
+}

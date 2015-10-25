@@ -1,0 +1,50 @@
+{
+  "name": "react-mobile-components",
+  "version": "1.0.0",
+  "description": "React mobile components",
+  "main": "index.js",
+  "scripts": {
+    "build": "BABEL_ENV=production webpack",
+    "start": "webpack-dev-server",
+    "server": "node index",
+    "test": "BABEL_ENV=production karma start"
+  },
+  "keywords": [
+    "react",
+    "mobile"
+  ],
+  "author": "Ash Zhang",
+  "license": "ISC",
+  "dependencies": {
+    "react-tap-event-plugin": "^0.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^5.8.29",
+    "babel-eslint": "^4.1.3",
+    "babel-loader": "^5.3.2",
+    "babel-plugin-react-transform": "^1.1.1",
+    "clean-webpack-plugin": "^0.1.3",
+    "css-loader": "^0.21.0",
+    "eslint": "^1.7.3",
+    "eslint-loader": "^1.1.0",
+    "eslint-plugin-react": "^3.6.3",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "html-webpack-plugin": "^1.6.2",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.14",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-jasmine": "^0.3.6",
+    "karma-jasmine-ajax": "^0.1.13",
+    "karma-webpack": "^1.7.0",
+    "less": "^2.5.3",
+    "less-loader": "^2.2.1",
+    "mobile-css-starter": "^1.0.0",
+    "react": "^0.14.0",
+    "react-addons-test-utils": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-transform-hmr": "^1.0.1",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1"
+  }
+}
