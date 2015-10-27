@@ -35,7 +35,7 @@ describe('TableRow', () => {
     expect(tableRowNode.querySelector('.icon-arrow-right')).toBeNull();
   });
 
-  it('renders a table row with a disclosure arrow', () => {
+  it('disclosure arrow', () => {
     tableRowData.disclosure = true;
 
     const tableRow = TestUtils.renderIntoDocument(
@@ -44,5 +44,16 @@ describe('TableRow', () => {
           tableRowNode = ReactDOM.findDOMNode(tableRow);
 
     expect(tableRowNode.querySelector('.icon-arrow-right')).not.toBeNull();
+  });
+
+  it('children', () => {
+    const tableRow = TestUtils.renderIntoDocument(
+            <TableRow {...tableRowData}>
+              <img src='' alt='' />
+            </TableRow>
+          ),
+          tableRowNode = ReactDOM.findDOMNode(tableRow);
+
+    expect(tableRowNode.querySelector('.table-row-content img')).not.toBeNull();
   });
 });

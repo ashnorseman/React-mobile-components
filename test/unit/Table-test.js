@@ -9,7 +9,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-import Table from '../../src/components/Table/Table.jsx';
+import { Table } from '../../src/components/index';
 
 
 describe('Table', () => {

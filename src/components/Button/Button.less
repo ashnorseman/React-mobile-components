@@ -1,0 +1,21 @@
+/**
+ * Created by AshZhang on 15/10/27.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+
+
+.btn {
+  background: @color-primary;
+  border-radius: @border-radius;
+  color: @color-bg;
+
+  &[disabled] {
+    background: @color-disabled;
+  }
+
+  > .iconfont {
+    margin-right: 0.5em;
+  }
+}

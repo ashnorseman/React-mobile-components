@@ -9,7 +9,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-import Icon from '../../src/components/Icon/Icon.jsx';
+import { Icon } from '../../src/components/index';
 
 
 describe('Icon', () => {

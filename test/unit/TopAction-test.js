@@ -9,7 +9,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-import TopAction from '../../src/components/TopAction/TopAction.jsx';
+import { TopAction } from '../../src/components/index';
 
 
 describe('TopAction', () => {

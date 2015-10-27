@@ -4,25 +4,36 @@
 
 
 @import '../../common/styles/modules/_variables';
+@import '../../common/styles/modules/_mixins';
 
 
 .table-row {
-  line-height: @control-base-size;
+  background: @color-bg;
   padding-left: @gap * 2;
-
-  .iconfont {
-    float: right;
-    text-align: center;
-    width: @control-base-size;
-  }
 }
 
 .table-row-link {
+  align-items: center;
   border-top: @border-width solid @color-border;
   color: @color-text-lighter;
-  display: block;
+  display: flex;
+  line-height: @control-base-size - @gap * 2;
+  padding: @gap 0;
 
   :first-child > & {
     border-top: 0;
   }
+
+  img {
+    vertical-align: middle;
+  }
+}
+
+.table-row-text {
+  flex: 1;
+}
+
+.table-row .iconfont,
+.table-row-content {
+  margin-right: @gap * 2;
 }

@@ -9,7 +9,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-import Badge from '../../src/components/Badge/Badge.jsx';
+import { Badge } from '../../src/components/index';
 
 
 describe('Badge', () => {

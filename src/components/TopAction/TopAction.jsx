@@ -34,6 +34,7 @@ class TopAction extends Component {
 
   render() {
     const { visible } = this.state,
+
           visibilityStyle = {
             display: visible ? 'block' : 'none'
           };

@@ -5,12 +5,12 @@
 
 'use strict';
 
-import './Tab.less';
+import './TabItem.less';
 
 import React, { Component, PropTypes } from 'react';
 
 import pureRender from '../../common/utils/pure-render';
-import className from '../../common/utils/class-name';
+import mixClass from '../../common/utils/mix-class';
 import Badge from '../Badge/Badge.jsx';
 import Icon from '../Icon/Icon.jsx';
 
@@ -18,11 +18,23 @@ import Icon from '../Icon/Icon.jsx';
 class Tab extends Component {
 
   render() {
-    const { active, badge, icon, link, type, text } = this.props,
-          classes = className({
+    const {
+            active,
+            badge,
+            className,
+            icon,
+            link,
+            type,
+            text
+          } = this.props,
+
+          classes = mixClass({
             'tab-item': true,
-            'active': active
-          }) + (type ? ` tab-item-type-${type}` : ''),
+            'active': active,
+            'tab-item-type-$': type,
+            '$': className
+          }),
+
           badgeElement = badge
             ? <Badge>{badge}</Badge>
             : null;
@@ -40,6 +52,7 @@ class Tab extends Component {
 Tab.propType = {
   active: PropTypes.bool.isRequired,
   badge: PropTypes.oneOf(['string', 'number']),
+  className: PropTypes.string,
   icon: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   type: PropTypes.number,

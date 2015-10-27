@@ -35,11 +35,15 @@ class TabBar extends Component {
   }
 
   render() {
-    const { data, ...props } = this.props,
+    const {
+            data,
+            ...props
+          } = this.props,
+
           { tabData } = this.state;
 
     return (
-      <TabBase {...props} data={tabData} tabBar>
+      <TabBase {...props} data={tabData} type='bar'>
         {this.props.children}
       </TabBase>
     );

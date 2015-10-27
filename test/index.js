@@ -10,8 +10,11 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
 
-const srcContext = require.context('../src/components', true, /\.jsx?$/);
-srcContext.keys().forEach(srcContext);
-
-const componentContext = require.context('./components', true, /\.js$/);
+const componentContext = require.context('../src/components', true, /\.jsx?$/);
 componentContext.keys().forEach(componentContext);
+
+const commonContext = require.context('../src/common', true, /\.jsx?$/);
+commonContext.keys().forEach(commonContext);
+
+const testContest = require.context('./unit', true, /\.js$/);
+testContest.keys().forEach(testContest);

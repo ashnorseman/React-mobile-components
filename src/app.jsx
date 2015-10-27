@@ -10,12 +10,7 @@ import './common/styles/app.less';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import Badge from './components/Badge/Badge.jsx';
-import Icon from './components/Icon/Icon.jsx';
-import TabBar from './components/Tab/TabBar.jsx';
-import TabNav from './components/Tab/TabNav.jsx';
-import Table from './components/Table/Table.jsx';
-import TopAction from './components/TopAction/TopAction.jsx';
+import { Badge, Button, Icon, Tab, Table, TopAction } from './components/index';
 
 
 injectTapEventPlugin();
@@ -78,8 +73,19 @@ const tableData = [
     disclosure: true
   },
   {
+    text: '头像',
+    href: 'avatar',
+    children: <img style={{ width: 56, height: 56 }} src='' alt='' />
+  },
+  {
+    text: '昵称',
+    href: 'nickname',
+    children: '我是小明'
+  },
+  {
     text: '收货地址',
     href: 'address',
+    children: <span className='text-lightest'>填写送积分</span>,
     disclosure: true
   }
 ];
@@ -89,11 +95,20 @@ class TestPage extends Component {
   render() {
     return (
       <div style={{height: 1000}}>
-        <TabNav data={tabNavData}></TabNav>
+        <h2 className='gap-side gap-t'>Button</h2>
+        <div className='gap-side'>
+          <Button disabled onTouchTap={this.handleEvents}>积分不足</Button>
+          <Button type='button' onTouchTap={this.handleEvents} className='gap-t'>立即兑换</Button>
+          <Button type='button' icon='money' className='gap-t'>签到</Button>
+        </div>
 
+        <h2 className='gap-side gap-t'>Tab.Nav</h2>
+        <Tab.Nav data={tabNavData}></Tab.Nav>
+
+        <h2 className='gap-side gap-t'>Table</h2>
         <Table data={tableData}></Table>
 
-        <TabBar data={tabBarData}></TabBar>
+        <Tab.Bar data={tabBarData}></Tab.Bar>
 
         <TopAction></TopAction>
       </div>

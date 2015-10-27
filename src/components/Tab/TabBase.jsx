@@ -10,19 +10,25 @@ import './TabBase.less';
 import React, { Component, PropTypes } from 'react';
 
 import pureRender from '../../common/utils/pure-render';
-import className from '../../common/utils/class-name';
-import Tab from './Tab.jsx';
+import mixClass from '../../common/utils/mix-class';
+import Tab from './TabItem.jsx';
 
 
 class TabBase extends Component {
 
   render() {
-    const { data, tabBar, tabNav } = this.props,
-          classes = className({
+    const {
+            className,
+            data,
+            type
+          } = this.props,
+
+          classes = mixClass({
             'tab': true,
-            'tab-bar': tabBar,
-            'tab-nav': tabNav
+            'tab-$': type,
+            '$': className
           }),
+
           tabList = data.map((tab) => {
             return <Tab {...tab} key={tab.link}></Tab>;
           });
@@ -36,6 +42,7 @@ class TabBase extends Component {
 }
 
 TabBase.propTypes = {
+  className: PropTypes.string,
   data: PropTypes.arrayOf(PropTypes.object),
   tabBar: PropTypes.bool,
   tabNav: PropTypes.bool

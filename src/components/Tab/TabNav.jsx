@@ -17,7 +17,7 @@ class TabNav extends Component {
 
   render() {
     return (
-      <TabBase {...this.props} {...this.state} tabNav>
+      <TabBase {...this.props} {...this.state} type='nav'>
         {this.props.children}
       </TabBase>
     );

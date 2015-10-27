@@ -76,7 +76,6 @@ if (TARGET === 'start') {
 // ---------------------------
 
 if (TARGET === 'build') {
-  console.log(TARGET);
 
   module.exports = {
     devtool: 'source-map',
