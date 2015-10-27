@@ -10,7 +10,7 @@ import './common/styles/app.less';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Badge, Button, Icon, Tab, Table, TopAction } from './components/index';
+import { Badge, Button, Icon, ImageBox, Tab, Table, TopAction } from './components/index';
 
 
 injectTapEventPlugin();
@@ -94,7 +94,7 @@ class TestPage extends Component {
 
   render() {
     return (
-      <div style={{height: 1000}}>
+      <div>
         <h2 className='gap-side gap-t'>Button</h2>
         <div className='gap-side'>
           <Button disabled onTouchTap={this.handleEvents}>积分不足</Button>
@@ -105,11 +105,19 @@ class TestPage extends Component {
         <h2 className='gap-side gap-t'>Tab.Nav</h2>
         <Tab.Nav data={tabNavData}></Tab.Nav>
 
+        <h2 className='gap-side gap-t'>Tab.Bar (见最下)</h2>
+        <Tab.Bar data={tabBarData}></Tab.Bar>
+
         <h2 className='gap-side gap-t'>Table</h2>
         <Table data={tableData}></Table>
 
-        <Tab.Bar data={tabBarData}></Tab.Bar>
+        <h2 className='gap-side gap-t'>ImageBox</h2>
+        <div className='gap-side'>
+          <ImageBox src='/src/images/200_150.png'></ImageBox>
+          <ImageBox src='/src/images/150_200.png'></ImageBox>
+        </div>
 
+        <h2 className='gap-side gap-t'>TopAction (滚动屏幕后见右下角)</h2>
         <TopAction></TopAction>
       </div>
     );
