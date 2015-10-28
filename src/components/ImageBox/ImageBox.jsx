@@ -29,9 +29,7 @@ class ImageBox extends Component {
 
     return (
       <div className={classes}>
-        <div className='image-box-inner'>
-          <img className='image-box-pic' src={src} alt={alt} />
-        </div>
+        <img className='image-box-pic' src={src} alt={alt} />
       </div>
     );
   }

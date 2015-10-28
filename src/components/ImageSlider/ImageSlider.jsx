@@ -135,7 +135,7 @@ class ImageSlider extends Component {
   setActive(e) {
     if (e.direction === 'left') {
       this._setNextActive();
-    } else {
+    } else if (e.direction === 'right') {
       this._setPrevActive();
     }
   }

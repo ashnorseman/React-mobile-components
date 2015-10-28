@@ -10,15 +10,10 @@
 
 .image-box {
   background: @color-bg-light;
-  height: @image-box-default-size;
-  display: table;
-  text-align: center;
-  width: @image-box-default-size;
-}
-
-.image-box-inner {
+  box-sizing: content-box;
   display: table-cell;
   height: @image-box-default-size;
+  text-align: center;
   vertical-align: middle;
   width: @image-box-default-size;
 }
