@@ -120,10 +120,10 @@ class TestPage extends Component {
         <h2 className='gap-side gap-t'>ImageBox</h2>
         <div className='gap-side'>
           <div style={{ display: 'inline-block' }}>
-            <ImageBox src='src/images/300_200.jpeg'></ImageBox>
+            <ImageBox src='src/images/200_150.jpeg'></ImageBox>
           </div>
           <div style={{ display: 'inline-block' }} className='gap-l'>
-            <ImageBox src='src/images/200_300.jpeg'></ImageBox>
+            <ImageBox src='src/images/150_200.jpeg'></ImageBox>
           </div>
         </div>
 
