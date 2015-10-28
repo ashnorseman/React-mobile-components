@@ -1,0 +1,102 @@
+/**
+ * Created by AshZhang on 15/10/28.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+
+
+@dot-size:        0.5rem;
+@slide-duration:  0.5s;
+
+.image-slider {
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: ' ';
+    display: block;
+    padding-top: 75%;
+  }
+}
+
+.image-slider-item {
+  background: @color-bg center no-repeat;
+  background-size: 100%;
+  height: 100%;
+  position: absolute;
+    left: 0;
+    top: 0;
+  width: 100%;
+}
+
+.image-slider-dots {
+  position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+  text-align: center;
+  width: 100%;
+}
+
+.image-slider-dot {
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 @dot-size / 4;
+  height: @dot-size;
+  width: @dot-size;
+
+  &.active {
+    background: @color-primary;
+  }
+}
+
+
+// Zoomed
+// ---------------------------
+
+.image-slider.zoomed {
+  height: 100%;
+  position: fixed;
+    left: 0;
+    top: 0;
+    z-index: @z-image-slider;
+  width: 100%;
+
+  .image-slider-item {
+    background-color: #000;
+  }
+}
+
+
+// Transition
+// ---------------------------
+
+.image-slider-left-enter,
+.image-slider-left-leave,
+.image-slider-right-enter,
+.image-slider-right-leave {
+  -webkit-transition: all @slide-duration @timing;
+  transition: all @slide-duration @timing;
+}
+
+.image-slider-left-enter,
+.image-slider-right-leave.image-slider-right-leave-active {
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+}
+
+.image-slider-left-enter.image-slider-left-enter-active,
+.image-slider-left-leave,
+.image-slider-right-enter.image-slider-right-enter-active,
+.image-slider-right-leave {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.image-slider-left-leave.image-slider-left-leave-active,
+.image-slider-right-enter {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}

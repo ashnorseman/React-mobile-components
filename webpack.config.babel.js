@@ -49,6 +49,13 @@ if (TARGET === 'start') {
           test: /\.jsx?$/,
           loaders: ['babel'],
           include: path.resolve(ROOT_PATH, 'src')
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          loaders: [
+            'file?hash=sha512&digest=hex&name=[hash].[ext]',
+            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+          ]
         }
       ],
       preLoaders: [
@@ -101,6 +108,13 @@ if (TARGET === 'build') {
           test: /\.jsx?$/,
           loaders: ['babel'],
           include: path.resolve(ROOT_PATH, 'src')
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          loaders: [
+            'file?hash=sha512&digest=hex&name=[hash].[ext]',
+            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+          ]
         }
       ]
     },

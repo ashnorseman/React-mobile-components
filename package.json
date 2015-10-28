@@ -16,6 +16,8 @@
   "author": "Ash Zhang",
   "license": "ISC",
   "dependencies": {
+    "react-addons-css-transition-group": "^0.14.0",
+    "react-swiper-ash": "^1.0.3",
     "react-tap-event-plugin": "^0.2.1"
   },
   "devDependencies": {
@@ -29,7 +31,10 @@
     "eslint-loader": "^1.1.0",
     "eslint-plugin-react": "^3.6.3",
     "extract-text-webpack-plugin": "^0.8.2",
+    "file-loader": "^0.8.4",
     "html-webpack-plugin": "^1.6.2",
+    "image-min": "^0.3.2",
+    "image-webpack-loader": "^1.6.2",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.14",
     "karma-chrome-launcher": "^0.2.1",

@@ -25,12 +25,12 @@ class TabBar extends Component {
   }
 
   componentDidMount() {
-    document.body.classList.add('tab-bar-mounted');
+    document.body.firstElementChild.classList.add('tab-bar-mounted');
     window.addEventListener('hashchange', this.setActive, false);
   }
 
   componentWillUnmount() {
-    document.body.classList.remove('tab-bar-mounted');
+    document.body.firstElementChild.classList.remove('tab-bar-mounted');
     window.removeEventListener('hashchange', this.setActive, false);
   }
 

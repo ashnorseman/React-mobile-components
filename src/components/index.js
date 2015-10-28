@@ -8,7 +8,8 @@
 import Badge from './Badge/Badge.jsx';
 import Button from './Button/Button.jsx';
 import Icon from './Icon/Icon.jsx';
-import Imagebox from './Imagebox/Imagebox.jsx';
+import ImageBox from './ImageBox/ImageBox.jsx';
+import ImageSlider from './ImageSlider/ImageSlider.jsx';
 import TabBar from './Tab/TabBar.jsx';
 import TabNav from './Tab/TabNav.jsx';
 import Table from './Table/Table.jsx';
@@ -19,7 +20,8 @@ export default {
   Badge: Badge,
   Button: Button,
   Icon: Icon,
-  ImageBox: Imagebox,
+  ImageBox: ImageBox,
+  ImageSlider: ImageSlider,
   Tab: {
     Bar: TabBar,
     Nav: TabNav

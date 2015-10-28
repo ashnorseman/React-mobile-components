@@ -50,7 +50,7 @@ describe('TabBar', () => {
           ),
           tabBarNode = ReactDOM.findDOMNode(tabBar);
 
-    expect(document.body.classList.contains('tab-bar-mounted')).toBeTruthy();
+    expect(document.body.firstElementChild.classList.contains('tab-bar-mounted')).toBeTruthy();
   });
 
   it('listens to `hashchange` and toggles `active` class', () => {

@@ -13,10 +13,10 @@
 }
 
 .table-row-link {
-  align-items: center;
+  .display-flex();
+  .align-items(center);
   border-top: @border-width solid @color-border;
   color: @color-text-lighter;
-  display: flex;
   line-height: @control-base-size - @gap * 2;
   padding: @gap 0;
 
@@ -30,7 +30,7 @@
 }
 
 .table-row-text {
-  flex: 1;
+  .flex(1);
 }
 
 .table-row .iconfont,

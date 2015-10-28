@@ -21,3 +21,49 @@
   text-align: center;
   width: @size;
 }
+
+
+// Flex box
+// ---------------------------
+
+.display-flex() {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.flex(@value) {
+  -webkit-box-flex: @value;
+  -webkit-flex: @value;
+  flex: @value;
+}
+
+.flex-direction(@direction) {
+  -webkit-flex-direction: @direction;
+  flex-direction: @direction;
+}
+
+.flex-wrap(@wrap) {
+  -webkit-flex-wrap: @wrap;
+  flex-wrap: @wrap;
+}
+
+.align-items(@alignStyle) {
+  -webkit-align-items: @alignStyle;
+  align-items: @alignStyle;
+}
+
+.align-self(@selfAlignStyle) {
+  -webkit-align-self: @selfAlignStyle;
+  align-self: @selfAlignStyle;
+}
+
+.justify-content(@justifyStyle) {
+  -webkit-justify-content: @justifyStyle;
+  justify-content: @justifyStyle;
+}
+
+.order(@order) {
+  -webkit-order: @order;
+  order: @order;
+}

@@ -10,10 +10,16 @@ import './common/styles/app.less';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Badge, Button, Icon, ImageBox, Tab, Table, TopAction } from './components/index';
+import { Badge, Button, Icon, ImageBox, ImageSlider, Tab, Table, TopAction } from './components/index';
 
 
 injectTapEventPlugin();
+
+const imageSliderData = [
+  'src/images/400_600.jpeg',
+  'src/images/400_300.jpeg',
+  'src/images/400_400.jpeg'
+];
 
 const tabBarData = [
   {
@@ -113,9 +119,12 @@ class TestPage extends Component {
 
         <h2 className='gap-side gap-t'>ImageBox</h2>
         <div className='gap-side'>
-          <ImageBox src='/src/images/200_150.png'></ImageBox>
-          <ImageBox src='/src/images/150_200.png'></ImageBox>
+          <ImageBox src='src/images/200_150.jpeg'></ImageBox>
+          <ImageBox src='src/images/150_200.jpeg'></ImageBox>
         </div>
+
+        <h2 className='gap-side gap-5'>ImageSlider</h2>
+        <ImageSlider data={imageSliderData}></ImageSlider>
 
         <h2 className='gap-side gap-t'>TopAction (滚动屏幕后见右下角)</h2>
         <TopAction></TopAction>
