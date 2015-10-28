@@ -8,6 +8,7 @@
 import './ImageSlider.less';
 
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import swipe from 'react-swiper-ash';
 
@@ -82,8 +83,11 @@ const ImageSliderBase = swipe(class ImageSliderBase extends Component {
    * Zoom / Unzoom
    */
   toggleZoom() {
+    const zoomed = !this.state.zoomed;
+
     this.setState({
-      zoomed: !this.state.zoomed
+      zoomed: zoomed,
+      translateY: window.innerHeight / ReactDOM.findDOMNode(this).offsetHeight
     });
   }
 });

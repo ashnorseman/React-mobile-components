@@ -15,7 +15,7 @@ import Badge from '../Badge/Badge.jsx';
 import Icon from '../Icon/Icon.jsx';
 
 
-class Tab extends Component {
+class TabItem extends Component {
 
   render() {
     const {
@@ -37,10 +37,12 @@ class Tab extends Component {
 
           badgeElement = badge
             ? <Badge>{badge}</Badge>
-            : null;
+            : null,
+
+          href = /^(https?)|(\/\/)/.test(link) ? link : `#/${link}`;
 
     return (
-      <a className={classes} href={`#/${link}`}>
+      <a className={classes} href={href}>
         {badgeElement}
         <Icon name={icon}></Icon>
         <span className='tab-text'>{text}</span>
@@ -49,7 +51,7 @@ class Tab extends Component {
   }
 }
 
-Tab.propType = {
+TabItem.propType = {
   active: PropTypes.bool.isRequired,
   badge: PropTypes.oneOf(['string', 'number']),
   className: PropTypes.string,
@@ -59,10 +61,10 @@ Tab.propType = {
   text: PropTypes.string.isRequired
 };
 
-Tab.defaultProps = {
+TabItem.defaultProps = {
   active: false,
   type: 0
 };
 
 
-export default pureRender(Tab);
+export default pureRender(TabItem);

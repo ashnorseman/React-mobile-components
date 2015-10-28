@@ -41,7 +41,7 @@ const tabBarData = [
   {
     icon: 'shop',
     text: '店铺首页',
-    link: 'shop'
+    link: '//m.taobao.com'
   }
 ];
 
@@ -81,7 +81,7 @@ const tableData = [
   {
     text: '头像',
     href: 'avatar',
-    children: <img style={{ width: 56, height: 56 }} src='' alt='' />
+    children: <img style={{ width: 56, height: 56 }} src='src/images/100_100.jpeg' alt='' />
   },
   {
     text: '昵称',
@@ -119,8 +119,12 @@ class TestPage extends Component {
 
         <h2 className='gap-side gap-t'>ImageBox</h2>
         <div className='gap-side'>
-          <ImageBox src='src/images/200_150.jpeg'></ImageBox>
-          <ImageBox src='src/images/150_200.jpeg'></ImageBox>
+          <div style={{ display: 'inline-block' }}>
+            <ImageBox src='src/images/200_150.jpeg'></ImageBox>
+          </div>
+          <div style={{ display: 'inline-block' }} className='gap-l'>
+            <ImageBox src='src/images/150_200.jpeg'></ImageBox>
+          </div>
         </div>
 
         <h2 className='gap-side gap-5'>ImageSlider</h2>
