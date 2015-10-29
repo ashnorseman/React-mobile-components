@@ -13,12 +13,13 @@
 }
 
 .table-row-link {
-  .display-flex();
   .align-items(center);
+  .display-flex();
   border-top: @border-width solid @color-border;
   color: @color-text-lighter;
   line-height: @control-base-size - @gap * 2;
   padding: @gap 0;
+  width: 100%;
 
   :first-child > & {
     border-top: 0;

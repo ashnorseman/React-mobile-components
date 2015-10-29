@@ -10,7 +10,7 @@ import './ImageSlider.less';
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import swipe from 'react-swiper-ash';
+import { Swiper } from 'react-swiper-ash';
 
 import pureRender from '../../common/utils/pure-render';
 import mixClass from '../../common/utils/mix-class';
@@ -19,25 +19,29 @@ import mixClass from '../../common/utils/mix-class';
 // Slider Base
 // ---------------------------
 
-const ImageSliderBase = swipe(class ImageSliderBase extends Component {
+class ImageSlider extends Component {
 
   constructor(props) {
     super(props);
     this.toggleZoom = this.toggleZoom.bind(this);
+    this.setActive = this.setActive.bind(this);
+    this._setNextActive = this._setNextActive.bind(this);
+    this._setPrevActive = this._setPrevActive.bind(this);
 
     this.state = {
+      activeIndex: 0,
       zoomed: false
     };
   }
 
   render() {
-    const {
-            activeIndex,
-            data,
-            direction
-          } = this.props,
+    const { data } = this.props,
 
-          { zoomed } = this.state,
+          {
+            activeIndex,
+            direction,
+            zoomed
+          } = this.state,
 
           classes = mixClass({
             'image-slider': true,
@@ -66,64 +70,19 @@ const ImageSliderBase = swipe(class ImageSliderBase extends Component {
           }) : null;
 
     return (
-      <div className={classes} onTouchTap={this.toggleZoom}>
-        <CSSTransitionGroup transitionName={`image-slider-${direction}`} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-          {imageList}
-        </CSSTransitionGroup>
+      <Swiper onSwipe={this.setActive}>
+        <div className={classes} onTouchTap={this.toggleZoom}>
+          <CSSTransitionGroup transitionName={`image-slider-${direction}`}
+                              transitionEnterTimeout={500}
+                              transitionLeaveTimeout={500}>
+            {imageList}
+          </CSSTransitionGroup>
 
-        <ul className='image-slider-dots'>
-          {dotList}
-        </ul>
-      </div>
-    );
-  }
-
-
-  /**
-   * Zoom / Unzoom
-   */
-  toggleZoom() {
-    const zoomed = !this.state.zoomed;
-
-    this.setState({
-      zoomed: zoomed,
-      translateY: window.innerHeight / ReactDOM.findDOMNode(this).offsetHeight
-    });
-  }
-});
-
-ImageSliderBase.propTypes = {
-  activeIndex: PropTypes.number.isRequired,
-  data: PropTypes.arrayOf(PropTypes.string).isRequired,
-  direction: PropTypes.string
-};
-
-ImageSliderBase.defaultProps = {
-  activeIndex: 0,
-  data: []
-};
-
-
-// Image Slider
-// ---------------------------
-
-class ImageSlider extends Component {
-
-  constructor(props) {
-    super(props);
-    this.setActive = this.setActive.bind(this);
-    this._setNextActive = this._setNextActive.bind(this);
-    this._setPrevActive = this._setPrevActive.bind(this);
-
-    this.state = {
-      activeIndex: 0
-    };
-  }
-
-  render() {
-    return (
-      <ImageSliderBase {...this.props} {...this.state}
-        onSwipe={this.setActive}></ImageSliderBase>
+          <ul className='image-slider-dots'>
+            {dotList}
+          </ul>
+        </div>
+      </Swiper>
     );
   }
 
@@ -175,7 +134,27 @@ class ImageSlider extends Component {
       direction: 'right'
     });
   }
+
+  /**
+   * Zoom / Unzoom
+   */
+  toggleZoom() {
+    const zoomed = !this.state.zoomed;
+
+    this.setState({
+      zoomed: zoomed,
+      translateY: window.innerHeight / ReactDOM.findDOMNode(this).offsetHeight
+    });
+  }
 }
+
+ImageSlider.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.string).isRequired
+};
+
+ImageSlider.defaultProps = {
+  data: []
+};
 
 
 export default pureRender(ImageSlider);

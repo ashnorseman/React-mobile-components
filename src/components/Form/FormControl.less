@@ -1,0 +1,64 @@
+/**
+ * Created by AshZhang on 15/10/29.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+
+
+.form-control {
+  position: relative;
+}
+
+.form-placeholder {
+  //pointer-events: none;
+}
+
+
+// With or without value
+// ---------------------------
+
+.form-has-value {
+  color: @color-text;
+
+  > .form-placeholder {
+    display: none;
+  }
+}
+
+.form-no-value {
+  color: transparent;
+
+  > .form-placeholder {
+    color: @color-text-lightest;
+    line-height: @control-base-size;
+    position: absolute;
+      left: 0;
+      top: 0;
+    width: 100%;
+  }
+}
+
+
+// Focused
+// ---------------------------
+
+.form-focused {
+  color: @color-text;
+
+  > .form-placeholder {
+    display: none;
+  }
+}
+
+
+// Validation
+// ---------------------------
+
+.form-error {
+  color: @color-primary;
+
+  > .form-placeholder {
+    color: @color-primary;
+  }
+}

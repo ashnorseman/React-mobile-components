@@ -7,9 +7,11 @@
 
 import Badge from './Badge/Badge.jsx';
 import Button from './Button/Button.jsx';
+import FormControl from './Form/FormControl.jsx';
 import Icon from './Icon/Icon.jsx';
 import ImageBox from './ImageBox/ImageBox.jsx';
 import ImageSlider from './ImageSlider/ImageSlider.jsx';
+import PullLoader from './PullLoader/PullLoader.jsx';
 import TabBar from './Tab/TabBar.jsx';
 import TabNav from './Tab/TabNav.jsx';
 import Table from './Table/Table.jsx';
@@ -17,15 +19,19 @@ import TopAction from './TopAction/TopAction.jsx';
 
 
 export default {
-  Badge: Badge,
-  Button: Button,
-  Icon: Icon,
-  ImageBox: ImageBox,
-  ImageSlider: ImageSlider,
+  Badge,
+  Button,
+  Form: {
+    Control: FormControl
+  },
+  Icon,
+  ImageBox,
+  ImageSlider,
+  PullLoader,
   Tab: {
     Bar: TabBar,
     Nav: TabNav
   },
-  Table: Table,
-  TopAction: TopAction
+  Table,
+  TopAction
 };

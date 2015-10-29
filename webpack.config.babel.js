@@ -30,6 +30,7 @@ if (TARGET === 'start') {
       historyApiFallback: true,
       hot: true,
       inline: true,
+      host: '172.18.61.102',
       port: 8080,
       progress: true
     },

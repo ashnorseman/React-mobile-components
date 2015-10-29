@@ -35,7 +35,9 @@ class TabBase extends Component {
 
     return (
       <nav className={classes}>
-        {tabList}
+        <div className='tab-inner'>
+          {tabList}
+        </div>
       </nav>
     );
   }

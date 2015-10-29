@@ -18,12 +18,14 @@ class Icon extends Component {
   render() {
     const {
             className,
-            name
+            name,
+            rotate
           } = this.props,
 
           classes = mixClass({
             'iconfont': true,
             'icon-$': name,
+            'icon-rotate': rotate,
             '$': className
           });
 
@@ -35,7 +37,8 @@ class Icon extends Component {
 
 Icon.propTypes = {
   className: PropTypes.string,
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  rotate: PropTypes.bool
 };
 
 

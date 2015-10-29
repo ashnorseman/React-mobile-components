@@ -24,4 +24,14 @@ describe('Icon', () => {
     expect(iconNode.classList.contains('iconfont')).toBeTruthy();
     expect(iconNode.classList.contains('icon-home')).toBeTruthy();
   });
+
+  it('rotate', () => {
+    const icon = TestUtils.renderIntoDocument(
+            <Icon name={iconName} rotate></Icon>
+          ),
+          iconNode = ReactDOM.findDOMNode(icon);
+
+    expect(iconNode.classList.contains('iconfont')).toBeTruthy();
+    expect(iconNode.classList.contains('icon-rotate')).toBeTruthy();
+  });
 });

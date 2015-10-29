@@ -64,7 +64,13 @@ textarea {
   font-weight: inherit;
   outline: 0;
   min-height: @control-base-size; // 手指点击最小区间
+  text-align: left;
   width: 100%;                    // 普通情况下，移动端不适合一行放多个表单控件
+}
+
+button {
+  min-height: @button-size;
+  text-align: center;
 }
 
 hr {
@@ -74,6 +80,14 @@ hr {
 ol,
 ul {
   list-style: none;
+}
+
+[type=number] {
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 [type=search] {
@@ -96,5 +110,7 @@ table {
 }
 
 textarea {
+  height: @control-base-size + @font-base * 1.5 * 2;
+  padding: (@control-base-size - (@font-base * 1.5)) / 2 0;
   resize: vertical;
 }
