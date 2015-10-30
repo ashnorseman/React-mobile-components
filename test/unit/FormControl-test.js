@@ -9,18 +9,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-import { Form } from '../../src/components/index';
+import { FormControl } from '../../src/components/index';
 
 
 describe('FormControl', () => {
 
   it('input type=...', () => {
     const formControl = TestUtils.renderIntoDocument(
-            <Form.Control type='text' defaultValue='text-v' placeholder='text-p' />
+            <FormControl name='text' type='text' defaultValue='text-v' placeholder='text-p' />
           ),
           formControlNode = ReactDOM.findDOMNode(formControl),
           formControl2 = TestUtils.renderIntoDocument(
-            <Form.Control type='text' />
+            <FormControl name='text' type='text' />
           ),
           formControlNode2 = ReactDOM.findDOMNode(formControl2);
 
@@ -36,7 +36,7 @@ describe('FormControl', () => {
 
   it('textarea', () => {
     const formControl = TestUtils.renderIntoDocument(
-            <Form.Control type='textarea' defaultValue='textarea-v' placeholder='textarea-p' />
+            <FormControl type='textarea' name='textarea' defaultValue='textarea-v' placeholder='textarea-p' />
           ),
           formControlNode = ReactDOM.findDOMNode(formControl);
 
@@ -59,7 +59,7 @@ describe('FormControl', () => {
             }
           ],
           formControl = TestUtils.renderIntoDocument(
-            <Form.Control type='select' options={options} defaultValue='1' placeholder='select-p' />
+            <FormControl type='select' name='select' options={options} defaultValue='1' placeholder='select-p' />
           ),
           formControlNode = ReactDOM.findDOMNode(formControl);
 
@@ -72,25 +72,26 @@ describe('FormControl', () => {
     expect(formControlNode.querySelector('.form-placeholder').textContent).toEqual('select-p');
   });
 
-  it('tap placeholder to focus', () => {
+  it('clear button for inputs', () => {
     const formControl = TestUtils.renderIntoDocument(
-            <Form.Control type='text' defaultValue='text-v' placeholder='text-p' />
+            <FormControl type='text' name='text' defaultValue='text-v' placeholder='text-p' />
           ),
           formControlNode = ReactDOM.findDOMNode(formControl),
-          placeholder = formControlNode.querySelector('.form-placeholder'),
-          input = formControlNode.querySelector('input');
+          input = formControlNode.querySelector('input'),
+          clear = formControlNode.querySelector('.form-clear');
 
-    expect(formControlNode.classList.contains('form-focused')).toBeFalsy();
+    expect(clear).not.toBeNull();
+    expect(formControlNode.classList.contains('form-has-value')).toBeTruthy();
 
-    TestUtils.Simulate.touchTap(placeholder);
-    expect(formControlNode.classList.contains('form-focused')).toBeTruthy();
-    //expect(input).toEqual(document.activeElement);
+    TestUtils.Simulate.touchTap(clear);
+    expect(input.value).toEqual('');
+    expect(formControlNode.classList.contains('form-no-value')).toBeTruthy();
   });
 
   it('change to toggle `has-value` `no-value` events', () => {
     const spy = jasmine.createSpy(),
           formControl = TestUtils.renderIntoDocument(
-            <Form.Control type='text' defaultValue='text-v' placeholder='text-p' onChange={spy} />
+            <FormControl type='text' name='text' defaultValue='text-v' placeholder='text-p' onChange={spy} />
           ),
           formControlNode = ReactDOM.findDOMNode(formControl),
           input = formControlNode.querySelector('input');
@@ -116,22 +117,24 @@ describe('FormControl', () => {
   it('blur to remove `form-focused`', () => {
     const spy = jasmine.createSpy(),
           formControl = TestUtils.renderIntoDocument(
-            <Form.Control type='text' defaultValue='text-v' placeholder='text-p' onBlur={spy} />
+            <FormControl type='text' name='text' defaultValue='text-v' placeholder='text-p' onBlur={spy} />
           ),
           formControlNode = ReactDOM.findDOMNode(formControl),
-          placeholder = formControlNode.querySelector('.form-placeholder'),
           input = formControlNode.querySelector('input');
 
-    TestUtils.Simulate.touchTap(placeholder);
+    TestUtils.Simulate.focus(input);
     expect(formControlNode.classList.contains('form-focused')).toBeTruthy();
 
     TestUtils.Simulate.blur(input);
     expect(formControlNode.classList.contains('form-focused')).toBeFalsy();
+
+    TestUtils.Simulate.focus(input);
+    expect(formControlNode.classList.contains('form-focused')).toBeTruthy();
   });
 
   it('validation', () => {
     const formControl = TestUtils.renderIntoDocument(
-            <Form.Control type='text' required />
+            <FormControl type='text' name='text' required />
           ),
           formControlNode = ReactDOM.findDOMNode(formControl),
           input = formControlNode.querySelector('input');

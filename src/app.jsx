@@ -10,7 +10,7 @@ import './common/styles/app.less';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Badge, Button, Form, Icon, ImageBox, ImageSlider, PullLoader, Tab, Table, TopAction } from './components/index';
+import { Badge, Button, CheckButton, Form, FormControl, Icon, ImageBox, ImageSlider, PullLoader, Tab, Table, TopAction } from './components/index';
 
 
 injectTapEventPlugin();
@@ -29,6 +29,55 @@ const formSelectOptions = [
     text: '北京'
   }
 ];
+
+const formData = {
+  action: '/form',
+  controls: [
+    {
+      name: 'name',
+      type: 'text',
+      label: '收货人姓名很多字',
+      placeholder: '必填',
+      required: true
+    },
+    {
+      name: 'address',
+      type: 'text',
+      label: '详细地址',
+      placeholder: '必填，最多 100 字',
+      required: true,
+      maxLength: 100
+    }
+  ],
+  submitText: '提交'
+};
+
+const formData2 = {
+  action: '/form',
+  controls: [
+    {
+      name: 'mobile',
+      type: 'tel',
+      placeholder: '手机',
+      required: true
+    },
+    {
+      name: 'code',
+      type: 'tel',
+      placeholder: '验证码',
+      required: true,
+      maxLength: 4,
+      minLength: 4
+    }
+  ],
+  submitText: '提交',
+  beforeSubmit(formData) {
+    // console.log(formData);
+  },
+  onSubmit(formData, form) {
+    console.log(formData, form);
+  }
+};
 
 const imageSliderData = [
   'src/images/400_600.jpeg',
@@ -133,24 +182,42 @@ class TestPage extends Component {
           <Icon name='rotate' className='gap-l'></Icon>
         </div>
 
-        <h2 className='gap-side gap-t'>Button</h2>
+        <h2 className='gap-side gap-t'>按钮</h2>
         <div className='gap-side'>
           <Button disabled onTouchTap={this.handleEvents}>积分不足</Button>
           <Button type='button' onTouchTap={this.handleEvents} className='gap-t'>立即兑换</Button>
           <Button type='button' icon='rotate' className='gap-t' disabled>提交中…</Button>
         </div>
 
+        <h2 className='gap-side gap-t'>小按钮</h2>
+        <div className='gap-side'>
+          <Button disabled icon='delete' link>删除</Button>
+          <Button icon='edit' link>编辑</Button>
+        </div>
+
+        <h2 className='gap-side gap-t'>选择按钮</h2>
+        <div className='gap-side'>
+          <CheckButton onToggle={this.handleEvents}>设为默认</CheckButton>
+          <CheckButton checked>设为默认</CheckButton>
+        </div>
+
         <h2 className='gap-side gap-t'>表单元素</h2>
         <div className='gap-side'>
-          <Form.Control type='text' placeholder='文本（必填）' onChange={this.handleEvents} required />
-          <Form.Control type='number' placeholder='数字（5-10）' max='10' min='5' />
-          <Form.Control type='email' placeholder='电子邮件' />
-          <Form.Control type='tel' placeholder='联系方式' />
-          <Form.Control type='date' placeholder='日期（必填）' required />
-          <Form.Control type='time' placeholder='时间（必填）' required />
-          <Form.Control type='select' placeholder='请选择（必选）' options={formSelectOptions} required />
-          <Form.Control type='textarea' placeholder='多行文本（5–10 字）' maxLength='10' minLength='5' />
+          <FormControl name='text' type='text' placeholder='文本（必填）' defaultValue='示例文字' onChange={this.handleEvents} required />
+          <FormControl name='number' type='tel' placeholder='数字（5-10）' max='10' min='5' />
+          <FormControl name='email' type='email' placeholder='电子邮件' />
+          <FormControl name='tel' type='tel' placeholder='联系方式' />
+          <FormControl name='date' type='date' placeholder='日期（必填）' required />
+          <FormControl name='time' type='time' placeholder='时间（必填）' required />
+          <FormControl name='select' type='select' placeholder='请选择（必选）' options={formSelectOptions} required />
+          <FormControl name='textarea' type='textarea' placeholder='多行文本（5–10 字）' maxLength='10' minLength='5' />
         </div>
+
+        <h2 className='gap-side gap-t'>表单</h2>
+        <Form {...formData2} className='gap-t'></Form>
+
+        <h2 className='gap-side gap-t'>表单（带说明）</h2>
+        <Form {...formData}></Form>
 
         <h2 className='gap-side gap-t'>Tab.Nav</h2>
         <Tab.Nav data={tabNavData}></Tab.Nav>

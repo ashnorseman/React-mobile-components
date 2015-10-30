@@ -21,11 +21,13 @@ class Button extends Component {
             children,
             className,
             icon,
+            link,
             ...props
           } = this.props,
 
           classes = mixClass({
             'btn': true,
+            'btn-link': link,
             '$': className
           }),
 

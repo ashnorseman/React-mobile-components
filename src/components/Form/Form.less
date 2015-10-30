@@ -1,0 +1,61 @@
+/**
+ * Created by AshZhang on 15/10/30.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+
+
+@form-label-width: 5rem;
+
+.form-main {
+  background: @color-bg;
+}
+
+.form-line {
+  border-top: @border-width solid @color-border;
+  margin-left: @gap * 2;
+  overflow: hidden;
+
+  &:first-child {
+    border-top: 0;
+  }
+
+  > .form-control {
+  }
+}
+
+.form-label {
+  float: left;
+  line-height: @control-base-size;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: @form-label-width;
+  
+  & + .form-control {
+    margin-left: @form-label-width;
+  }
+}
+
+
+// Submit
+// ---------------------------
+
+.form-submit {
+  padding: @gap;
+}
+
+.form-submit-bottom {
+  background: @color-bg-light;
+  padding: 0.5rem @gap;
+  position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: @z-submit-bottom;
+  width: 100%;
+}
+
+.form-submit-bottom-mounted {
+  padding-bottom: @button-size + 1rem + @gap;
+}

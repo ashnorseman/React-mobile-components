@@ -59,6 +59,15 @@ describe('Button', () => {
     expect(buttonNode.querySelector('.icon-money')).not.toBeNull();
   });
 
+  it('link', () => {
+    const button = TestUtils.renderIntoDocument(
+            <Button icon='money' link>{buttonText}</Button>
+          ),
+          buttonNode = ReactDOM.findDOMNode(button);
+
+    expect(buttonNode.classList.contains('btn-link')).toBeTruthy();
+  });
+
   it('additional class names', () => {
     const button = TestUtils.renderIntoDocument(
             <Button className='my-btn'>{buttonText}</Button>

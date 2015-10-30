@@ -11,11 +11,9 @@ import React, { Component, PropTypes } from 'react';
 
 import pureRender from '../../common/utils/pure-render';
 import mixClass from '../../common/utils/mix-class';
+import validate from './validate';
+import Icon from '../Icon/Icon.jsx';
 
-
-const VALIDATIONS = ['maxLength', 'minLength', 'max', 'min', 'pattern'],
-      emailReg = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-      telReg = /(^1[3-9]\d{9}$)|(^([08][1-9]\d{1,2}-?)?[2-9]\d{6,7}$)/;
 
 class FormControl extends Component {
 
@@ -24,6 +22,7 @@ class FormControl extends Component {
     this.focusControl = this.focusControl.bind(this);
     this.blurControl = this.blurControl.bind(this);
     this.changeControl = this.changeControl.bind(this);
+    this.clearControl = this.clearControl.bind(this);
     this._validate = this._validate.bind(this);
 
     const value = this.props.defaultValue || this.props.value;
@@ -59,7 +58,13 @@ class FormControl extends Component {
             'form-no-value': !hasValue,
             'form-error': !valid,
             '$': className
-          });
+          }),
+
+          clear = (type === 'select')
+                    ? null
+                    : <span className='form-clear' onTouchTap={this.clearControl}>
+                        <Icon name='clear'></Icon>
+                      </span>;
 
     let control = null;
 
@@ -68,6 +73,7 @@ class FormControl extends Component {
     // Tuning change and blur callbacks
     props.onChange = this.changeControl;
     props.onBlur = this.blurControl;
+    props.onFocus = this.focusControl;
 
     switch (type) {
     case 'date':
@@ -95,7 +101,8 @@ class FormControl extends Component {
 
     return (
       <div className={classes}>
-        <span className='form-placeholder' onTouchTap={this.focusControl}>{placeholder}</span>
+        <span className='form-placeholder'>{placeholder}</span>
+        {clear}
         {control}
       </div>
     );
@@ -105,12 +112,14 @@ class FormControl extends Component {
   /**
    * Focus the control
    */
-  focusControl() {
-    this.refs.control.focus();
-
+  focusControl(e) {
     this.setState({
       focused: true
     });
+
+    if (typeof this.props.onFocus === 'function') {
+      this.props.onFocus(e);
+    }
   }
 
 
@@ -145,70 +154,46 @@ class FormControl extends Component {
 
 
   /**
+   * Clear value
+   */
+  clearControl() {
+    this.refs.control.value = '';
+
+    this.changeControl({
+      currentTarget: {
+        value: ''
+      }
+    });
+  }
+
+
+  /**
    * Validate a control
    * @param {string} value
    * @returns {boolean}
    * @private
    */
   _validate(value) {
-    value = value.trim();
+    const props = this.props;
 
-    // If the control has no value, only test `required`
-    if (!value) {
-      return !this.props.required;
-    }
-
-    // Special regs
-    if (this.props.type === 'email') {
-      return emailReg.test(value);
-    } else if (this.props.type === 'tel') {
-      return telReg.test(value);
-    }
-
-    // HTML5 validations
-    return VALIDATIONS.reduce((valid, validation) => {
-      return this.props[validation]
-                ? this._isValid(validation, this.props[validation], value) && valid
-                : valid;
-    }, true, this);
-  }
-
-
-  /**
-   * Validate a single criteria
-   * @param {string} type
-   * @param {string} prop
-   * @param {string} value
-   * @returns {boolean}
-   * @private
-   */
-  _isValid(type, prop, value) {
-    switch (type) {
-    case 'maxLength':
-      return value.length <= +prop;
-    case 'minLength':
-      return value.length >= +prop;
-    case 'max':
-      return +value <= +prop;
-    case 'min':
-      return +value >= +prop;
-    case 'pattern':
-      return new RegExp(prop).test(value);
-    default:
-      return true;
-    }
+    return validate({
+      value: value.toString().trim(),
+      ...props
+    });
   }
 }
 
 
 FormControl.propTypes = {
   className: PropTypes.string,
+  name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.object),
   placeholder: PropTypes.string,
   type: PropTypes.string.isRequired
 };
 
 FormControl.defaultProps = {
+  autoComplete: false,
   options: [],
   type: 'text'
 };

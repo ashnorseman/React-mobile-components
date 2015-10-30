@@ -7,6 +7,8 @@
 
 import Badge from './Badge/Badge.jsx';
 import Button from './Button/Button.jsx';
+import CheckButton from './CheckButton/CheckButton.jsx';
+import Form from './Form/Form.jsx';
 import FormControl from './Form/FormControl.jsx';
 import Icon from './Icon/Icon.jsx';
 import ImageBox from './ImageBox/ImageBox.jsx';
@@ -21,9 +23,9 @@ import TopAction from './TopAction/TopAction.jsx';
 export default {
   Badge,
   Button,
-  Form: {
-    Control: FormControl
-  },
+  CheckButton,
+  Form,
+  FormControl,
   Icon,
   ImageBox,
   ImageSlider,
