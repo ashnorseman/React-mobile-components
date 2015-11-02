@@ -7,24 +7,35 @@
 
 import './Table.less';
 
-import React, { Component, PropTypes } from 'react';
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 
-import pureRender from '../../common/utils/pure-render';
-import mixClass from '../../common/utils/mix-class';
-import TableHeader from './TableHeader.jsx';
-import TableRow from './TableRow.jsx';
+const mixClass = require('../../common/utils/mix-class');
+const TableHeader = require('./TableHeader.js');
+const TableRow = require('./TableRow.js');
 
 
-class Table extends Component {
+const Table = React.createClass({
+  mixins: [PureRenderMixin],
 
-  constructor(props) {
-    super(props);
-    this.toggle = this.toggle.bind(this);
+  propTypes: {
+    className: React.PropTypes.string,
+    data: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    expanded: React.PropTypes.bool,
+    onToggle: React.PropTypes.func
+  },
 
-    this.state = {
+  getDefaultProps() {
+    return {
+      data: []
+    };
+  },
+
+  getInitialState() {
+    return {
       expanded: this.props.expanded
     };
-  }
+  },
 
   render() {
     const {
@@ -58,7 +69,7 @@ class Table extends Component {
         </ul>
       </div>
     );
-  }
+  },
 
 
   /**
@@ -75,20 +86,7 @@ class Table extends Component {
       this.props.onToggle(expanded);
     }
   }
-}
+});
 
 
-Table.propTypes = {
-  className: PropTypes.string,
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  expanded: PropTypes.bool,
-  onToggle: PropTypes.func
-};
-
-
-Table.defaultProps = {
-  data: []
-};
-
-
-export default pureRender(Table);
+module.exports = Table;

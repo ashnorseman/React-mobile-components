@@ -7,34 +7,44 @@
 
 import './FormControl.less';
 
-import React, { Component, PropTypes } from 'react';
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 
-import pureRender from '../../common/utils/pure-render';
-import mixClass from '../../common/utils/mix-class';
-import validate from './validate';
-import Icon from '../Icon/Icon.jsx';
+const mixClass = require('../../common/utils/mix-class');
+const validate = require('./validate');
+const Icon = require('../Icon/Icon.js');
 
 
-class FormControl extends Component {
+const FormControl = React.createClass({
+  mixins: [PureRenderMixin],
 
-  constructor(props) {
-    super(props);
-    this.focusControl = this.focusControl.bind(this);
-    this.blurControl = this.blurControl.bind(this);
-    this.changeControl = this.changeControl.bind(this);
-    this.clearControl = this.clearControl.bind(this);
-    this._validate = this._validate.bind(this);
+  propTypes: {
+    className: React.PropTypes.string,
+    name: React.PropTypes.string.isRequired,
+    options: React.PropTypes.arrayOf(React.PropTypes.object),
+    placeholder: React.PropTypes.string,
+    type: React.PropTypes.string.isRequired
+  },
 
+  getDefaultProps() {
+    return {
+      autoComplete: false,
+      options: [],
+      type: 'text'
+    };
+  },
+
+  getInitialState() {
     const value = this.props.defaultValue || this.props.value;
 
-    this.state = {
+    return {
       focused: false,
       hasValue: !!value,
       valid: value
-                ? this._validate(value)
-                : true
+        ? this._validate(value)
+        : true
     };
-  }
+  },
 
   render() {
     const {
@@ -106,7 +116,7 @@ class FormControl extends Component {
         {control}
       </div>
     );
-  }
+  },
 
 
   /**
@@ -120,7 +130,7 @@ class FormControl extends Component {
     if (typeof this.props.onFocus === 'function') {
       this.props.onFocus(e);
     }
-  }
+  },
 
 
   /**
@@ -135,7 +145,7 @@ class FormControl extends Component {
     if (typeof this.props.onBlur === 'function') {
       this.props.onBlur(e);
     }
-  }
+  },
 
 
   /**
@@ -150,7 +160,7 @@ class FormControl extends Component {
     if (typeof this.props.onChange === 'function') {
       this.props.onChange(e);
     }
-  }
+  },
 
 
   /**
@@ -164,7 +174,7 @@ class FormControl extends Component {
         value: ''
       }
     });
-  }
+  },
 
 
   /**
@@ -181,22 +191,7 @@ class FormControl extends Component {
       ...props
     });
   }
-}
+});
 
 
-FormControl.propTypes = {
-  className: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.object),
-  placeholder: PropTypes.string,
-  type: PropTypes.string.isRequired
-};
-
-FormControl.defaultProps = {
-  autoComplete: false,
-  options: [],
-  type: 'text'
-};
-
-
-export default pureRender(FormControl);
+module.exports = FormControl;

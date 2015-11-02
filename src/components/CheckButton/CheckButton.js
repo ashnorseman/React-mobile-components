@@ -7,23 +7,28 @@
 
 import './CheckButton.less';
 
-import React, { Component, PropTypes } from 'react';
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 
-import pureRender from '../../common/utils/pure-render';
-import mixClass from '../../common/utils/mix-class';
-import Icon from '../Icon/Icon.jsx';
+const mixClass = require('../../common/utils/mix-class');
+const Icon = require('../Icon/Icon.js');
 
 
-class CheckButton extends Component {
+const CheckButton = React.createClass({
+  mixins: [PureRenderMixin],
 
-  constructor(props) {
-    super(props);
-    this.toggle = this.toggle.bind(this);
+  propTypes: {
+    className: React.PropTypes.string,
+    checked: React.PropTypes.bool,
+    children: React.PropTypes.node,
+    onToggle: React.PropTypes.func
+  },
 
-    this.state = {
+  getInitialState() {
+    return {
       checked: this.props.checked
     };
-  }
+  },
 
   render() {
     const {
@@ -48,7 +53,7 @@ class CheckButton extends Component {
         {children}
       </button>
     );
-  }
+  },
 
 
   /**
@@ -65,15 +70,7 @@ class CheckButton extends Component {
       this.props.onToggle(checked);
     }
   }
-}
+});
 
 
-CheckButton.propTypes = {
-  className: PropTypes.string,
-  checked: PropTypes.bool,
-  children: PropTypes.node,
-  onToggle: PropTypes.func
-};
-
-
-export default pureRender(CheckButton);
+module.exports = CheckButton;

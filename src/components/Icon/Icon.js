@@ -7,13 +7,20 @@
 
 import './Icon.less';
 
-import React, { Component, PropTypes } from 'react';
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 
-import pureRender from '../../common/utils/pure-render';
-import mixClass from '../../common/utils/mix-class';
+const mixClass = require('../../common/utils/mix-class');
 
 
-class Icon extends Component {
+const Icon = React.createClass({
+  mixins: [PureRenderMixin],
+
+  propTypes: {
+    className: React.PropTypes.string,
+    name: React.PropTypes.string.isRequired,
+    rotate: React.PropTypes.bool
+  },
 
   render() {
     const {
@@ -33,13 +40,7 @@ class Icon extends Component {
       <i className={classes}></i>
     );
   }
-}
-
-Icon.propTypes = {
-  className: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  rotate: PropTypes.bool
-};
+});
 
 
-export default pureRender(Icon);
+module.exports = Icon;

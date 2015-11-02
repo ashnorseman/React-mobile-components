@@ -9,7 +9,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-import TableHeader from '../../src/components/Table/TableHeader.jsx';
+import TableHeader from '../../src/components/Table/TableHeader.js';
 
 describe('TableHeader', () => {
 

@@ -7,14 +7,30 @@
 
 import './TableRow.less';
 
-import React, { Component, PropTypes } from 'react';
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 
-import pureRender from '../../common/utils/pure-render';
-import mixClass from '../../common/utils/mix-class';
-import Icon from '../Icon/Icon.jsx';
+const mixClass = require('../../common/utils/mix-class');
+const Icon = require('../Icon/Icon.js');
 
 
-class TableRow extends Component {
+const TableRow = React.createClass({
+  mixins: [PureRenderMixin],
+
+  propTypes: {
+    className: React.PropTypes.string,
+    children: React.PropTypes.node,
+    disclosure: React.PropTypes.bool,
+    href: React.PropTypes.string,
+    note: React.PropTypes.string,
+    text: React.PropTypes.string.isRequired
+  },
+
+  getDefaultProps() {
+    return {
+      disclosure: false
+    };
+  },
 
   render() {
     const {
@@ -52,20 +68,7 @@ class TableRow extends Component {
       </li>
     );
   }
-}
-
-TableRow.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node,
-  disclosure: PropTypes.bool,
-  href: PropTypes.string,
-  note: PropTypes.string,
-  text: PropTypes.string.isRequired
-};
-
-TableRow.defaultProps = {
-  disclosure: false
-};
+});
 
 
-export default pureRender(TableRow);
+module.exports = TableRow;

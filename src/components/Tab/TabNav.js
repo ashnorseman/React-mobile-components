@@ -7,13 +7,14 @@
 
 import './TabNav.less';
 
-import React, { Component, PropTypes } from 'react';
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 
-import pureRender from '../../common/utils/pure-render';
-import TabBase from './TabBase.jsx';
+const TabBase = require('./TabBase.js');
 
 
-class TabNav extends Component {
+const TabNav = React.createClass({
+  mixins: [PureRenderMixin],
 
   render() {
     return (
@@ -22,7 +23,7 @@ class TabNav extends Component {
       </TabBase>
     );
   }
-}
+});
 
 
-export default pureRender(TabNav);
+module.exports = TabNav;

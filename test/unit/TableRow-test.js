@@ -9,7 +9,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-import TableRow from '../../src/components/Table/TableRow.jsx';
+import TableRow from '../../src/components/Table/TableRow.js';
 
 
 describe('TableRow', () => {

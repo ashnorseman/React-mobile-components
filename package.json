@@ -16,7 +16,8 @@
   "author": "Ash Zhang",
   "license": "ISC",
   "dependencies": {
-    "react-addons-css-transition-group": "^0.14.0",
+    "react-addons-css-transition-group": "^0.14.1",
+    "react-addons-pure-render-mixin": "^0.14.1",
     "react-swiper-ash": "^1.0.4",
     "react-tap-event-plugin": "^0.2.1"
   },
@@ -45,8 +46,8 @@
     "less-loader": "^2.2.1",
     "mobile-css-starter": "^1.0.0",
     "react": "^0.14.0",
-    "react-addons-test-utils": "^0.14.0",
-    "react-dom": "^0.14.0",
+    "react-addons-test-utils": "^0.14.1",
+    "react-dom": "^0.14.1",
     "react-transform-hmr": "^1.0.1",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.2",

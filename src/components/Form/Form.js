@@ -7,41 +7,53 @@
 
 import './Form.less';
 
-import React, { Component, PropTypes } from 'react';
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 
-import pureRender from '../../common/utils/pure-render';
-import mixClass from '../../common/utils/mix-class';
-import validate from './validate';
-import FormControl from './FormControl.jsx';
-import Button from '../Button/Button.jsx';
+const mixClass = require('../../common/utils/mix-class');
+const validate = require('./validate');
+const FormControl = require('./FormControl.js');
+const Button = require('../Button/Button.js');
 
 
-class Form extends Component {
+const Form = React.createClass({
+  mixins: [PureRenderMixin],
 
-  constructor(props) {
-    super(props);
-    this.onControlChange = this.onControlChange.bind(this);
-    this.onFormSubmit = this.onFormSubmit.bind(this);
+  propTypes: {
+    action: React.PropTypes.string,
+    onSubmit: React.PropTypes.func,
+    beforeSubmit: React.PropTypes.func,
+    className: React.PropTypes.string,
+    controls: React.PropTypes.arrayOf(React.PropTypes.object),
+    submitAtPageBottom: React.PropTypes.bool,
+    submitText: React.PropTypes.string.isRequired
+  },
 
-    this.state = {
+  getDefaultProps() {
+    return {
+      submitText: '提交'
+    };
+  },
+
+  getInitialState() {
+    return {
       controls: this.props.controls,
+      valid: this._validate(this.props.controls),
       submitting: false
     };
-
-    this.state.valid = this._validate(this.state.controls);
-  }
+  },
 
   componentDidMount() {
     if (this.props.submitAtPageBottom) {
       document.body.firstElementChild.classList.add('form-submit-bottom-mounted');
     }
-  }
+  },
 
   componentWillUnmount() {
     if (this.props.submitAtPageBottom) {
       document.body.firstElementChild.classList.remove('form-submit-bottom-mounted');
     }
-  }
+  },
 
   render() {
     const {
@@ -83,7 +95,7 @@ class Form extends Component {
         </div>
       </form>
     );
-  }
+  },
 
 
   /**
@@ -106,7 +118,7 @@ class Form extends Component {
     if (typeof cb === 'function') {
       cb(e);
     }
-  }
+  },
 
 
   /**
@@ -134,7 +146,7 @@ class Form extends Component {
         this.props.onSubmit(formData, this);
       }
     }
-  }
+  },
 
 
   /**
@@ -150,7 +162,7 @@ class Form extends Component {
     });
 
     return formData;
-  }
+  },
 
 
   /**
@@ -167,22 +179,7 @@ class Form extends Component {
       });
     });
   }
-}
+});
 
 
-Form.propTypes = {
-  action: PropTypes.string,
-  onSubmit: PropTypes.func,
-  beforeSubmit: PropTypes.func,
-  className: PropTypes.string,
-  controls: PropTypes.arrayOf(PropTypes.object),
-  submitAtPageBottom: PropTypes.bool,
-  submitText: PropTypes.string.isRequired
-};
-
-Form.defaultProps = {
-  submitText: '提交'
-};
-
-
-export default pureRender(Form);
+module.exports = Form;

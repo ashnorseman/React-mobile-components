@@ -7,19 +7,19 @@
 
 import '../common/styles/app.less';
 
-import Badge from './Badge/Badge.jsx';
-import Button from './Button/Button.jsx';
-import CheckButton from './CheckButton/CheckButton.jsx';
-import Form from './Form/Form.jsx';
-import FormControl from './Form/FormControl.jsx';
-import Icon from './Icon/Icon.jsx';
-import ImageBox from './ImageBox/ImageBox.jsx';
-import ImageSlider from './ImageSlider/ImageSlider.jsx';
-import PullLoader from './PullLoader/PullLoader.jsx';
-import TabBar from './Tab/TabBar.jsx';
-import TabNav from './Tab/TabNav.jsx';
-import Table from './Table/Table.jsx';
-import TopAction from './TopAction/TopAction.jsx';
+const Badge = require('./Badge/Badge.js');
+const Button = require('./Button/Button.js');
+const CheckButton = require('./CheckButton/CheckButton.js');
+const Form = require('./Form/Form.js');
+const FormControl = require('./Form/FormControl.js');
+const Icon = require('./Icon/Icon.js');
+const ImageBox = require('./ImageBox/ImageBox.js');
+const ImageSlider = require('./ImageSlider/ImageSlider.js');
+const PullLoader = require('./PullLoader/PullLoader.js');
+const TabBar = require('./Tab/TabBar.js');
+const TabNav = require('./Tab/TabNav.js');
+const Table = require('./Table/Table.js');
+const TopAction = require('./TopAction/TopAction.js');
 
 
 module.exports = {

@@ -9,7 +9,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-import Tab from '../../src/components/Tab/TabItem.jsx';
+import Tab from '../../src/components/Tab/TabItem.js';
 
 
 describe('Tab', () => {

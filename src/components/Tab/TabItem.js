@@ -7,15 +7,33 @@
 
 import './TabItem.less';
 
-import React, { Component, PropTypes } from 'react';
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 
-import pureRender from '../../common/utils/pure-render';
-import mixClass from '../../common/utils/mix-class';
-import Badge from '../Badge/Badge.jsx';
-import Icon from '../Icon/Icon.jsx';
+const mixClass = require('../../common/utils/mix-class');
+const Badge = require('../Badge/Badge.js');
+const Icon = require('../Icon/Icon.js');
 
 
-class TabItem extends Component {
+const TabItem = React.createClass({
+  mixins: [PureRenderMixin],
+
+  propType: {
+    active: React.PropTypes.bool.isRequired,
+    badge: React.PropTypes.oneOf(['string', 'number']),
+    className: React.PropTypes.string,
+    icon: React.PropTypes.string.isRequired,
+    link: React.PropTypes.string.isRequired,
+    type: React.PropTypes.number,
+    text: React.PropTypes.string.isRequired
+  },
+
+  getDefaultProps() {
+    return  {
+      active: false,
+      type: 0
+    };
+  },
 
   render() {
     const {
@@ -49,22 +67,7 @@ class TabItem extends Component {
       </a>
     );
   }
-}
-
-TabItem.propType = {
-  active: PropTypes.bool.isRequired,
-  badge: PropTypes.oneOf(['string', 'number']),
-  className: PropTypes.string,
-  icon: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
-  type: PropTypes.number,
-  text: PropTypes.string.isRequired
-};
-
-TabItem.defaultProps = {
-  active: false,
-  type: 0
-};
+});
 
 
-export default pureRender(TabItem);
+module.exports = TabItem;

@@ -7,14 +7,20 @@
 
 import './TableHeader.less';
 
-import React, { Component, PropTypes } from 'react';
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 
-import pureRender from '../../common/utils/pure-render';
-import mixClass from '../../common/utils/mix-class';
-import Icon from '../Icon/Icon.jsx';
+const mixClass = require('../../common/utils/mix-class');
+const Icon = require('../Icon/Icon.js');
 
 
-class TableHeader extends Component {
+const TableHeader = React.createClass({
+  mixins: [PureRenderMixin],
+
+  propTypes: {
+    className: React.PropTypes.string,
+    expanded: React.PropTypes.bool
+  },
 
   render() {
     const {
@@ -40,13 +46,7 @@ class TableHeader extends Component {
       </header>
     );
   }
-}
+});
 
 
-TableHeader.propTypes = {
-  className: PropTypes.string,
-  expanded: PropTypes.bool
-};
-
-
-export default pureRender(TableHeader);
+module.exports = TableHeader;

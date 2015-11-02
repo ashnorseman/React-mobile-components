@@ -7,32 +7,34 @@
 
 import './ImageSlider.less';
 
-import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
-import { Swiper } from 'react-swiper-ash';
+const React = require('react');
+const ReactDOM = require('react-dom');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
+const CSSTransitionGroup = require('react-addons-css-transition-group');
+const { Swiper } = require('react-swiper-ash');
 
-import pureRender from '../../common/utils/pure-render';
-import mixClass from '../../common/utils/mix-class';
+const mixClass = require('../../common/utils/mix-class');
 
 
-// Slider Base
-// ---------------------------
+const ImageSlider = React.createClass({
+  mixins: [PureRenderMixin],
 
-class ImageSlider extends Component {
+  propTypes: {
+    data: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
+  },
 
-  constructor(props) {
-    super(props);
-    this.toggleZoom = this.toggleZoom.bind(this);
-    this.setActive = this.setActive.bind(this);
-    this._setNextActive = this._setNextActive.bind(this);
-    this._setPrevActive = this._setPrevActive.bind(this);
+  getDefaultProps() {
+    return {
+      data: []
+    };
+  },
 
-    this.state = {
+  getInitialState() {
+    return {
       activeIndex: 0,
       zoomed: false
     };
-  }
+  },
 
   render() {
     const { data } = this.props,
@@ -84,7 +86,7 @@ class ImageSlider extends Component {
         </div>
       </Swiper>
     );
-  }
+  },
 
 
   /**
@@ -97,7 +99,7 @@ class ImageSlider extends Component {
     } else if (e.direction === 'right') {
       this._setPrevActive();
     }
-  }
+  },
 
 
   /**
@@ -115,7 +117,7 @@ class ImageSlider extends Component {
       activeIndex: nextActive,
       direction: 'left'
     });
-  }
+  },
 
 
   /**
@@ -133,7 +135,7 @@ class ImageSlider extends Component {
       activeIndex: nextActive,
       direction: 'right'
     });
-  }
+  },
 
   /**
    * Zoom / Unzoom
@@ -146,15 +148,7 @@ class ImageSlider extends Component {
       translateY: window.innerHeight / ReactDOM.findDOMNode(this).offsetHeight
     });
   }
-}
-
-ImageSlider.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.string).isRequired
-};
-
-ImageSlider.defaultProps = {
-  data: []
-};
+});
 
 
-export default pureRender(ImageSlider);
+module.exports = ImageSlider;

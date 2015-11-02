@@ -7,32 +7,30 @@
 
 import './TabBar.less';
 
-import React, { Component, PropTypes } from 'react';
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 
-import pureRender from '../../common/utils/pure-render';
-import TabBase from './TabBase.jsx';
+const TabBase = require('./TabBase.js');
 
 
-class TabBar extends Component {
+const TabBar = React.createClass({
+  mixins: [PureRenderMixin],
 
-  constructor(props) {
-    super(props);
-    this.setActive = this.setActive.bind(this);
-
-    this.state = {
+  getInitialState() {
+    return {
       tabData: this._findActiveTab(this.props.data)
     };
-  }
+  },
 
   componentDidMount() {
     document.body.firstElementChild.classList.add('tab-bar-mounted');
     window.addEventListener('hashchange', this.setActive, false);
-  }
+  },
 
   componentWillUnmount() {
     document.body.firstElementChild.classList.remove('tab-bar-mounted');
     window.removeEventListener('hashchange', this.setActive, false);
-  }
+  },
 
   render() {
     const {
@@ -47,7 +45,7 @@ class TabBar extends Component {
         {this.props.children}
       </TabBase>
     );
-  }
+  },
 
 
   /**
@@ -57,7 +55,7 @@ class TabBar extends Component {
     this.setState({
       tabData: this._findActiveTab(this.state.tabData)
     });
-  }
+  },
 
 
   /**
@@ -74,7 +72,7 @@ class TabBar extends Component {
       return tab;
     });
   }
-}
+});
 
 
-export default pureRender(TabBar);
+module.exports = TabBar;

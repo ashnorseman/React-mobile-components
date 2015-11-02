@@ -65,4 +65,4 @@ function _isValid(type, prop, value) {
 }
 
 
-export default validate;
+module.exports = validate;

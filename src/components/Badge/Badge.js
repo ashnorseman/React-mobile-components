@@ -7,13 +7,19 @@
 
 import './Badge.less';
 
-import React, { Component, PropTypes } from 'react';
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 
-import pureRender from '../../common/utils/pure-render';
-import mixClass from '../../common/utils/mix-class';
+const mixClass = require('../../common/utils/mix-class');
 
 
-class Badge extends Component {
+const Badge = React.createClass({
+  mixins: [PureRenderMixin],
+
+  propTypes: {
+    children: React.PropTypes.node.isRequired,
+    className: React.PropTypes.string
+  },
 
   render() {
     const {
@@ -32,12 +38,7 @@ class Badge extends Component {
       </span>
     );
   }
-}
-
-Badge.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string
-};
+});
 
 
-export default pureRender(Badge);
+module.exports = Badge;

@@ -7,14 +7,27 @@
 
 import './Button.less';
 
-import React, { Component, PropTypes } from 'react';
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 
-import pureRender from '../../common/utils/pure-render';
-import mixClass from '../../common/utils/mix-class';
-import Icon from '../Icon/Icon.jsx';
+const mixClass = require('../../common/utils/mix-class');
+const Icon = require('../Icon/Icon.js');
 
 
-class Button extends Component {
+const Button = React.createClass({
+  mixins: [PureRenderMixin],
+
+  propTypes: {
+    className: React.PropTypes.string,
+    icon: React.PropTypes.string,
+    type: React.PropTypes.string.isRequired
+  },
+
+  getDefaultProps() {
+    return {
+      type: 'button'
+    };
+  },
 
   render() {
     const {
@@ -42,18 +55,7 @@ class Button extends Component {
       </button>
     );
   }
-}
+});
 
 
-Button.propTypes = {
-  className: PropTypes.string,
-  icon: PropTypes.string,
-  type: PropTypes.string.isRequired
-};
-
-Button.defaultProps = {
-  type: 'button'
-};
-
-
-export default pureRender(Button);
+module.exports = Button;

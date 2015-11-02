@@ -7,33 +7,33 @@
 
 import './PullLoader.less';
 
-import React, { Component, PropTypes } from 'react';
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 
-import pureRender from '../../common/utils/pure-render';
-import mixClass from '../../common/utils/mix-class';
+const mixClass = require('../../common/utils/mix-class');
 
 
-class PullLoader extends Component {
+const PullLoader = React.createClass({
+  mixins: [PureRenderMixin],
 
-  constructor(props) {
-    super(props);
-    this._watchScroll = this._watchScroll.bind(this);
-  }
+  propTypes: {
+    onPull: React.PropTypes.func.isRequired
+  },
 
   componentDidMount() {
     window.addEventListener('scroll', this._watchScroll, false);
-  }
+  },
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this._watchScroll, false);
-  }
+  },
 
   render() {
 
     return (
       <div {...this.props}>{this.props.children}</div>
     );
-  }
+  },
 
 
   /**
@@ -46,11 +46,7 @@ class PullLoader extends Component {
       this.props.onPull.call(this);
     }
   }
-}
-
-PullLoader.propTypes = {
-  onPull: PropTypes.func.isRequired
-};
+});
 
 
-export default pureRender(PullLoader);
+module.exports = PullLoader;

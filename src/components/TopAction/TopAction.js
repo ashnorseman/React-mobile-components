@@ -7,30 +7,28 @@
 
 import './TopAction.less';
 
-import React, { Component, PropType } from 'react';
+const React = require('react');
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 
-import pureRender from '../../common/utils/pure-render';
-import Icon from '../Icon/Icon.jsx';
+const Icon = require('../Icon/Icon.js');
 
 
-class TopAction extends Component {
+const TopAction = React.createClass({
+  mixins: [PureRenderMixin],
 
-  constructor(props) {
-    super(props);
-    this._listenToScroll = this._listenToScroll.bind(this);
-
-    this.state = {
+  getInitialState() {
+    return {
       visible: window.pageYOffset > 0
     };
-  }
+  },
 
   componentDidMount() {
     window.addEventListener('scroll', this._listenToScroll, false);
-  }
+  },
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this._listenToScroll, false);
-  }
+  },
 
   render() {
     const { visible } = this.state,
@@ -46,7 +44,7 @@ class TopAction extends Component {
         <Icon name='top'></Icon>
       </span>
     );
-  }
+  },
 
 
   /**
@@ -54,7 +52,7 @@ class TopAction extends Component {
    */
   scrollTop() {
     window.scroll(0, 0);
-  }
+  },
 
 
   /**
@@ -66,7 +64,7 @@ class TopAction extends Component {
       visible: window.pageYOffset > 0
     });
   }
-}
+});
 
 
-export default pureRender(TopAction);
+module.exports = TopAction;
