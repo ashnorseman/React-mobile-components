@@ -22,6 +22,7 @@ class TableRow extends Component {
             className,
             disclosure,
             href,
+            note,
             text
           } = this.props,
 
@@ -30,6 +31,10 @@ class TableRow extends Component {
             '$': className
           }),
 
+          noteNode = note
+            ? <div className='table-row-note'>{note}</div>
+            : null,
+
           arrowIcon = disclosure
             ? <Icon name='arrow-right'></Icon>
             : null;
@@ -37,7 +42,10 @@ class TableRow extends Component {
     return (
       <li className={classes}>
         <a href={href ? `#/${href}` : ''} className='table-row-link clearfix'>
-          <span className='table-row-text'>{text}</span>
+          <div className='table-row-left'>
+            <div className='table-row-text'>{text}</div>
+            {noteNode}
+          </div>
           <span className='table-row-content'>{children}</span>
           {arrowIcon}
         </a>
@@ -51,6 +59,7 @@ TableRow.propTypes = {
   children: PropTypes.node,
   disclosure: PropTypes.bool,
   href: PropTypes.string,
+  note: PropTypes.string,
   text: PropTypes.string.isRequired
 };
 

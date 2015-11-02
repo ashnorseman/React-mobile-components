@@ -7,6 +7,19 @@
 @import '../../common/styles/modules/_mixins';
 
 
+.table-rows {
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-transition: -webkit-transform @duration @timing;
+  transition: transform @duration @timing;
+
+  &.collapsed {
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    height: 0;
+  }
+}
+
 .table-row {
   background: @color-bg;
   padding-left: @gap * 2;
@@ -17,7 +30,7 @@
   .display-flex();
   border-top: @border-width solid @color-border;
   color: @color-text-lighter;
-  line-height: @control-base-size - @gap * 2;
+  min-height: @control-base-size;
   padding: @gap 0;
   width: 100%;
 
@@ -30,8 +43,18 @@
   }
 }
 
-.table-row-text {
+.table-row-left {
   .flex(1);
+}
+
+.table-row-text {
+}
+
+.table-row-note {
+  color: @color-text-lightest;
+  font-size: @font-xs;
+  line-height: 1;
+  margin-top: 0.25rem;
 }
 
 .table-row .iconfont,

@@ -5,6 +5,8 @@
 
 'use strict';
 
+import '../common/styles/app.less';
+
 import Badge from './Badge/Badge.jsx';
 import Button from './Button/Button.jsx';
 import CheckButton from './CheckButton/CheckButton.jsx';
@@ -20,7 +22,7 @@ import Table from './Table/Table.jsx';
 import TopAction from './TopAction/TopAction.jsx';
 
 
-export default {
+module.exports = {
   Badge,
   Button,
   CheckButton,

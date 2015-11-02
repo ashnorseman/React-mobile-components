@@ -1,0 +1,26 @@
+/**
+ * Created by AshZhang on 15/11/2.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+
+
+.table-header {
+  background: @color-bg-lighter;
+  border-bottom: @color-border solid @border-width;
+  border-top: @color-border solid @border-width;
+  font-size: @font-sm;
+  padding: ((@control-base-size - @font-sm * @line-height) / 2 - @border-width * 2) @gap * 2;
+
+  > .iconfont {
+    float: right;
+    -webkit-transition: all @duration @timing;
+    transition: all @duration @timing;
+
+    &.expanded {
+      -webkit-transform: rotate(-180deg);
+      transform: rotate(-180deg);
+    }
+  }
+}

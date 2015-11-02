@@ -5,12 +5,10 @@
 
 'use strict';
 
-import './common/styles/app.less';
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Badge, Button, CheckButton, Form, FormControl, Icon, ImageBox, ImageSlider, PullLoader, Tab, Table, TopAction } from './components/index';
+import { Badge, Button, CheckButton, Form, FormControl, Icon, ImageBox, ImageSlider, PullLoader, Tab, Table, TopAction } from '../src/components/index';
 
 
 injectTapEventPlugin();
@@ -139,6 +137,7 @@ const tabNavData = [
 const tableData = [
   {
     text: '个人信息',
+    note: '2015-10-10',
     href: 'profile',
     disclosure: true
   },
@@ -149,6 +148,7 @@ const tableData = [
   },
   {
     text: '昵称',
+    note: '2015-10-10',
     href: 'nickname',
     children: '我是小明'
   },
@@ -226,7 +226,13 @@ class TestPage extends Component {
         <Tab.Bar data={tabBarData}></Tab.Bar>
 
         <h2 className='gap-side gap-t'>Table</h2>
-        <Table data={tableData}></Table>
+        <Table data={tableData} expanded={true}>
+          <span>本月</span>
+          <span className='gap-l'>赚取积分</span>
+          <span className='text-primary'>600</span>
+          <span className='gap-l'>兑换积分</span>
+          <span className='text-primary'>600</span>
+        </Table>
 
         <h2 className='gap-side gap-t'>ImageBox</h2>
         <div className='gap-side'>

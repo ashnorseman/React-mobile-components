@@ -18,6 +18,7 @@ describe('TableRow', () => {
   beforeEach(() => {
     tableRowData = {
       text: '个人信息',
+      note: '2015-10-10',
       href: 'profile'
     };
   });
@@ -32,6 +33,7 @@ describe('TableRow', () => {
     expect(tableRowNode.classList.contains('table-row')).toBeTruthy();
     expect(tableRowNode.querySelector('.table-row-link').href).toEqual(document.baseURI + '#/' + tableRowData.href);
     expect(tableRowNode.querySelector('.table-row-text').textContent).toEqual(tableRowData.text);
+    expect(tableRowNode.querySelector('.table-row-note').textContent).toEqual(tableRowData.note);
     expect(tableRowNode.querySelector('.icon-arrow-right')).toBeNull();
   });
 
