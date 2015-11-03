@@ -5,7 +5,7 @@
 
 'use strict';
 
-import './Button.less';
+require('./Button.less');
 
 const React = require('react');
 const PureRenderMixin = require('react-addons-pure-render-mixin');

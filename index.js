@@ -13,7 +13,7 @@ var http = require('http'),
 
 http.createServer(function(req, res) {
   var uri = url.parse(req.url).pathname,
-      filename = /^\/?src/.test(uri)
+      filename = /^\/?example/.test(uri)
         ? path.join(__dirname, uri)
         : path.join(__dirname, 'build', uri);
 

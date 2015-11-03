@@ -30,26 +30,29 @@ if (TARGET === 'start') {
       historyApiFallback: true,
       hot: true,
       inline: true,
-      host: '172.18.60.178',
+      //host: '172.18.60.178',
       port: 8080,
       progress: true
     },
     devtool: 'eval-source-map',
-    entry: path.resolve(ROOT_PATH, 'src/app.jsx'),
+    entry: path.resolve(ROOT_PATH, 'example/app.jsx'),
     module: {
       loaders: [
         {
           test: /\.(le|c)ss$/,
           loaders: ['style', 'css', 'less'],
           includes: [
-            path.resolve(ROOT_PATH, 'src'),
-            path.resolve(ROOT_PATH, 'node_modules/font-awesome')
+            path.resolve(ROOT_PATH, 'example'),
+            path.resolve(ROOT_PATH, 'src')
           ]
         },
         {
           test: /\.jsx?$/,
           loaders: ['babel'],
-          include: path.resolve(ROOT_PATH, 'src')
+          include: [
+            path.resolve(ROOT_PATH, 'example'),
+            path.resolve(ROOT_PATH, 'src')
+          ]
         },
         {
           test: /\.(jpe?g|png|gif|svg)$/i,
@@ -88,7 +91,7 @@ if (TARGET === 'build') {
   module.exports = {
     devtool: 'source-map',
     entry: {
-      app: path.resolve(ROOT_PATH, 'src/app.jsx'),
+      app: path.resolve(ROOT_PATH, 'example/app.jsx'),
       libs: Object.keys(PACKAGE.dependencies)
     },
     output: {
@@ -101,14 +104,17 @@ if (TARGET === 'build') {
           test: /\.(le|c)ss$/,
           loader: ExtractTextPlugin.extract('style', 'css!less'),
           includes: [
-            path.resolve(ROOT_PATH, 'src'),
-            path.resolve(ROOT_PATH, 'node_modules/font-awesome')
+            path.resolve(ROOT_PATH, 'example'),
+            path.resolve(ROOT_PATH, 'src')
           ]
         },
         {
           test: /\.jsx?$/,
           loaders: ['babel'],
-          include: path.resolve(ROOT_PATH, 'src')
+          include: [
+            path.resolve(ROOT_PATH, 'example'),
+            path.resolve(ROOT_PATH, 'src')
+          ]
         },
         {
           test: /\.(jpe?g|png|gif|svg)$/i,

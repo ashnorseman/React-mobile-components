@@ -2,7 +2,7 @@
   "name": "react-mobile-components",
   "version": "1.0.0",
   "description": "React mobile components",
-  "main": "index.js",
+  "main": "src/components/index.js",
   "scripts": {
     "build": "BABEL_ENV=production webpack",
     "start": "webpack-dev-server",

@@ -5,7 +5,7 @@
 
 'use strict';
 
-import './Table.less';
+require('./Table.less');
 
 const React = require('react');
 const PureRenderMixin = require('react-addons-pure-render-mixin');

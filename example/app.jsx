@@ -8,8 +8,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Badge, Button, CheckButton, Form, FormControl, Icon, ImageBox, ImageSlider, PullLoader, Tab, Table, TopAction } from '../src/components/index';
-
+import { Badge, Button, CheckButton, Form, FormControl, Icon, ImageBox, ImageSlider, PullLoader, Tab, Table, TopAction } from '../src/components/index.js';
 
 injectTapEventPlugin();
 
@@ -78,9 +77,9 @@ const formData2 = {
 };
 
 const imageSliderData = [
-  'src/images/400_600.jpeg',
-  'src/images/400_300.jpeg',
-  'src/images/400_400.jpeg'
+  'example/images/400_600.jpeg',
+  'example/images/400_300.jpeg',
+  'example/images/400_400.jpeg'
 ];
 
 const tabBarData = [
@@ -144,7 +143,7 @@ const tableData = [
   {
     text: '头像',
     href: 'avatar',
-    children: <img style={{ width: 56, height: 56 }} src='src/images/100_100.jpeg' alt='' />
+    children: <img style={{ width: 56, height: 56 }} src='example/images/100_100.jpeg' alt='' />
   },
   {
     text: '昵称',
@@ -237,10 +236,10 @@ class TestPage extends Component {
         <h2 className='gap-side gap-t'>ImageBox</h2>
         <div className='gap-side'>
           <div style={{ display: 'inline-block' }}>
-            <ImageBox src='src/images/200_150.jpeg'></ImageBox>
+            <ImageBox src='example/images/200_150.jpeg'></ImageBox>
           </div>
           <div style={{ display: 'inline-block' }} className='gap-l'>
-            <ImageBox src='src/images/150_200.jpeg'></ImageBox>
+            <ImageBox src='example/images/150_200.jpeg'></ImageBox>
           </div>
         </div>
 

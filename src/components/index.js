@@ -5,7 +5,7 @@
 
 'use strict';
 
-import '../common/styles/app.less';
+require('../common/styles/app.less');
 
 const Badge = require('./Badge/Badge.js');
 const Button = require('./Button/Button.js');

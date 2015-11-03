@@ -5,7 +5,7 @@
 
 'use strict';
 
-import './PullLoader.less';
+require('./PullLoader.less');
 
 const React = require('react');
 const PureRenderMixin = require('react-addons-pure-render-mixin');

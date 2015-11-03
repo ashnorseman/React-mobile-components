@@ -5,7 +5,7 @@
 
 'use strict';
 
-import './Badge.less';
+require('./Badge.less');
 
 const React = require('react');
 const PureRenderMixin = require('react-addons-pure-render-mixin');

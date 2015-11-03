@@ -5,7 +5,7 @@
 
 'use strict';
 
-import './TabBar.less';
+require('./TabBar.less');
 
 const React = require('react');
 const PureRenderMixin = require('react-addons-pure-render-mixin');
