@@ -44,8 +44,8 @@ const TabBase = React.createClass({
             '$': className
           }),
 
-          tabList = data.map((tab) => {
-            return <TabItem {...tab} key={tab.link}></TabItem>;
+          tabList = data.map((tab, index) => {
+            return <TabItem {...tab} key={index}></TabItem>;
           });
 
     return (

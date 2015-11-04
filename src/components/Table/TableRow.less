@@ -28,15 +28,11 @@
 .table-row-link {
   .align-items(center);
   .display-flex();
-  border-top: @border-width solid @color-border;
+  border-bottom: @border-width solid @color-border;
   color: @color-text-lighter;
   min-height: @control-base-size;
   padding: @gap 0;
   width: 100%;
-
-  :first-child > & {
-    border-top: 0;
-  }
 
   img {
     vertical-align: middle;

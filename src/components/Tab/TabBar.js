@@ -18,7 +18,7 @@ const TabBar = React.createClass({
 
   getInitialState() {
     return {
-      tabData: this._findActiveTab(this.props.data)
+      active: this._getActiveHash()
     };
   },
 
@@ -36,9 +36,11 @@ const TabBar = React.createClass({
     const {
             data,
             ...props
-          } = this.props,
+            } = this.props,
 
-          { tabData } = this.state;
+          { active } = this.state,
+
+          tabData = this._findActiveTab(data, active);
 
     return (
       <TabBase {...props} data={tabData} type='bar'>
@@ -53,20 +55,28 @@ const TabBar = React.createClass({
    */
   setActive() {
     this.setState({
-      tabData: this._findActiveTab(this.state.tabData)
+      active: this._getActiveHash()
     });
+  },
+
+
+  /**
+   * Get active hash from url
+   * @private
+   */
+  _getActiveHash() {
+    return location.hash.replace(/^\/?#\//, '').replace(/\?.+$/, '');
   },
 
 
   /**
    * Find the active tab by `location.hash`
    * @param {Array} tabs
+   * @param {string} hash
    * @returns {Array}
    * @private
    */
-  _findActiveTab(tabs) {
-    const hash = location.hash.replace(/^\/?#\//, '');
-
+  _findActiveTab(tabs, hash) {
     return tabs.map((tab) => {
       tab.active = (tab.link === hash);
       return tab;
