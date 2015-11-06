@@ -35,14 +35,8 @@ const FormControl = React.createClass({
   },
 
   getInitialState() {
-    const value = this.props.defaultValue || this.props.value;
-
     return {
-      focused: false,
-      hasValue: !!value,
-      valid: value
-        ? this._validate(value)
-        : true
+      focused: false
     };
   },
 
@@ -56,10 +50,12 @@ const FormControl = React.createClass({
           } = this.props,
 
           {
-            focused,
-            hasValue,
-            valid
+            focused
           } = this.state,
+
+          hasValue = !!props.value,
+
+          valid = (props.value && !focused) ? this._validate(props.value) : true,
 
           classes = mixClass({
             'form-control': true,
@@ -77,8 +73,6 @@ const FormControl = React.createClass({
                       </span>;
 
     let control = null;
-
-    props.ref = 'control';
 
     // Tuning change and blur callbacks
     props.onChange = this.changeControl;
@@ -138,8 +132,7 @@ const FormControl = React.createClass({
    */
   blurControl(e) {
     this.setState({
-      focused: false,
-      valid: this._validate(e.currentTarget.value)
+      focused: false
     });
 
     if (typeof this.props.onBlur === 'function') {
@@ -153,12 +146,8 @@ const FormControl = React.createClass({
    * @param e
    */
   changeControl(e) {
-    this.setState({
-      hasValue: e.currentTarget.value
-    });
-
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(e);
+      this.props.onChange(this.props.name, e.currentTarget.value);
     }
   },
 
@@ -167,8 +156,6 @@ const FormControl = React.createClass({
    * Clear value
    */
   clearControl() {
-    this.refs.control.value = '';
-
     this.changeControl({
       currentTarget: {
         value: ''

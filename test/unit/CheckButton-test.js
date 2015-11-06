@@ -44,19 +44,11 @@ describe('CheckButton', () => {
           ),
           checkBtnNode = ReactDOM.findDOMNode(checkBtn);
 
-    expect(checkBtnNode.classList.contains('check-btn-checked')).toBeFalsy();
-    expect(checkBtnNode.querySelector('.icon-checked')).toBeNull();
-
     TestUtils.Simulate.touchTap(checkBtnNode);
-    expect(checkBtnNode.classList.contains('check-btn-checked')).toBeTruthy();
-    expect(checkBtnNode.querySelector('.icon-checked')).not.toBeNull();
     expect(spy.calls.count()).toEqual(1);
     expect(spy.calls.mostRecent().args[0]).toEqual(true);
 
     TestUtils.Simulate.touchTap(checkBtnNode);
-    expect(checkBtnNode.classList.contains('check-btn-checked')).toBeFalsy();
-    expect(checkBtnNode.querySelector('.icon-checked')).toBeNull();
     expect(spy.calls.count()).toEqual(2);
-    expect(spy.calls.mostRecent().args[0]).toEqual(false);
   });
 });

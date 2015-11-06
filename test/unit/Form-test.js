@@ -111,7 +111,7 @@ describe('Form', () => {
           name: 'text',
           type: 'text',
           required: true,
-          defaultValue: 'abc'
+          value: 'abc'
         }
       ],
       submitText: '提交',
@@ -139,7 +139,7 @@ describe('Form', () => {
           name: 'text',
           type: 'text',
           required: true,
-          defaultValue: 'abc'
+          value: 'abc'
         }
       ],
       submitText: '提交',
@@ -168,7 +168,7 @@ describe('Form', () => {
           name: 'text',
           type: 'text',
           required: true,
-          defaultValue: 'abc'
+          value: 'abc'
         }
       ],
       submitText: '提交',

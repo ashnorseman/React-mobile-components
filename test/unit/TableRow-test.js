@@ -58,4 +58,20 @@ describe('TableRow', () => {
 
     expect(tableRowNode.querySelector('.table-row-content img')).not.toBeNull();
   });
+
+  it('events', () => {
+    const spy = jasmine.createSpy();
+
+    tableRowData.onTouchTap = spy();
+
+    const tableRow = TestUtils.renderIntoDocument(
+            <TableRow {...tableRowData}>
+              <img src='' alt='' />
+            </TableRow>
+          ),
+          tableRowNode = ReactDOM.findDOMNode(tableRow);
+
+    TestUtils.Simulate.touchTap(tableRowNode);
+    expect(spy.calls.count()).toEqual(1);
+  });
 });

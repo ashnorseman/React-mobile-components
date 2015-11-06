@@ -75,7 +75,7 @@ const Form = React.createClass({
             return (
               <div className='form-line' key={index}>
                 {labelSpan}
-                <FormControl {...control} onChange={this.onControlChange.bind(null, control.name, onChange)} />
+                <FormControl {...control} onChange={this.onControlChange.bind(null, onChange)} />
               </div>
             );
           }),
@@ -100,23 +100,24 @@ const Form = React.createClass({
 
   /**
    * The control value changes
-   * @param {string} name
    * @param {Function} cb
-   * @param {Object} e
+   * @param {string} name
+   * @param {string} value
    */
-  onControlChange(name, cb, e) {
+  onControlChange(cb, name, value) {
     const control = this.state.controls.filter((control) => {
       return control.name === name;
     })[0];
 
-    control.value = e.currentTarget.value;
+    control.value = value;
 
     this.setState({
+      controls: [].concat(this.state.controls),
       valid: this._validate(this.state.controls)
     });
 
     if (typeof cb === 'function') {
-      cb(e);
+      cb(name, value);
     }
   },
 
@@ -155,13 +156,10 @@ const Form = React.createClass({
    * @private
    */
   _getFormData() {
-    let formData = {};
-
-    this.state.controls.forEach((control) => {
-      formData[control.name] = (control.value !== undefined) ? control.value : control.defaultValue;
-    });
-
-    return formData;
+    return this.state.controls.reduce((formData, control) => {
+      formData[control.name] = control.value;
+      return formData;
+    }, {});
   },
 
 
@@ -172,9 +170,9 @@ const Form = React.createClass({
    * @private
    */
   _validate(controls) {
-    return controls.every(({ defaultValue, value, ...props }) => {
+    return controls.every(({ value, ...props }) => {
       return validate({
-        value: (value !== undefined) ? value : defaultValue,
+        value: value,
         ...props
       });
     });

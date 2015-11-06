@@ -24,25 +24,19 @@ const CheckButton = React.createClass({
     onToggle: React.PropTypes.func
   },
 
-  getInitialState() {
-    return {
-      checked: this.props.checked
-    };
-  },
-
   render() {
     const {
+            checked,
             children,
             className,
             onToggle,
             ...props
           } = this.props,
 
-          { checked } = this.state,
-
           classes = mixClass({
             'btn': true,
             'btn-link': true,
+            'check-btn': true,
             'check-btn-checked': checked,
             '$': className
           });
@@ -60,11 +54,7 @@ const CheckButton = React.createClass({
    * Toggle checked status
    */
   toggle() {
-    const checked = !this.state.checked;
-
-    this.setState({
-      checked: checked
-    });
+    const checked = !this.props.checked;
 
     if (typeof this.props.onToggle === 'function') {
       this.props.onToggle(checked);

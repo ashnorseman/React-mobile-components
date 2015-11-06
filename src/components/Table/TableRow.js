@@ -39,7 +39,8 @@ const TableRow = React.createClass({
             disclosure,
             href,
             note,
-            text
+            text,
+            ...props
           } = this.props,
 
           classes = mixClass({
@@ -56,8 +57,8 @@ const TableRow = React.createClass({
             : null;
 
     return (
-      <li className={classes}>
-        <a href={href ? `#/${href}` : ''} className='table-row-link clearfix'>
+      <li className={classes} {...props}>
+        <a href={href ? `#/${href}` : null} className='table-row-link clearfix'>
           <div className='table-row-left'>
             <div className='table-row-text'>{text}</div>
             {noteNode}

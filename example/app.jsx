@@ -49,33 +49,6 @@ const formData = {
   submitText: '提交'
 };
 
-const formData2 = {
-  action: '/form',
-  controls: [
-    {
-      name: 'mobile',
-      type: 'tel',
-      placeholder: '手机',
-      required: true
-    },
-    {
-      name: 'code',
-      type: 'tel',
-      placeholder: '验证码',
-      required: true,
-      maxLength: 4,
-      minLength: 4
-    }
-  ],
-  submitText: '提交',
-  beforeSubmit(formData) {
-    // console.log(formData);
-  },
-  onSubmit(formData, form) {
-    console.log(formData, form);
-  }
-};
-
 const imageSliderData = [
   'example/images/400_600.jpeg',
   'example/images/400_300.jpeg',
@@ -89,7 +62,7 @@ const tabBarData = [
     link: 'home'
   },
   {
-    badge: '9',
+    badge: 10,
     icon: 'gift-box',
     text: '礼品箱',
     link: 'gift-box'
@@ -166,15 +139,54 @@ class TestPage extends Component {
     this.pulledToBottom = this.pulledToBottom.bind(this);
 
     this.state = {
-      bottom: false
+      bottom: false,
+      controls: {
+        text: '示例文字',
+        number: '',
+        tel: '',
+        email: '',
+        date: '',
+        time: '',
+        select: '',
+        textarea: ''
+      },
+      form2: {
+        action: '/form',
+        controls: [
+          {
+            name: 'mobile',
+            type: 'tel',
+            placeholder: '手机',
+            required: true
+          },
+          {
+            name: 'code',
+            type: 'tel',
+            placeholder: '验证码',
+            required: true,
+            maxLength: 4,
+            minLength: 4
+          }
+        ],
+        submitText: '提交',
+        beforeSubmit(formData) {
+          // console.log(formData);
+        },
+        onSubmit(formData, form) {
+          console.log(formData, form);
+        }
+      }
     };
   }
 
   render() {
-    const { bottom } = this.state;
+    const { bottom, controls, form2 } = this.state;
 
     return (
       <div>
+        <h2 className='gap-side gap-t'>表单</h2>
+        <Form {...form2} className='gap-t' />
+
         <h2 className='gap-side gap-t'>Icon</h2>
         <div className='gap-side'>
           <Icon name='loading'></Icon>
@@ -190,30 +202,27 @@ class TestPage extends Component {
 
         <h2 className='gap-side gap-t'>小按钮</h2>
         <div className='gap-side'>
-          <Button disabled icon='delete' link>删除</Button>
+          <Button disabled icon='delete' link className='gap-r'>删除</Button>
           <Button icon='edit' link>编辑</Button>
         </div>
 
         <h2 className='gap-side gap-t'>选择按钮</h2>
         <div className='gap-side'>
-          <CheckButton onToggle={this.handleEvents}>设为默认</CheckButton>
+          <CheckButton className='gap-r' onToggle={this.handleEvents}>设为默认</CheckButton>
           <CheckButton checked>设为默认</CheckButton>
         </div>
 
         <h2 className='gap-side gap-t'>表单元素</h2>
         <div className='gap-side'>
-          <FormControl name='text' type='text' placeholder='文本（必填）' defaultValue='示例文字' onChange={this.handleEvents} required />
-          <FormControl name='number' type='tel' placeholder='数字（5-10）' max='10' min='5' />
-          <FormControl name='email' type='email' placeholder='电子邮件' />
-          <FormControl name='tel' type='tel' placeholder='联系方式' />
-          <FormControl name='date' type='date' placeholder='日期（必填）' required />
-          <FormControl name='time' type='time' placeholder='时间（必填）' required />
-          <FormControl name='select' type='select' placeholder='请选择（必选）' options={formSelectOptions} required />
-          <FormControl name='textarea' type='textarea' placeholder='多行文本（5–10 字）' maxLength='10' minLength='5' />
+          <FormControl name='text' type='text' placeholder='文本（必填）' value={controls.text} onChange={this.controlChange.bind(this)} required />
+          <FormControl name='number' type='tel' placeholder='数字（5-10）' max='10' min='5' value={controls.number} onChange={this.controlChange.bind(this)}  />
+          <FormControl name='email' type='email' placeholder='电子邮件' value={controls.email} onChange={this.controlChange.bind(this)}  />
+          <FormControl name='tel' type='tel' placeholder='联系方式' value={controls.tel} onChange={this.controlChange.bind(this)}  />
+          <FormControl name='date' type='date' placeholder='日期（必填）' required value={controls.date} onChange={this.controlChange.bind(this)}  />
+          <FormControl name='time' type='time' placeholder='时间（必填）' required value={controls.time} onChange={this.controlChange.bind(this)}  />
+          <FormControl name='select' type='select' placeholder='请选择（必选）' options={formSelectOptions} required value={controls.select} onChange={this.controlChange.bind(this)}  />
+          <FormControl name='textarea' type='textarea' placeholder='多行文本（5–10 字）' maxLength='10' minLength='5' value={controls.textarea} onChange={this.controlChange.bind(this)}  />
         </div>
-
-        <h2 className='gap-side gap-t'>表单</h2>
-        <Form {...formData2} className='gap-t'></Form>
 
         <h2 className='gap-side gap-t'>表单（带说明）</h2>
         <Form {...formData}></Form>
@@ -253,6 +262,11 @@ class TestPage extends Component {
         <PullLoader onPull={this.pulledToBottom}></PullLoader>
       </div>
     );
+  }
+
+  controlChange(name, value) {
+    this.state.controls[name] = value;
+    this.setState(this.state);
   }
 
   handleEvents(e) {
