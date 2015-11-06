@@ -26,7 +26,8 @@ const Form = React.createClass({
     className: React.PropTypes.string,
     controls: React.PropTypes.arrayOf(React.PropTypes.object),
     submitAtPageBottom: React.PropTypes.bool,
-    submitText: React.PropTypes.string.isRequired
+    submitText: React.PropTypes.string.isRequired,
+    onControlChange: React.PropTypes.func
   },
 
   getDefaultProps() {
@@ -37,7 +38,6 @@ const Form = React.createClass({
 
   getInitialState() {
     return {
-      controls: this.props.controls,
       valid: this._validate(this.props.controls),
       submitting: false
     };
@@ -60,11 +60,11 @@ const Form = React.createClass({
             action,
             submitAtPageBottom,
             submitText,
+            controls,
             ...props
           } = this.props,
 
           {
-            controls,
             submitting,
             valid
           } = this.state,
@@ -105,19 +105,16 @@ const Form = React.createClass({
    * @param {string} value
    */
   onControlChange(cb, name, value) {
-    const control = this.state.controls.filter((control) => {
-      return control.name === name;
-    })[0];
-
-    control.value = value;
-
     this.setState({
-      controls: [].concat(this.state.controls),
-      valid: this._validate(this.state.controls)
+      valid: this._validate(this.props.controls)
     });
 
     if (typeof cb === 'function') {
       cb(name, value);
+    }
+
+    if (this.props.onControlChange) {
+      this.props.onControlChange(name, value);
     }
   },
 
@@ -132,7 +129,7 @@ const Form = React.createClass({
     let formData,
         canSubmit = true;
 
-    if (this._validate(this.state.controls)) {
+    if (this._validate(this.props.controls)) {
       formData = this._getFormData();
 
       // Return false will prevent the form from being submitted
@@ -156,7 +153,7 @@ const Form = React.createClass({
    * @private
    */
   _getFormData() {
-    return this.state.controls.reduce((formData, control) => {
+    return this.props.controls.reduce((formData, control) => {
       formData[control.name] = control.value;
       return formData;
     }, {});
@@ -178,6 +175,27 @@ const Form = React.createClass({
     });
   }
 });
+
+
+/**
+ * Update control value
+ * @param {[Object]} controls
+ * @param {string} name
+ * @param {string} value
+ */
+Form.updateValue = (controls, name, value) => {
+  const control = controls.filter((c) => {
+    return c.name === name;
+  })[0],
+        index = controls.indexOf(control);
+
+  control.value = value;
+
+  controls.splice(index, 1, Object.keys(control).reduce((c, key) => {
+    c.key = control[key];
+    return c;
+  }, {}));
+};
 
 
 module.exports = Form;

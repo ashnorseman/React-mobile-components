@@ -185,7 +185,7 @@ class TestPage extends Component {
     return (
       <div>
         <h2 className='gap-side gap-t'>表单</h2>
-        <Form {...form2} className='gap-t' />
+        <Form {...form2} className='gap-t' onControlChange={this.formControlChange.bind(this)} />
 
         <h2 className='gap-side gap-t'>Icon</h2>
         <div className='gap-side'>
@@ -267,6 +267,14 @@ class TestPage extends Component {
   controlChange(name, value) {
     this.state.controls[name] = value;
     this.setState(this.state);
+  }
+
+  formControlChange(name, value) {
+    Form.updateValue(this.state.form2.controls, name, value);
+
+    this.setState({
+      form2: this.state.form2
+    });
   }
 
   handleEvents(e) {

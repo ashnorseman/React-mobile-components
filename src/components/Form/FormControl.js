@@ -95,8 +95,8 @@ const FormControl = React.createClass({
       control = <textarea {...props}></textarea>;
       break;
     case 'select':
-      let optionNodes = options.map(({ text, opt }, index) => {
-        return <option {...opt} key={index}>{text}</option>;
+      let optionNodes = options.map(({ text, value }, index) => {
+        return <option value={value} key={index}>{text}</option>;
       });
       control = <select {...props}>{optionNodes}</select>;
       break;
