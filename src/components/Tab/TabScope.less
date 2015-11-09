@@ -1,0 +1,37 @@
+/**
+ * Created by AshZhang on 15/11/9.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+@import '../../common/styles/modules/_mixins';
+
+
+.tab-scope {
+  background: @color-bg-lighter;
+  border-bottom: @border-width solid @color-border;
+  border-top: @border-width solid @color-border;
+  line-height: @control-base-size;
+  position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: @z-tab-bar;
+
+  .tab-item.active {
+
+    &::after {
+      background: @color-primary;
+      content: ' ';
+      height: 0.125rem;
+      position: absolute;
+        bottom: 0;
+        left: 1em;
+        right: 1em;
+    }
+  }
+}
+
+.tab-scope-mounted {
+  padding-top: @control-base-size;
+}

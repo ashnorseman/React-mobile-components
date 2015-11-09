@@ -106,6 +106,25 @@ const tabNavData = [
   }
 ];
 
+const tabScopeData = [
+  {
+    text: '全部',
+    link: 'history/1'
+  },
+  {
+    text: '已发货',
+    link: 'history/2'
+  },
+  {
+    text: '未发货',
+    link: 'history/3'
+  },
+  {
+    text: '已取消',
+    link: 'history/4'
+  }
+];
+
 const tableData = [
   {
     text: '个人信息',
@@ -233,6 +252,9 @@ class TestPage extends Component {
         <h2 className='gap-side gap-t'>Tab.Nav</h2>
         <Tab.Nav data={tabNavData}></Tab.Nav>
 
+        <h2 className='gap-side gap-t'>Tab.Scope (见最上)</h2>
+        <Tab.Scope data={tabScopeData}></Tab.Scope>
+
         <h2 className='gap-side gap-t'>Tab.Bar (见最下)</h2>
         <Tab.Bar data={tabBarData}></Tab.Bar>
 
@@ -260,7 +282,7 @@ class TestPage extends Component {
 
         <h2 className='gap-side gap-t'>消息</h2>
         <div className='gap-side'>
-          <Button onTouchTap={this.message}>弹</Button>
+          <Button onTouchTap={this.message}>点击弹出</Button>
         </div>
 
         <h2 className='gap-side gap-t'>TopAction (滚动屏幕后见右下角)</h2>

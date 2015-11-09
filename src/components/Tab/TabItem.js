@@ -22,7 +22,7 @@ const TabItem = React.createClass({
     active: React.PropTypes.bool.isRequired,
     badge: React.PropTypes.oneOf(['string', 'number']),
     className: React.PropTypes.string,
-    icon: React.PropTypes.string.isRequired,
+    icon: React.PropTypes.string,
     link: React.PropTypes.string.isRequired,
     type: React.PropTypes.number,
     text: React.PropTypes.string.isRequired
@@ -62,7 +62,7 @@ const TabItem = React.createClass({
     return (
       <a className={classes} href={href}>
         {badgeElement}
-        <Icon name={icon}></Icon>
+        {icon ? <Icon name={icon}></Icon> : null}
         <span className='tab-text'>{text}</span>
       </a>
     );
