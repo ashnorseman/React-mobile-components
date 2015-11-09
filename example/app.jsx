@@ -8,7 +8,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Badge, Button, CheckButton, Form, FormControl, Icon, ImageBox, ImageSlider, PullLoader, Tab, Table, TopAction } from '../src/components/index.js';
+import { Badge, Button, CheckButton, Form, FormControl, Icon, ImageBox, ImageSlider, Loading, Message, PullLoader, Tab, Table, TopAction } from '../src/components/index.js';
 
 injectTapEventPlugin();
 
@@ -184,14 +184,14 @@ class TestPage extends Component {
 
     return (
       <div>
-        <h2 className='gap-side gap-t'>表单</h2>
-        <Form {...form2} className='gap-t' onControlChange={this.formControlChange.bind(this)} />
-
-        <h2 className='gap-side gap-t'>Icon</h2>
+        <h2 className='gap-side gap-t'>图标</h2>
         <div className='gap-side'>
           <Icon name='loading'></Icon>
           <Icon name='rotate' className='gap-l'></Icon>
         </div>
+
+        <h2 className='gap-side gap-5'>加载</h2>
+        <Loading />
 
         <h2 className='gap-side gap-t'>按钮</h2>
         <div className='gap-side'>
@@ -227,6 +227,9 @@ class TestPage extends Component {
         <h2 className='gap-side gap-t'>表单（带说明）</h2>
         <Form {...formData}></Form>
 
+        <h2 className='gap-side gap-t'>表单</h2>
+        <Form {...form2} className='gap-t' onControlChange={this.formControlChange.bind(this)} />
+
         <h2 className='gap-side gap-t'>Tab.Nav</h2>
         <Tab.Nav data={tabNavData}></Tab.Nav>
 
@@ -255,11 +258,16 @@ class TestPage extends Component {
         <h2 className='gap-side gap-t'>ImageSlider</h2>
         <ImageSlider data={imageSliderData}></ImageSlider>
 
+        <h2 className='gap-side gap-t'>消息</h2>
+        <div className='gap-side'>
+          <Button onTouchTap={this.message}>弹</Button>
+        </div>
+
         <h2 className='gap-side gap-t'>TopAction (滚动屏幕后见右下角)</h2>
         <TopAction></TopAction>
 
         <h2 className='gap-side gap-t'>PullLoader ({ bottom ? '已拉至底部' : '上拉运行 onPull'})</h2>
-        <PullLoader onPull={this.pulledToBottom}></PullLoader>
+        <PullLoader onPull={this.pulledToBottom} loading></PullLoader>
       </div>
     );
   }
@@ -279,6 +287,10 @@ class TestPage extends Component {
 
   handleEvents(e) {
     console.log(e);
+  }
+
+  message() {
+    Message(Date.now());
   }
 
   pulledToBottom() {

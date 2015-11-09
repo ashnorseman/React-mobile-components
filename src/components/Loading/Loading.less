@@ -1,0 +1,103 @@
+/**
+ * Created by AshZhang on 15/11/9.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+
+
+@loading-size: 0.375rem;
+@loading-gap: 0.18s;
+
+.loading {
+  height: @control-base-size;
+  position: relative;
+}
+
+.loading-dot {
+  background: #000;
+  border-radius: 50%;
+  height: @loading-size;
+  position: absolute;
+    left: 50%;
+    top: @control-base-size / 2;
+  width: @loading-size;
+  -webkit-animation: ball-spin-fade-loader @loading-gap * 8 @loading-gap * 0 infinite linear;
+  animation: ball-spin-fade-loader @loading-gap * 8 @loading-gap * 0 infinite linear;
+
+  &:nth-child(1) {
+    margin-left: -@loading-size / 2;
+    margin-top: -@loading-size / 2 - @loading-size * 1.6;
+  }
+
+  &:nth-child(2) {
+    margin-left: -@loading-size / 2 + @loading-size * 1.152;
+    margin-top: -@loading-size / 2 - @loading-size * 1.152;
+    -webkit-animation-delay: @loading-gap * 1;
+    animation-delay: @loading-gap * 1;
+  }
+
+  &:nth-child(3) {
+    margin-left: -@loading-size / 2 + @loading-size * 1.6;
+    margin-top: -@loading-size / 2;
+    -webkit-animation-delay: @loading-gap * 2;
+    animation-delay: @loading-gap * 2;
+  }
+
+  &:nth-child(4) {
+    margin-left: -@loading-size / 2 + @loading-size * 1.152;
+    margin-top: -@loading-size / 2 + @loading-size * 1.152;
+    -webkit-animation-delay: @loading-gap * 3;
+    animation-delay: @loading-gap * 3;
+  }
+
+  &:nth-child(5) {
+    margin-left: -@loading-size / 2;
+    margin-top: -@loading-size / 2 + @loading-size * 1.6;
+    -webkit-animation-delay: @loading-gap * 4;
+    animation-delay: @loading-gap * 4;
+  }
+
+  &:nth-child(6) {
+    margin-left: -@loading-size / 2 - @loading-size * 1.152;
+    margin-top: -@loading-size / 2 + @loading-size * 1.152;
+    -webkit-animation-delay: @loading-gap * 5;
+    animation-delay: @loading-gap * 5;
+  }
+
+  &:nth-child(7) {
+    margin-left: -@loading-size / 2 - @loading-size * 1.6;
+    margin-top: -@loading-size / 2;
+    -webkit-animation-delay: @loading-gap * 6;
+    animation-delay: @loading-gap * 6;
+  }
+
+  &:nth-child(8) {
+    margin-left: -@loading-size / 2 - @loading-size * 1.152;
+    margin-top: -@loading-size / 2 - @loading-size * 1.152;
+    -webkit-animation-delay: @loading-gap * 7;
+    animation-delay: @loading-gap * 7;
+  }
+}
+
+@-webkit-keyframes ball-spin-fade-loader {
+  50% {
+    opacity: 0.2;
+    -webkit-transform: scale(0.4);
+  }
+  100% {
+    opacity: 0.6;
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes ball-spin-fade-loader {
+  50% {
+    opacity: 0.2;
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}

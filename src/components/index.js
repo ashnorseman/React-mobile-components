@@ -15,6 +15,8 @@ const FormControl = require('./Form/FormControl.js');
 const Icon = require('./Icon/Icon.js');
 const ImageBox = require('./ImageBox/ImageBox.js');
 const ImageSlider = require('./ImageSlider/ImageSlider.js');
+const Loading = require('./Loading/Loading.js');
+const Message = require('./Message/Message.js');
 const PullLoader = require('./PullLoader/PullLoader.js');
 const TabBar = require('./Tab/TabBar.js');
 const TabNav = require('./Tab/TabNav.js');
@@ -31,6 +33,8 @@ module.exports = {
   Icon,
   ImageBox,
   ImageSlider,
+  Loading,
+  Message,
   PullLoader,
   Tab: {
     Bar: TabBar,

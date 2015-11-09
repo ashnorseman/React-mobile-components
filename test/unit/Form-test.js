@@ -158,7 +158,7 @@ describe('Form', () => {
     expect(spy.calls.mostRecent().args[0].text).toEqual('abc');
   });
 
-  it('onSubmit', () => {
+  it('onSubmit: beforeSubmit returns false', () => {
     const spy = jasmine.createSpy();
 
     formData = {

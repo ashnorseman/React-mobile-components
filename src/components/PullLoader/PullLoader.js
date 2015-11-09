@@ -11,12 +11,14 @@ const React = require('react');
 const PureRenderMixin = require('react-addons-pure-render-mixin');
 
 const mixClass = require('../../common/utils/mix-class');
+const Loading = require('../Loading/Loading');
 
 
 const PullLoader = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {
+    loading: React.PropTypes.bool,
     onPull: React.PropTypes.func.isRequired
   },
 
@@ -29,9 +31,16 @@ const PullLoader = React.createClass({
   },
 
   render() {
+    const {
+            loading,
+            ...props
+          } = this.props;
 
     return (
-      <div {...this.props}>{this.props.children}</div>
+      <div {...props}>
+        {this.props.children}
+        { loading && <Loading /> }
+      </div>
     );
   },
 
