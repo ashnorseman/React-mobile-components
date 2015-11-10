@@ -186,6 +186,7 @@ const Dropdown = React.createClass({
    * Toggle filter items
    */
   toggleItem(name) {
+    this.closeList();
 
     if (this._query[this.state.filterOpened] !== name) {
       this._query[this.state.filterOpened] = name;
@@ -194,10 +195,6 @@ const Dropdown = React.createClass({
         this.props.onFilter(this._query);
       }
     }
-
-    this.setState({
-      filterOpened: ''
-    });
   }
 });
 
