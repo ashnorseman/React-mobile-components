@@ -8,9 +8,46 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Badge, Button, CheckButton, Form, FormControl, Icon, ImageBox, ImageSlider, Loading, Message, PullLoader, Tab, Table, TopAction } from '../src/components/index.js';
+import { Badge, Button, CheckButton, Dropdown, Form, FormControl, Icon, ImageBox, ImageSlider, Loading, Message, PullLoader, Tab, Table, TopAction } from '../src/components/index.js';
 
 injectTapEventPlugin();
+
+const dropDownData = {
+  toggle: {
+    name: 'exchangeable',
+    text: '我能兑换'
+  },
+  filters: [
+    {
+      name: 'sort',
+      text: '排序',
+      list: [
+        {
+          name: 'count',
+          text: '兑换量优先'
+        },
+        {
+          name: 'pointsAtoZ',
+          text: '积分低到高'
+        }
+      ]
+    },
+    {
+      name: 'category',
+      text: '分类',
+      list: [
+        {
+          name: 'all',
+          text: '全部'
+        },
+        {
+          name: 'physical',
+          text: '实物礼品'
+        }
+      ]
+    }
+  ]
+};
 
 const formSelectOptions = [
   {
@@ -231,6 +268,9 @@ class TestPage extends Component {
           <CheckButton checked>设为默认</CheckButton>
         </div>
 
+        <h2 className='gap-side gap-t'>下拉列表 (见最上)</h2>
+        <Dropdown {...dropDownData} onFilter={this.filter} />
+
         <h2 className='gap-side gap-t'>表单元素</h2>
         <div className='gap-side'>
           <FormControl name='text' type='text' placeholder='文本（必填）' value={controls.text} onChange={this.controlChange.bind(this)} required />
@@ -252,8 +292,8 @@ class TestPage extends Component {
         <h2 className='gap-side gap-t'>Tab.Nav</h2>
         <Tab.Nav data={tabNavData}></Tab.Nav>
 
-        <h2 className='gap-side gap-t'>Tab.Scope (见最上)</h2>
-        <Tab.Scope data={tabScopeData}></Tab.Scope>
+        <h2 className='gap-side gap-t'>Tab.Scope</h2>
+        <Tab.Scope data={tabScopeData} style={{ position: 'relative' }}></Tab.Scope>
 
         <h2 className='gap-side gap-t'>Tab.Bar (见最下)</h2>
         <Tab.Bar data={tabBarData}></Tab.Bar>
@@ -305,6 +345,10 @@ class TestPage extends Component {
     this.setState({
       form2: this.state.form2
     });
+  }
+
+  filter(query) {
+    console.log(query);
   }
 
   handleEvents(e) {

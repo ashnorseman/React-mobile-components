@@ -10,6 +10,7 @@ require('../common/styles/app.less');
 const Badge = require('./Badge/Badge');
 const Button = require('./Button/Button');
 const CheckButton = require('./CheckButton/CheckButton');
+const Dropdown = require('./Dropdown/Dropdown');
 const Form = require('./Form/Form');
 const FormControl = require('./Form/FormControl');
 const Icon = require('./Icon/Icon');
@@ -29,6 +30,7 @@ module.exports = {
   Badge,
   Button,
   CheckButton,
+  Dropdown,
   Form,
   FormControl,
   Icon,

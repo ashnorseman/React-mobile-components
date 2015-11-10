@@ -35,7 +35,8 @@ const TabBase = React.createClass({
     const {
             className,
             data,
-            type
+            type,
+            ...props
           } = this.props,
 
           classes = mixClass({
@@ -49,7 +50,7 @@ const TabBase = React.createClass({
           });
 
     return (
-      <nav className={classes}>
+      <nav className={classes} {...props}>
         <div className='tab-inner'>
           {tabList}
         </div>

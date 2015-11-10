@@ -1,0 +1,26 @@
+/**
+ * Created by AshZhang on 15/11/9.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+@import '../../common/styles/modules/_mixins';
+
+
+.dropdown-title {
+  .flex(1);
+  float: left;
+  padding-left: @gap * 2;
+
+  &.active {
+    color: @color-primary;
+  }
+
+  &.opened {
+    color: @color-text;
+  }
+
+  .iconfont {
+    margin-left: @gap / 2;
+  }
+}

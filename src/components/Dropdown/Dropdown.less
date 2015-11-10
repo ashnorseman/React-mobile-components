@@ -1,0 +1,58 @@
+/**
+ * Created by AshZhang on 15/11/9.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+@import '../../common/styles/modules/_mixins';
+
+
+.dropdown {
+  background: @color-bg-lighter;
+  border-bottom: @border-width solid @color-border;
+  font-size: @font-sm;
+  line-height: @control-base-size - @border-width;
+  padding-right: @gap * 2;
+  position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: @z-dropdown;
+}
+
+.dropdown-header {
+  .display-flex();
+  width: 100%;
+
+  .check-btn-checked {
+    color: @color-primary;
+  }
+}
+
+.dropdown-list {
+  background: @color-bg-lighter;
+  border-bottom: @border-width solid @color-border;
+  position: absolute;
+    left: 0;
+    right: 0;
+    top: @control-base-size;
+    z-index: @z-dropdown;
+  -webkit-transform-origin: 0% 0%;
+  transform-origin: 0% 0%;
+  -webkit-transition: all @duration ease-in-out;
+  transition: all @duration ease-in-out;
+}
+
+.dropdown-enter,
+.dropdown-leave.dropdown-leave-active {
+  opacity: 0;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+}
+
+.dropdown-enter-active,
+.dropdown-leave {
+  opacity: 1;
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+}

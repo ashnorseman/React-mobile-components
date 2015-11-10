@@ -11,7 +11,7 @@ const React = require('react');
 const PureRenderMixin = require('react-addons-pure-render-mixin');
 
 const mixClass = require('../../common/utils/mix-class');
-const Icon = require('../Icon/Icon.js');
+const Icon = require('../Icon/Icon');
 
 
 const CheckButton = React.createClass({

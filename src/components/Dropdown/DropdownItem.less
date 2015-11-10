@@ -1,0 +1,28 @@
+/**
+ * Created by AshZhang on 15/11/9.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+
+
+.dropdown-item {
+  margin-left: @gap * 2;
+
+  &.active {
+    color: @color-primary;
+  }
+
+  .iconfont {
+    float: right;
+  }
+}
+
+.dropdown-item-text {
+  border-top: @border-width solid @color-border;
+  padding-right: @gap * 2;
+
+  :first-child > & {
+    border-top: 0;
+  }
+}
