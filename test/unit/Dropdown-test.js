@@ -114,10 +114,12 @@ describe('Dropdown', () => {
     TestUtils.Simulate.touchTap(titles[0]);
     expect(titles[0].classList.contains('opened')).toBeTruthy();
     expect(dropDownNode.querySelectorAll('.dropdown-item').length).toEqual(2);
+    expect(document.querySelector('.mask')).not.toBeNull();
 
     TestUtils.Simulate.touchTap(titles[0]);
     expect(titles[0].classList.contains('opened')).toBeFalsy();
     expect(dropDownNode.querySelectorAll('.dropdown-item').length).toEqual(2);
+    expect(document.querySelector('.mask')).toBeNull();
   });
 
   it('toggle an item', () => {

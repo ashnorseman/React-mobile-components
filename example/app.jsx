@@ -8,7 +8,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Badge, Button, CheckButton, Dropdown, Form, FormControl, Icon, ImageBox, ImageSlider, Loading, Message, PullLoader, Tab, Table, TopAction } from '../src/components/index.js';
+import { Badge, Button, CheckButton, Dropdown, Form, FormControl, Icon, ImageBox, ImageSlider, Loading, Mask, Message, PullLoader, Tab, Table, TopAction } from '../src/components/index.js';
 
 injectTapEventPlugin();
 
@@ -325,6 +325,11 @@ class TestPage extends Component {
           <Button onTouchTap={this.message}>点击弹出</Button>
         </div>
 
+        <h2 className='gap-side gap-t'>遮罩层</h2>
+        <div className='gap-side'>
+          <Button onTouchTap={this.mask}>点击弹出</Button>
+        </div>
+
         <h2 className='gap-side gap-t'>TopAction (滚动屏幕后见右下角)</h2>
         <TopAction></TopAction>
 
@@ -357,6 +362,12 @@ class TestPage extends Component {
 
   message() {
     Message(Date.now());
+  }
+
+  mask() {
+    Mask.open({
+      onTouchTap: Mask.close
+    });
   }
 
   pulledToBottom() {

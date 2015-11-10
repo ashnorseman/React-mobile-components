@@ -14,6 +14,7 @@ const CSSTransitionGroup = require('react-addons-css-transition-group');
 const mixClass = require('../../common/utils/mix-class');
 const CheckButton = require('../CheckButton/CheckButton');
 const Icon = require('../Icon/Icon');
+const Mask = require('../Mask/Mask');
 const DropDownTitle = require('./DropdownTitle');
 const DropDownItem = require('./DropdownItem');
 
@@ -154,18 +155,30 @@ const Dropdown = React.createClass({
   toggleList(name) {
 
     if (this.state.filterOpened === name) {
-
-      // Closing
-      this.setState({
-        filterOpened: ''
-      });
+      this.closeList();
     } else {
+      Mask.open({
+        zIndex: 80,
+        onTouchTap: this.closeList
+      });
 
       // Opening
       this.setState({
         filterOpened: name
       });
     }
+  },
+
+
+  /**
+   * Close filter list
+   */
+  closeList() {
+    Mask.close();
+
+    this.setState({
+      filterOpened: ''
+    });
   },
 
 

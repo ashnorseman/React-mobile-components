@@ -16,7 +16,6 @@ const Icon = require('../Icon/Icon');
 
 
 const _messageHolder = document.createElement('div');
-_messageHolder.className = 'message-holder';
 document.body.appendChild(_messageHolder);
 
 

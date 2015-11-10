@@ -17,6 +17,7 @@ const Icon = require('./Icon/Icon');
 const ImageBox = require('./ImageBox/ImageBox');
 const ImageSlider = require('./ImageSlider/ImageSlider');
 const Loading = require('./Loading/Loading');
+const Mask = require('./Mask/Mask');
 const Message = require('./Message/Message');
 const PullLoader = require('./PullLoader/PullLoader');
 const TabBar = require('./Tab/TabBar');
@@ -37,6 +38,7 @@ module.exports = {
   ImageBox,
   ImageSlider,
   Loading,
+  Mask,
   Message,
   PullLoader,
   Tab: {
