@@ -6,6 +6,21 @@ bug 肯定是有的……求轻喷……
 
 Demo 地址（手机打开）：[Demo](http://react-mobile-components.herokuapp.com)
 
+## 使用
+
+    npm install react-mobile-components -S
+
+```javascript
+
+// touchTap 插件
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+// 按需求加载组件
+import { Button, Icon, Form, Tab, TopAction } from 'react-mobile-components';
+
+injectTapEventPlugin();
+```
+
 ## 图标
 
 PS：目前只有样式，具体的图标 UI 还在画，略坑……இдஇ
