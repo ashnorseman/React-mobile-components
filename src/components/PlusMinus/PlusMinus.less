@@ -1,0 +1,35 @@
+/**
+ * Created by AshZhang on 15/11/12.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+
+
+@plus-minus-size: 1.625rem;
+
+.plus-minus {
+  border: @border-width solid mix(@color-text-lighter, @color-text-lightest);
+  border-radius: @border-radius;
+  display: inline-block;
+
+  > button,
+  > input {
+    display: inline-block;
+    min-height: @plus-minus-size;
+    vertical-align: top;
+  }
+}
+
+.btn.plus-minus-btn {
+  background: @color-bg;
+  width: @plus-minus-size;
+}
+
+.plus-minus-text {
+  border: solid mix(@color-text-lighter, @color-text-lightest);
+  border-width: 0 @border-width;
+  font-size: @font-sm;
+  text-align: center;
+  width: 2.5rem;
+}

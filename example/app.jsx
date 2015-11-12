@@ -8,7 +8,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Badge, Button, CheckButton, Dropdown, Form, FormControl, Icon, ImageBox, ImageSlider, Loading, Mask, Message, PullLoader, Tab, Table, TopAction } from '../src/components/index.js';
+import { Badge, Button, CheckButton, Dropdown, Form, FormControl, Icon, ImageBox, ImageSlider, Loading, Mask, Message, PlusMinus, PullLoader, Tab, Table, TopAction } from '../src/components/index.js';
 
 injectTapEventPlugin();
 
@@ -99,7 +99,7 @@ const tabBarData = [
     link: 'home'
   },
   {
-    badge: 10,
+    badge: 100,
     icon: 'gift-box',
     text: '礼品箱',
     link: 'gift-box'
@@ -240,6 +240,11 @@ class TestPage extends Component {
 
     return (
       <div>
+        <h2 className='gap-side gap-t'>加加减减</h2>
+        <div className='gap-side'>
+          <PlusMinus value={10} min={0} max={100} onChange={this.handleEvents} />
+        </div>
+
         <h2 className='gap-side gap-t'>图标</h2>
         <div className='gap-side'>
           <Icon name='loading'></Icon>

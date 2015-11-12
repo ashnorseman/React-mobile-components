@@ -26,11 +26,11 @@ describe('Badge', () => {
 
   it('N', () => {
     const badge = TestUtils.renderIntoDocument(
-            <Badge>10</Badge>
+            <Badge>100</Badge>
           ),
           badgeNode = ReactDOM.findDOMNode(badge);
 
     expect(badgeNode.classList.contains('badge')).toBeTruthy();
-    expect(badgeNode.textContent).toEqual('N');
+    expect(badgeNode.textContent).toEqual('99+');
   });
 });

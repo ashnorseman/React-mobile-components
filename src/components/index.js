@@ -19,6 +19,7 @@ const ImageSlider = require('./ImageSlider/ImageSlider');
 const Loading = require('./Loading/Loading');
 const Mask = require('./Mask/Mask');
 const Message = require('./Message/Message');
+const PlusMinus = require('./PlusMinus/PlusMinus');
 const PullLoader = require('./PullLoader/PullLoader');
 const TabBar = require('./Tab/TabBar');
 const TabNav = require('./Tab/TabNav');
@@ -40,6 +41,7 @@ module.exports = {
   Loading,
   Mask,
   Message,
+  PlusMinus,
   PullLoader,
   Tab: {
     Bar: TabBar,

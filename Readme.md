@@ -96,7 +96,7 @@ const dropDownData = {
 * 可以加一个 label，也可以不要
 * 自带验证
 * type 支持除了 checkbox 和 radio 之外所有的 input type，外加 select 和 textarea
-* 为保持数据一致性，请尽量用 value 传值，不要用 defaultValue；修改表单的值请通过 onChange 回调，手动在上层 view 控制
+* 为保持数据一致性，请用 value 传值，不要用 defaultValue；修改表单的值请通过 onChange 回调，手动在上层 view 控制
 
 ```javascript
 <FormControl name='test' 
@@ -128,6 +128,16 @@ const formData = {
 };
 <Form {...formData} />
 <Form {...formData} {submitAtPageBottom} />   // 提交按钮固定在页面底部
+```
+
+## 加加减减
+
+* 为保持数据一致性，请用 value 传值，不要用 defaultValue；修改值请通过 onChange 回调，手动在上层 view 控制
+
+```javascript
+<PlusMinus value={10} min={0} max={100} onChange={this.change} />
+
+// onChange(value)
 ```
 
 ## Tab
@@ -190,7 +200,7 @@ const tabScopeData = [
 <Tab.Scope data={tabScopeData} />
 ```
 
-## Table
+## 表格视图
 
 ```javascript
 const tableData = [
@@ -215,7 +225,7 @@ const tableData = [
 // onToggle(expanded<bool>)
 ```
 
-## ImageBox
+## 图片框
 
 将图片展示在指定大小的框内
 
@@ -224,7 +234,7 @@ const tableData = [
 // 可通过 className 或 style 控制
 ```
 
-## ImageSlider
+## 图片滑动切换
 
 左右滑动切换图片
 
