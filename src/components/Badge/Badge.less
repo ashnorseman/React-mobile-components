@@ -7,14 +7,14 @@
 @import '../../common/styles/modules/_mixins';
 
 
-@badge-size: @font-base;
+@badge-size: @font-sm;
 
 .badge {
   .square(@badge-size);
   background: @color-primary;
   border-radius: @badge-size / 2 @badge-size / 2 @badge-size / 2 0;
   color: @color-bg;
-  font-size: @font-xs;
+  font-size: 0.625rem;
   min-width: @badge-size;
   padding: (@badge-size - @font-sm) / 4 0.25rem 0;
   width: auto;

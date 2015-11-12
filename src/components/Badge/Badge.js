@@ -34,7 +34,7 @@ const Badge = React.createClass({
 
     return (
       <span className={classes}>
-        {+children > 9 ? 'N' : children}
+        {+children > 99 ? 'N' : children}
       </span>
     );
   }
