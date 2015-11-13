@@ -60,6 +60,19 @@ if (TARGET === 'start') {
             'file?hash=sha512&digest=hex&name=[hash].[ext]',
             'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
           ]
+        },
+        {
+          test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'url?limit=10000&mimetype=application/font-woff&prefix=fonts'
+        }, {
+          test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'url?limit=10000&mimetype=application/octet-stream&prefix=fonts'
+        }, {
+          test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'url?limit=10000&mimetype=application/vnd.ms-fontobject&prefix=fonts'
+        }, {
+          test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'url?limit=10000&mimetype=image/svg+xml&prefix=fonts'
         }
       ],
       preLoaders: [
@@ -122,6 +135,19 @@ if (TARGET === 'build') {
             'file?hash=sha512&digest=hex&name=[hash].[ext]',
             'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
           ]
+        },
+        {
+          test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'url?limit=10000&mimetype=application/font-woff&prefix=fonts'
+        }, {
+          test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'url?limit=10000&mimetype=application/octet-stream&prefix=fonts'
+        }, {
+          test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'url?limit=10000&mimetype=application/vnd.ms-fontobject&prefix=fonts'
+        }, {
+          test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'url?limit=10000&mimetype=image/svg+xml&prefix=fonts'
         }
       ]
     },

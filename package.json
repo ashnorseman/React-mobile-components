@@ -1,6 +1,6 @@
 {
   "name": "react-mobile-components",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "React mobile components",
   "main": "src/components/index.js",
   "scripts": {
@@ -50,6 +50,7 @@
     "react-dom": "^0.14.1",
     "react-transform-hmr": "^1.0.1",
     "style-loader": "^0.13.0",
+    "url-loader": "^0.5.6",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
   }

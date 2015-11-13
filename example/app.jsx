@@ -100,7 +100,7 @@ const tabBarData = [
   },
   {
     badge: 100,
-    icon: 'gift-box',
+    icon: 'gift',
     text: '礼品箱',
     link: 'gift-box'
   },
@@ -118,19 +118,19 @@ const tabBarData = [
 
 const tabNavData = [
   {
-    icon: 'physical',
+    icon: 'bag',
     text: '实物礼品',
     link: 'physical',
     type: 1
   },
   {
-    icon: 'virtual',
+    icon: 'ticket',
     text: '虚拟礼品',
     link: 'virtual',
     type: 2
   },
   {
-    icon: 'discount',
+    icon: 'packet',
     text: '淘宝优惠',
     link: 'discount',
     type: 3
@@ -248,7 +248,7 @@ class TestPage extends Component {
         <h2 className='gap-side gap-t'>图标</h2>
         <div className='gap-side'>
           <Icon name='loading'></Icon>
-          <Icon name='rotate' className='gap-l'></Icon>
+          <Icon name='loading' rotate className='gap-l'></Icon>
         </div>
 
         <h2 className='gap-side gap-5'>加载</h2>

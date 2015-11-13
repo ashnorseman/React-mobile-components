@@ -12,6 +12,7 @@ const PureRenderMixin = require('react-addons-pure-render-mixin');
 
 const mixClass = require('../../common/utils/mix-class');
 const Button = require('../Button/Button');
+const Icon = require('../Icon/Icon');
 
 
 const PlusMinus = React.createClass({
@@ -43,9 +44,9 @@ const PlusMinus = React.createClass({
 
     return (
       <div className={classes}>
-        <Button className='plus-minus-btn' link onTouchTap={this.minus}>-</Button>
+        <Button className='plus-minus-btn' link onTouchTap={this.minus} icon='minus'></Button>
         <input className='plus-minus-text' type='text' value={value} readOnly />
-        <Button className='plus-minus-btn' link onTouchTap={this.plus}>+</Button>
+        <Button className='plus-minus-btn' link onTouchTap={this.plus} icon='plus'></Button>
       </div>
     );
   },

@@ -5,6 +5,7 @@
 
 'use strict';
 
+require('./fonts/iconfont.css');
 require('./Icon.less');
 
 const React = require('react');
