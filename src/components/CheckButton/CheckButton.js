@@ -3,26 +3,30 @@
  */
 
 
-'use strict';
+import './CheckButton.less';
 
-require('./CheckButton.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
-const Icon = require('../Icon/Icon');
+import mixClass from '../../common/utils/mix-class';
+import Icon from '../Icon/Icon';
 
 
-const CheckButton = React.createClass({
-  mixins: [PureRenderMixin],
+export default class CheckButton extends Component {
 
-  propTypes: {
-    className: React.PropTypes.string,
-    checked: React.PropTypes.bool,
-    children: React.PropTypes.node,
-    onToggle: React.PropTypes.func
-  },
+
+  /**
+   * Toggle checked status
+   */
+  toggle() {
+    const checked = !this.props.checked;
+
+    if (typeof this.props.onToggle === 'function') {
+      this.props.onToggle(checked);
+    }
+  }
+
 
   render() {
     const {
@@ -42,25 +46,22 @@ const CheckButton = React.createClass({
           });
 
     return (
-      <button type='button' className={classes} {...props} onTouchTap={this.toggle}>
-        <Icon name={checked ? 'checked' : 'unchecked'}></Icon>
+      <button type="button"
+              className={classes}
+              {...props}
+              onTouchTap={this.toggle.bind(this)}>
+        <Icon name={checked ? 'checked' : 'unchecked'} />
         {children}
       </button>
     );
-  },
-
-
-  /**
-   * Toggle checked status
-   */
-  toggle() {
-    const checked = !this.props.checked;
-
-    if (typeof this.props.onToggle === 'function') {
-      this.props.onToggle(checked);
-    }
   }
-});
+}
 
+CheckButton.propTypes = {
+  className: PropTypes.string,
+  checked  : PropTypes.bool,
+  children : PropTypes.node,
+  onToggle : PropTypes.func
+};
 
-module.exports = CheckButton;
+reactMixin(CheckButton.prototype, PureRenderMixin);

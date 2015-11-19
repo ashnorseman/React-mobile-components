@@ -3,91 +3,28 @@
  */
 
 
-'use strict';
+import './ImageSlider.less';
 
-require('./ImageSlider.less');
+import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
+import reactMixin from 'react-mixin';
+import { Swiper } from 'react-swiper-ash';
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const CSSTransitionGroup = require('react-addons-css-transition-group');
-const { Swiper } = require('react-swiper-ash');
-
-const mixClass = require('../../common/utils/mix-class');
+import mixClass from '../../common/utils/mix-class';
 
 
-const ImageSlider = React.createClass({
-  mixins: [PureRenderMixin],
+export default class ImageSlider extends Component {
 
-  propTypes: {
-    data: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
-  },
+  constructor(props) {
+    super(props);
 
-  getDefaultProps() {
-    return {
-      data: []
-    };
-  },
-
-  getInitialState() {
-    return {
+    this.state = {
       activeIndex: 0,
-      zoomed: false
+      zoomed     : false
     };
-  },
-
-  render() {
-    const { data } = this.props,
-
-          {
-            activeIndex,
-            direction,
-            zoomed
-          } = this.state,
-
-          classes = mixClass({
-            'image-slider': true,
-            'zoomed': zoomed
-          }),
-
-          imageList = data.map((image, index) => {
-            if (index === activeIndex) {
-              return (
-                <div className='image-slider-item' style={{
-                  backgroundImage: `url(${image})`
-                }} key={index}></div>
-              );
-            } else {
-              return null;
-            }
-          }),
-
-          dotList = (data.length > 1) ? data.map((image, index) => {
-            const classes = mixClass({
-                    'image-slider-dot': true,
-                    'active': index === activeIndex
-                  });
-
-            return <li className={classes} key={index}></li>;
-          }) : null;
-
-    return (
-      <Swiper onSwipe={this.setActive}>
-        <div className={classes} onTouchTap={this.toggleZoom}>
-          <CSSTransitionGroup transitionName={`image-slider-${direction}`}
-                              transitionEnterTimeout={500}
-                              transitionLeaveTimeout={500}>
-            {imageList}
-          </CSSTransitionGroup>
-
-          <ul className='image-slider-dots'>
-            {dotList}
-          </ul>
-        </div>
-      </Swiper>
-    );
-  },
-
+  }
 
   /**
    * Swipe to set next active image
@@ -99,7 +36,7 @@ const ImageSlider = React.createClass({
     } else if (e.direction === 'right') {
       this._setPrevActive();
     }
-  },
+  }
 
 
   /**
@@ -117,7 +54,7 @@ const ImageSlider = React.createClass({
       activeIndex: nextActive,
       direction: 'left'
     });
-  },
+  }
 
 
   /**
@@ -135,7 +72,8 @@ const ImageSlider = React.createClass({
       activeIndex: nextActive,
       direction: 'right'
     });
-  },
+  }
+
 
   /**
    * Zoom / Unzoom
@@ -144,11 +82,70 @@ const ImageSlider = React.createClass({
     const zoomed = !this.state.zoomed;
 
     this.setState({
-      zoomed: zoomed,
+      zoomed,
       translateY: window.innerHeight / ReactDOM.findDOMNode(this).offsetHeight
     });
   }
-});
 
+  render() {
+    const { data } = this.props,
 
-module.exports = ImageSlider;
+          {
+            activeIndex,
+            direction,
+            zoomed
+          } = this.state,
+
+          classes = mixClass({
+            'image-slider': true,
+            zoomed
+          }),
+
+          imageList = data.map((image, index) => {
+            if (index === activeIndex) {
+              return (
+                <div className="image-slider-item" style={{
+                  backgroundImage: `url(${image})`
+                }} key={index} />
+              );
+            } else {
+              return null;
+            }
+          }),
+
+          dotList = (data.length > 1) ? data.map((image, index) => {
+            const classes = mixClass({
+              'image-slider-dot': true,
+              'active': index === activeIndex
+            });
+
+            return <li className={classes} key={index} />;
+          }) : null;
+
+    return (
+      <Swiper onSwipe={this.setActive.bind(this)}>
+        <div className={classes} onTouchTap={this.toggleZoom.bind(this)}>
+          <CSSTransitionGroup transitionName={`image-slider-${direction}`}
+                              transitionEnterTimeout={500}
+                              transitionLeaveTimeout={500}>
+            {imageList}
+          </CSSTransitionGroup>
+
+          <ul className="image-slider-dots">
+            {dotList}
+          </ul>
+        </div>
+      </Swiper>
+    );
+  }
+}
+
+ImageSlider.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.string).isRequired
+};
+
+ImageSlider.defaultProps = {
+  data: []
+};
+
+reactMixin(ImageSlider.prototype, PureRenderMixin);

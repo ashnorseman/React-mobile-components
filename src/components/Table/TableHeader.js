@@ -3,24 +3,17 @@
  */
 
 
-'use strict';
+import './TableHeader.less';
 
-require('./TableHeader.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
-const Icon = require('../Icon/Icon.js');
+import mixClass from '../../common/utils/mix-class';
+import Icon from '../Icon/Icon';
 
 
-const TableHeader = React.createClass({
-  mixins: [PureRenderMixin],
-
-  propTypes: {
-    className: React.PropTypes.string,
-    expanded: React.PropTypes.bool
-  },
+export default class TableHeader extends Component {
 
   render() {
     const {
@@ -32,12 +25,12 @@ const TableHeader = React.createClass({
 
           classes = mixClass({
             'table-header': true,
-            '$': className
+            '$'           : className
           }),
 
-          toggle = (expanded !== undefined)
-                      ? <Icon name='arrow-down' className={expanded ? 'expanded' : ''}></Icon>
-                      : null;
+          toggle  = (expanded !== undefined)
+            ? <Icon name="arrow-down" className={expanded ? 'expanded' : ''}/>
+            : null;
 
     return (
       <header className={classes} {...props}>
@@ -46,7 +39,11 @@ const TableHeader = React.createClass({
       </header>
     );
   }
-});
+}
 
+TableHeader.propTypes = {
+  className: PropTypes.string,
+  expanded: PropTypes.bool
+};
 
-module.exports = TableHeader;
+reactMixin(TableHeader.prototype, PureRenderMixin);

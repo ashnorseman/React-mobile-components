@@ -3,33 +3,41 @@
  */
 
 
-'use strict';
+import './TabScope.less';
 
-require('./TabScope.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const activeTabMixin = require('./activeTabMixin');
+import activeTabMixin from './activeTabMixin';
 
 
-const TabScope = React.createClass({
-  mixins: [PureRenderMixin, activeTabMixin],
+export default class TabScope extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.setActive = this.setActive.bind(this);
+
+    this.state = {
+      active: this._getActiveHash()
+    };
+  }
 
   componentDidMount() {
     document.body.firstElementChild.classList.add('tab-scope-mounted');
     window.addEventListener('hashchange', this.setActive, false);
-  },
+  }
 
   componentWillUnmount() {
     document.body.firstElementChild.classList.remove('tab-scope-mounted');
     window.removeEventListener('hashchange', this.setActive, false);
-  },
+  }
 
   render() {
     return this._renderTab('scope');
   }
-});
+}
 
-
-module.exports = TabScope;
+reactMixin(TabScope.prototype, PureRenderMixin);
+reactMixin(TabScope.prototype, activeTabMixin);

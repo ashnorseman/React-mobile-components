@@ -3,41 +3,27 @@
  */
 
 
-'use strict';
+import './Dropdown.less';
 
-require('./Dropdown.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const CSSTransitionGroup = require('react-addons-css-transition-group');
-
-const mixClass = require('../../common/utils/mix-class');
-const CheckButton = require('../CheckButton/CheckButton');
-const Icon = require('../Icon/Icon');
-const Mask = require('../Mask/Mask');
-const DropDownTitle = require('./DropdownTitle');
-const DropDownItem = require('./DropdownItem');
+import mixClass from '../../common/utils/mix-class';
+import CheckButton from '../CheckButton/CheckButton';
+import Icon from '../Icon/Icon';
+import Mask from '../Mask/Mask';
+import DropDownTitle from './DropdownTitle';
+import DropDownItem from './DropdownItem';
 
 
-const Dropdown = React.createClass({
-  mixins: [PureRenderMixin],
+export default class Dropdown extends Component {
 
-  propTypes: {
-    className: React.PropTypes.string,
-    toggle: React.PropTypes.object,
-    filters: React.PropTypes.arrayOf(React.PropTypes.object),
-    onFilter: React.PropTypes.func
-  },
+  constructor(props) {
+    super(props);
 
-  getDefaultProps() {
-    return {
-      toggle: {},
-      filters: []
-    };
-  },
-
-  getInitialState() {
-    const { toggle, filters } = this.props;
+    const { toggle, filters } = props;
 
     this._query = {
       [toggle.name]: !!toggle.checked
@@ -53,83 +39,16 @@ const Dropdown = React.createClass({
       }
     });
 
-    return this._query;
-  },
+    this.state = this._query;
+  }
 
   componentDidMount() {
     document.body.firstElementChild.classList.add('dropdown-mounted');
-  },
+  }
 
   componentWillUnmount() {
     document.body.firstElementChild.classList.remove('dropdown-mounted');
-  },
-
-  render() {
-    const {
-            className,
-            toggle,
-            filters,
-            ...props
-          } = this.props,
-
-          {
-            filterOpened
-          } = this.state,
-
-          classes = mixClass({
-            'dropdown': true,
-            '$': className
-          }),
-
-          titles = filters.map(({ name, text, list }, index) => {
-            const activeItem = this._query[name] && list.filter((item) => {
-                    return item.name === this._query[name];
-                  })[0],
-                  activeItemText = activeItem && activeItem.text;
-
-            return <DropDownTitle name={name} text={activeItemText || text}
-                                  active={!!activeItem} opened={filterOpened === name}
-                                  key={index} onTouchTap={this.toggleList.bind(this, name)} />;
-          }),
-
-          checkToggle = toggle
-                          ? <CheckButton checked={this.state[toggle.name]} className='pull-right'
-                                         onToggle={this.toggleButton}>
-                              {toggle.text}
-                            </CheckButton>
-                          : null,
-
-          currentList = filters.filter(({ name }) => {
-            return name === filterOpened;
-          })[0],
-
-          list = currentList && currentList.list.length
-                    ? <ul className='dropdown-list'>
-                        {
-                          currentList.list.map((item, index) => {
-                            const activeItem = this._query[currentList.name];
-
-                            return <DropDownItem key={index} {...item}
-                                                 active={activeItem === item.name}
-                                                 onTouchTap={this.toggleItem.bind(null, item.name)} />;
-                          })
-                        }
-                      </ul>
-                    : null;
-
-    return (
-      <div className={classes} {...props}>
-        <div className='dropdown-header'>
-          {titles}
-          {checkToggle}
-        </div>
-        <CSSTransitionGroup transitionName='dropdown' transitionEnterTimeout={200} transitionLeaveTimeout={200}>
-          {list}
-        </CSSTransitionGroup>
-
-      </div>
-    );
-  },
+  }
 
 
   /**
@@ -146,7 +65,7 @@ const Dropdown = React.createClass({
     if (this.props.onFilter) {
       this.props.onFilter(this._query);
     }
-  },
+  }
 
 
   /**
@@ -167,7 +86,7 @@ const Dropdown = React.createClass({
         filterOpened: name
       });
     }
-  },
+  }
 
 
   /**
@@ -179,7 +98,7 @@ const Dropdown = React.createClass({
     this.setState({
       filterOpened: ''
     });
-  },
+  }
 
 
   /**
@@ -196,7 +115,95 @@ const Dropdown = React.createClass({
       }
     }
   }
-});
 
 
-module.exports = Dropdown;
+  render() {
+    const {
+            className,
+            filters,
+            toggle,
+            ...props
+          } = this.props,
+
+          {
+            filterOpened
+          } = this.state,
+
+          classes = mixClass({
+            'dropdown': true,
+            '$': className
+          }),
+
+          titles = filters.map(({ name, text, list }, index) => {
+            const activeItem = this._query[name] && list.filter((item) => {
+                    return item.name === this._query[name];
+                  })[0],
+                  activeItemText = activeItem && activeItem.text;
+
+            return (
+              <DropDownTitle key={index}
+                             name={name}
+                             text={activeItemText || text}
+                             active={!!activeItem}
+                             opened={filterOpened === name}
+                             onTouchTap={this.toggleList.bind(this, name)} />
+            );
+          }),
+
+          checkToggle = toggle
+            ? <CheckButton className="pull-right"
+                           checked={this.state[toggle.name]}
+                           onToggle={this.toggleButton.bind(this)}>
+                {toggle.text}
+              </CheckButton>
+            : null,
+
+          currentList = filters.filter(({ name }) => {
+            return name === filterOpened;
+          })[0],
+
+          list = currentList && currentList.list.length
+            ? <ul className="dropdown-list">
+                {
+                  currentList.list.map((item, index) => {
+                    const activeItem = this._query[currentList.name];
+
+                    return (
+                      <DropDownItem key={index} {...item}
+                                    active={activeItem === item.name}
+                                    onTouchTap={this.toggleItem.bind(this, item.name)} />
+                    );
+                  })
+                }
+              </ul>
+            : null;
+
+    return (
+      <div className={classes} {...props}>
+        <div className="dropdown-header">
+          {titles}
+          {checkToggle}
+        </div>
+        <CSSTransitionGroup transitionName="dropdown"
+                            transitionEnterTimeout={200}
+                            transitionLeaveTimeout={200}>
+          {list}
+        </CSSTransitionGroup>
+      </div>
+    );
+  }
+}
+
+Dropdown.propTypes = {
+  className: PropTypes.string,
+  filters  : PropTypes.arrayOf(PropTypes.object),
+  toggle   : PropTypes.object,
+  onFilter : PropTypes.func
+};
+
+Dropdown.defaultProps = {
+  filters: [],
+  toggle : {}
+};
+
+reactMixin(Dropdown.prototype, PureRenderMixin);

@@ -3,53 +3,50 @@
  */
 
 
-'use strict';
+import './DropdownTitle.less';
 
-require('./DropdownTitle.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
-const Icon = require('../Icon/Icon');
+import mixClass from '../../common/utils/mix-class';
+import Icon from '../Icon/Icon';
 
 
-const DropdownTitle = React.createClass({
-  mixins: [PureRenderMixin],
-
-  propTypes: {
-    className: React.PropTypes.string,
-    name: React.PropTypes.string.isRequired,
-    text: React.PropTypes.string.isRequired,
-    active: React.PropTypes.bool,
-    opened: React.PropTypes.bool
-  },
+export default class DropdownTitle extends Component {
 
   render() {
     const {
+            active,
             className,
             name,
-            text,
-            active,
             opened,
+            text,
             ...props
           } = this.props,
 
           classes = mixClass({
             'dropdown-title': true,
-            'opened': opened,
-            'active': active,
+            active,
+            opened,
             '$': className
           });
 
     return (
       <div className={classes} {...props}>
         {text}
-        <Icon name={opened ? 'arrow-up' : 'arrow-down'} />
+        <Icon name="arrow-down" />
       </div>
     );
   }
-});
+}
 
+DropdownTitle.propTypes = {
+  active: PropTypes.bool,
+  className: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  opened: PropTypes.bool,
+  text: PropTypes.string.isRequired
+};
 
-module.exports = DropdownTitle;
+reactMixin(DropdownTitle.prototype, PureRenderMixin);

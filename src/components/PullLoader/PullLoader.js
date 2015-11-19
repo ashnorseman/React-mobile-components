@@ -3,46 +3,29 @@
  */
 
 
-'use strict';
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-require('./PullLoader.less');
-
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
-const Loading = require('../Loading/Loading');
+import mixClass from '../../common/utils/mix-class';
+import Loading from '../Loading/Loading';
 
 
-const PullLoader = React.createClass({
-  mixins: [PureRenderMixin],
+export default class PullLoader extends Component {
 
-  propTypes: {
-    loading: React.PropTypes.bool,
-    onPull: React.PropTypes.func.isRequired
-  },
+  constructor(props) {
+    super(props);
+
+    this._watchScroll = this._watchScroll.bind(this);
+  }
 
   componentDidMount() {
     window.addEventListener('scroll', this._watchScroll, false);
-  },
+  }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this._watchScroll, false);
-  },
-
-  render() {
-    const {
-            loading,
-            ...props
-          } = this.props;
-
-    return (
-      <div {...props}>
-        {this.props.children}
-        { loading && <Loading /> }
-      </div>
-    );
-  },
+  }
 
 
   /**
@@ -55,7 +38,26 @@ const PullLoader = React.createClass({
       this.props.onPull.call(this);
     }
   }
-});
 
 
-module.exports = PullLoader;
+  render() {
+    const {
+            loading,
+            ...props
+          } = this.props;
+
+    return (
+      <div {...props}>
+        {this.props.children}
+        {loading ? <Loading /> : null}
+      </div>
+    );
+  }
+}
+
+PullLoader.propTypes = {
+  loading: PropTypes.bool,
+  onPull : PropTypes.func.isRequired
+};
+
+reactMixin(PullLoader.prototype, PureRenderMixin);

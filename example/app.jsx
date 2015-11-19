@@ -217,7 +217,7 @@ class TestPage extends Component {
           },
           {
             name: 'code',
-            type: 'tel',
+            type: 'number',
             placeholder: '验证码',
             required: true,
             maxLength: 4,
@@ -270,7 +270,7 @@ class TestPage extends Component {
         <h2 className='gap-side gap-t'>选择按钮</h2>
         <div className='gap-side'>
           <CheckButton className='gap-r' onToggle={this.handleEvents}>设为默认</CheckButton>
-          <CheckButton checked>设为默认</CheckButton>
+          <CheckButton checked onToggle={this.handleEvents}>设为默认</CheckButton>
         </div>
 
         <h2 className='gap-side gap-t'>下拉列表 (见最上)</h2>
@@ -279,7 +279,7 @@ class TestPage extends Component {
         <h2 className='gap-side gap-t'>表单元素</h2>
         <div className='gap-side'>
           <FormControl name='text' type='text' placeholder='文本（必填）' value={controls.text} onChange={this.controlChange.bind(this)} required />
-          <FormControl name='number' type='tel' placeholder='数字（5-10）' max='10' min='5' value={controls.number} onChange={this.controlChange.bind(this)}  />
+          <FormControl name='number' type='number' placeholder='数字（5-10）' max='10' min='5' value={controls.number} onChange={this.controlChange.bind(this)}  />
           <FormControl name='email' type='email' placeholder='电子邮件' value={controls.email} onChange={this.controlChange.bind(this)}  />
           <FormControl name='tel' type='tel' placeholder='联系方式' value={controls.tel} onChange={this.controlChange.bind(this)}  />
           <FormControl name='date' type='date' placeholder='日期（必填）' required value={controls.date} onChange={this.controlChange.bind(this)}  />

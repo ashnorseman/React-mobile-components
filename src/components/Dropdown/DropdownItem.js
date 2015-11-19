@@ -3,52 +3,49 @@
  */
 
 
-'use strict';
+import './DropdownItem.less';
 
-require('./DropdownItem.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
-const Icon = require('../Icon/Icon');
+import mixClass from '../../common/utils/mix-class';
+import Icon from '../Icon/Icon';
 
 
-const DropdownItem = React.createClass({
-  mixins: [PureRenderMixin],
-
-  propTypes: {
-    className: React.PropTypes.string,
-    name: React.PropTypes.string.isRequired,
-    text: React.PropTypes.string.isRequired,
-    active: React.PropTypes.bool
-  },
+export default class DropdownItem extends Component {
 
   render() {
     const {
+            active,
             className,
             name,
             text,
-            active,
             ...props
           } = this.props,
 
           classes = mixClass({
             'dropdown-item': true,
-            'active': active,
-            '$': className
+            '$': className,
+            active
           });
 
     return (
       <li className={classes} {...props}>
-        <div className='dropdown-item-text'>
+        <div className="dropdown-item-text">
           {text}
-          {active ? <Icon name='checked' /> : null}
+          {active ? <Icon name="checked" /> : null}
         </div>
       </li>
     );
   }
-});
+}
 
+DropdownItem.propTypes = {
+  active: PropTypes.bool,
+  className: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
+};
 
-module.exports = DropdownItem;
+reactMixin(DropdownItem.prototype, PureRenderMixin);

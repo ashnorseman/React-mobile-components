@@ -3,31 +3,16 @@
  */
 
 
-'use strict';
+import './ImageBox.less';
 
-require('./ImageBox.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
+import mixClass from '../../common/utils/mix-class';
 
 
-const ImageBox = React.createClass({
-  mixins: [PureRenderMixin],
-
-  propTypes: {
-    alt: React.PropTypes.string,
-    className: React.PropTypes.string,
-    src: React.PropTypes.string.isRequired
-  },
-
-  getDefaultProps() {
-    return {
-      alt: '',
-      src: ''
-    };
-  },
+export default class ImageBox extends Component {
 
   render() {
     const {
@@ -43,11 +28,21 @@ const ImageBox = React.createClass({
 
     return (
       <div className={classes}>
-        <img className='image-box-pic' src={src} alt={alt} />
+        <img className="image-box-pic" src={src} alt={alt} />
       </div>
     );
   }
-});
+}
 
+ImageBox.propTypes = {
+  alt      : PropTypes.string,
+  className: PropTypes.string,
+  src      : PropTypes.string.isRequired
+};
 
-module.exports = ImageBox;
+ImageBox.defaultProps = {
+  alt: '',
+  src: ''
+};
+
+reactMixin(ImageBox.prototype, PureRenderMixin);

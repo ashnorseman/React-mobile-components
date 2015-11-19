@@ -3,19 +3,11 @@
  */
 
 
-'use strict';
-
-const React = require('react');
-const TabBase = require('./TabBase');
+import React from 'react';
+import TabBase from './TabBase';
 
 
 export default {
-
-  getInitialState() {
-    return {
-      active: this._getActiveHash()
-    };
-  },
 
 
   /**
@@ -28,7 +20,9 @@ export default {
             ...props
           } = this.props,
 
-          { active } = this.state,
+          {
+            active
+          } = this.state,
 
           tabData = this._findActiveTab(data, active);
 
@@ -38,6 +32,7 @@ export default {
       </TabBase>
     );
   },
+
 
   /**
    * Set active tab when `location.hash` changes

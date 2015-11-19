@@ -5,30 +5,30 @@
 
 'use strict';
 
-require('../common/styles/app.less');
+import '../common/styles/app.less';
 
-const Badge = require('./Badge/Badge');
-const Button = require('./Button/Button');
-const CheckButton = require('./CheckButton/CheckButton');
-const Dropdown = require('./Dropdown/Dropdown');
-const Form = require('./Form/Form');
-const FormControl = require('./Form/FormControl');
-const Icon = require('./Icon/Icon');
-const ImageBox = require('./ImageBox/ImageBox');
-const ImageSlider = require('./ImageSlider/ImageSlider');
-const Loading = require('./Loading/Loading');
-const Mask = require('./Mask/Mask');
-const Message = require('./Message/Message');
-const PlusMinus = require('./PlusMinus/PlusMinus');
-const PullLoader = require('./PullLoader/PullLoader');
-const TabBar = require('./Tab/TabBar');
-const TabNav = require('./Tab/TabNav');
-const TabScope = require('./Tab/TabScope');
-const Table = require('./Table/Table');
-const TopAction = require('./TopAction/TopAction');
+import Badge from './Badge/Badge';
+import Button from './Button/Button';
+import CheckButton from './CheckButton/CheckButton';
+import Dropdown from './Dropdown/Dropdown';
+import Form from './Form/Form';
+import FormControl from './Form/FormControl';
+import Icon from './Icon/Icon';
+import ImageBox from './ImageBox/ImageBox';
+import ImageSlider from './ImageSlider/ImageSlider';
+import Loading from './Loading/Loading';
+import Mask from './Mask/Mask';
+import Message from './Message/Message';
+import PlusMinus from './PlusMinus/PlusMinus';
+import PullLoader from './PullLoader/PullLoader';
+import TabBar from './Tab/TabBar';
+import TabNav from './Tab/TabNav';
+import TabScope from './Tab/TabScope';
+import Table from './Table/Table';
+import TopAction from './TopAction/TopAction';
 
 
-module.exports = {
+export default {
   Badge,
   Button,
   CheckButton,

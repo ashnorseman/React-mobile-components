@@ -3,23 +3,16 @@
  */
 
 
-'use strict';
+import './Badge.less';
 
-require('./Badge.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
+import mixClass from '../../common/utils/mix-class';
 
 
-const Badge = React.createClass({
-  mixins: [PureRenderMixin],
-
-  propTypes: {
-    children: React.PropTypes.node.isRequired,
-    className: React.PropTypes.string
-  },
+export default class Badge extends Component {
 
   render() {
     const {
@@ -38,7 +31,11 @@ const Badge = React.createClass({
       </span>
     );
   }
-});
+}
 
+Badge.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string
+};
 
-module.exports = Badge;
+reactMixin(Badge.prototype, PureRenderMixin);

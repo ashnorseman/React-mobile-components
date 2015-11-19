@@ -3,9 +3,6 @@
  */
 
 
-'use strict';
-
-
 /**
  * Generate class names via props
  * @param {Object} settings

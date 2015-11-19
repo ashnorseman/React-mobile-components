@@ -55,7 +55,6 @@ describe('DropdownTitle', () => {
           titleNode = ReactDOM.findDOMNode(instance);
 
     expect(titleNode.classList.contains('opened')).toBeTruthy();
-    expect(titleNode.querySelector('.icon-arrow-down')).toBeNull();
-    expect(titleNode.querySelector('.icon-arrow-up')).not.toBeNull();
+    expect(titleNode.querySelector('.icon-arrow-down')).not.toBeNull();
   });
 });

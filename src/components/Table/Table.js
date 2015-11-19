@@ -3,73 +3,26 @@
  */
 
 
-'use strict';
+import './Table.less';
 
-require('./Table.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
-const TableHeader = require('./TableHeader.js');
-const TableRow = require('./TableRow.js');
+import mixClass from '../../common/utils/mix-class';
+import TableHeader from './TableHeader';
+import TableRow from './TableRow';
 
 
-const Table = React.createClass({
-  mixins: [PureRenderMixin],
+export default class Table extends Component {
 
-  propTypes: {
-    className: React.PropTypes.string,
-    data: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-    expanded: React.PropTypes.bool,
-    onToggle: React.PropTypes.func
-  },
+  constructor(props) {
+    super(props);
 
-  getDefaultProps() {
-    return {
-      data: []
-    };
-  },
-
-  getInitialState() {
-    return {
+    this.state = {
       expanded: this.props.expanded
     };
-  },
-
-  render() {
-    const {
-            children,
-            className,
-            data
-          } = this.props,
-
-          { expanded } = this.state,
-
-          classes = mixClass({
-            'table': true,
-            '$': className
-          }),
-
-          touchTap = (expanded !== undefined) ? this.toggle : null,
-
-          tableHeader = children
-            ? <TableHeader expanded={expanded} onTouchTap={touchTap}>{children}</TableHeader>
-            : null,
-
-          tableRows = data.map((row, index) => {
-            return <TableRow {...row} key={index}></TableRow>;
-          });
-
-    return (
-      <div className={classes}>
-        {tableHeader}
-        <ul className={((expanded === false )? 'collapsed' : '') + ' table-rows'}>
-          {tableRows}
-        </ul>
-      </div>
-    );
-  },
+  }
 
 
   /**
@@ -86,7 +39,52 @@ const Table = React.createClass({
       this.props.onToggle(expanded);
     }
   }
-});
 
 
-module.exports = Table;
+  render() {
+    const {
+            children,
+            className,
+            data
+          } = this.props,
+
+          { expanded } = this.state,
+
+          classes = mixClass({
+            'table': true,
+            '$': className
+          }),
+
+          touchTap = (expanded !== undefined) ? this.toggle.bind(this) : null,
+
+          tableHeader = children
+            ? <TableHeader expanded={expanded} onTouchTap={touchTap}>{children}</TableHeader>
+            : null,
+
+          tableRows = data.map((row, index) => {
+            return <TableRow {...row} key={index} />;
+          });
+
+    return (
+      <div className={classes}>
+        {tableHeader}
+        <ul className={((expanded === false ) ? 'collapsed' : '') + ' table-rows'}>
+          {tableRows}
+        </ul>
+      </div>
+    );
+  }
+}
+
+Table.propTypes = {
+  className: PropTypes.string,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  expanded: PropTypes.bool,
+  onToggle: PropTypes.func
+};
+
+Table.defaultProps = {
+  data: []
+};
+
+reactMixin(Table.prototype, PureRenderMixin);

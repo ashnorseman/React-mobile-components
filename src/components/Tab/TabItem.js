@@ -3,37 +3,18 @@
  */
 
 
-'use strict';
+import './TabItem.less';
 
-require('./TabItem.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
-const Badge = require('../Badge/Badge.js');
-const Icon = require('../Icon/Icon.js');
+import mixClass from '../../common/utils/mix-class';
+import Badge from '../Badge/Badge';
+import Icon from '../Icon/Icon';
 
 
-const TabItem = React.createClass({
-  mixins: [PureRenderMixin],
-
-  propType: {
-    active: React.PropTypes.bool.isRequired,
-    badge: React.PropTypes.oneOf(['string', 'number']),
-    className: React.PropTypes.string,
-    icon: React.PropTypes.string,
-    link: React.PropTypes.string.isRequired,
-    type: React.PropTypes.number,
-    text: React.PropTypes.string.isRequired
-  },
-
-  getDefaultProps() {
-    return  {
-      active: false,
-      type: 0
-    };
-  },
+export default class TabItem extends Component {
 
   render() {
     const {
@@ -47,27 +28,42 @@ const TabItem = React.createClass({
           } = this.props,
 
           classes = mixClass({
-            'tab-item': true,
-            'active': active,
+            'tab-item'       : true,
             'tab-item-type-$': type,
-            '$': className
+            '$'              : className,
+            active
           }),
 
           badgeElement = badge
             ? <Badge>{badge}</Badge>
             : null,
 
+          iconElement = icon ? <Icon name={icon}/> : null,
+
           href = /^(https?)|(\/\/)/.test(link) ? link : `#/${link}`;
 
     return (
       <a className={classes} href={href}>
         {badgeElement}
-        {icon ? <Icon name={icon}></Icon> : null}
-        <span className='tab-text'>{text}</span>
+        {iconElement}
+        <span className="tab-text">{text}</span>
       </a>
     );
   }
-});
+}
 
+TabItem.propTypes = {
+  active: PropTypes.bool,
+  badge: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  className: PropTypes.string,
+  icon: PropTypes.string,
+  link: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  type: PropTypes.number
+};
 
-module.exports = TabItem;
+TabItem.defaultProps = {
+  type  : 0
+};
+
+reactMixin(TabItem.prototype, PureRenderMixin);

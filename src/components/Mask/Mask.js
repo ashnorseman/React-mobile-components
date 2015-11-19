@@ -3,26 +3,19 @@
  */
 
 
-'use strict';
+import './Mask.less';
 
-require('./Mask.less');
-
-const React = require('react');
-const ReactDOM = require('react-dom');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
+import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
 
 const _maskHolder = document.createElement('div');
 document.body.appendChild(_maskHolder);
 
 
-const Mask = React.createClass({
-  mixins: [PureRenderMixin],
-
-  propType: {
-    onTouchTap: React.PropTypes.func,
-    zIndex: React.PropTypes.number
-  },
+class Mask extends Component {
 
   render() {
     const {
@@ -33,13 +26,20 @@ const Mask = React.createClass({
           style = zIndex ? { zIndex } : null;
 
     return (
-      <div className='mask' style={style} onTouchTap={onTouchTap} />
+      <div className="mask" style={style} onTouchTap={onTouchTap} />
     );
   }
-});
+}
+
+Mask.propTypes = {
+  onTouchTap: React.PropTypes.func,
+  zIndex    : React.PropTypes.number
+};
+
+reactMixin(Mask.prototype, PureRenderMixin);
 
 
-module.exports = {
+export default {
 
   open(config) {
     ReactDOM.render(

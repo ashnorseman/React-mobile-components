@@ -3,22 +3,16 @@
  */
 
 
-'use strict';
+import './Loading.less';
 
-require('./Loading.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
+import mixClass from '../../common/utils/mix-class';
 
 
-const Loading = React.createClass({
-  mixins: [PureRenderMixin],
-
-  propTypes: {
-    className: React.PropTypes.string
-  },
+export default class Loading extends Component {
 
   render() {
     const {
@@ -33,18 +27,21 @@ const Loading = React.createClass({
 
     return (
       <div className={classes} {...props}>
-        <div className='loading-dot'></div>
-        <div className='loading-dot'></div>
-        <div className='loading-dot'></div>
-        <div className='loading-dot'></div>
-        <div className='loading-dot'></div>
-        <div className='loading-dot'></div>
-        <div className='loading-dot'></div>
-        <div className='loading-dot'></div>
+        <div className="loading-dot" />
+        <div className="loading-dot" />
+        <div className="loading-dot" />
+        <div className="loading-dot" />
+        <div className="loading-dot" />
+        <div className="loading-dot" />
+        <div className="loading-dot" />
+        <div className="loading-dot" />
       </div>
     );
   }
-});
+}
 
+Loading.propTypes = {
+  className: PropTypes.string
+};
 
-module.exports = Loading;
+reactMixin(Loading.prototype, PureRenderMixin);

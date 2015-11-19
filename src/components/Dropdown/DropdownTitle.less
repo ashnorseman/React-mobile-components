@@ -12,15 +12,23 @@
   float: left;
   padding-left: @gap * 2;
 
+  .iconfont {
+    display: inline-block;
+    margin-left: @gap / 2;
+    -webkit-transition: all @duration ease-in-out;
+    transition: all @duration ease-in-out;
+  }
+
   &.active {
     color: @color-primary;
   }
 
   &.opened {
     color: @color-text;
-  }
 
-  .iconfont {
-    margin-left: @gap / 2;
+    .iconfont {
+      -webkit-transform: rotate(-180deg);
+      transform: rotate(-180deg);
+    }
   }
 }

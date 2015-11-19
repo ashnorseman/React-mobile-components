@@ -3,31 +3,17 @@
  */
 
 
-'use strict';
+import './Button.less';
 
-require('./Button.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
-const Icon = require('../Icon/Icon.js');
+import mixClass from '../../common/utils/mix-class';
+import Icon from '../Icon/Icon';
 
 
-const Button = React.createClass({
-  mixins: [PureRenderMixin],
-
-  propTypes: {
-    className: React.PropTypes.string,
-    icon: React.PropTypes.string,
-    type: React.PropTypes.string.isRequired
-  },
-
-  getDefaultProps() {
-    return {
-      type: 'button'
-    };
-  },
+export default class Button extends Component {
 
   render() {
     const {
@@ -45,7 +31,7 @@ const Button = React.createClass({
           }),
 
           iconNode = icon
-            ? <Icon name={icon}></Icon>
+            ? <Icon name={icon} />
             : null;
 
     return (
@@ -55,7 +41,17 @@ const Button = React.createClass({
       </button>
     );
   }
-});
+}
 
+Button.propTypes = {
+  className: PropTypes.string,
+  icon: PropTypes.string,
+  link: PropTypes.bool,
+  type: PropTypes.string.isRequired
+};
 
-module.exports = Button;
+Button.defaultProps = {
+  type: 'button'
+};
+
+reactMixin(Button.prototype, PureRenderMixin);

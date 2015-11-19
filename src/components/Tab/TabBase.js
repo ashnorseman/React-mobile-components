@@ -3,33 +3,17 @@
  */
 
 
-'use strict';
+import './TabBase.less';
 
-require('./TabBase.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
-const TabItem = require('./TabItem.js');
+import mixClass from '../../common/utils/mix-class';
+import TabItem from './TabItem';
 
 
-const TabBase = React.createClass({
-  mixins: [PureRenderMixin],
-
-  propTypes: {
-    className: React.PropTypes.string,
-    data: React.PropTypes.arrayOf(React.PropTypes.object),
-    tabBar: React.PropTypes.bool,
-    tabNav: React.PropTypes.bool
-  },
-
-  getDefaultProps() {
-    return  {
-      tabBar: false,
-      tabNav: false
-    };
-  },
+export default class TabBase extends Component {
 
   render() {
     const {
@@ -40,24 +24,31 @@ const TabBase = React.createClass({
           } = this.props,
 
           classes = mixClass({
-            'tab': true,
+            'tab'  : true,
             'tab-$': type,
-            '$': className
+            '$'    : className
           }),
 
           tabList = data.map((tab, index) => {
-            return <TabItem {...tab} key={index}></TabItem>;
+            return <TabItem {...tab} key={index}/>;
           });
 
     return (
       <nav className={classes} {...props}>
-        <div className='tab-inner'>
+        <div className="tab-inner">
           {tabList}
         </div>
       </nav>
     );
   }
-});
+}
 
+TabBase.propTypes = {
+  className: PropTypes.string,
+  data     : PropTypes.arrayOf(PropTypes.object),
+  type     : PropTypes.string,
+  tabBar   : PropTypes.bool,
+  tabNav   : PropTypes.bool
+};
 
-module.exports = TabBase;
+reactMixin(TabBase.prototype, PureRenderMixin);

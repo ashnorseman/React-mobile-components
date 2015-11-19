@@ -3,48 +3,34 @@
  */
 
 
-'use strict';
+import './TopAction.less';
 
-require('./TopAction.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const Icon = require('../Icon/Icon.js');
+import Icon from '../Icon/Icon';
 
 
-const TopAction = React.createClass({
-  mixins: [PureRenderMixin],
+export default class TopAction extends Component {
 
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       visible: window.pageYOffset > 0
     };
-  },
+
+    this._listenToScroll = this._listenToScroll.bind(this);
+  }
 
   componentDidMount() {
     window.addEventListener('scroll', this._listenToScroll, false);
-  },
+  }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this._listenToScroll, false);
-  },
-
-  render() {
-    const { visible } = this.state,
-
-          visibilityStyle = {
-            display: visible ? 'block' : 'none'
-          };
-
-    return (
-      <span className='top-action'
-            style={visibilityStyle}
-            onTouchTap={this.scrollTop}>
-        <Icon name='top'></Icon>
-      </span>
-    );
-  },
+  }
 
 
   /**
@@ -52,7 +38,7 @@ const TopAction = React.createClass({
    */
   scrollTop() {
     window.scroll(0, 0);
-  },
+  }
 
 
   /**
@@ -64,7 +50,25 @@ const TopAction = React.createClass({
       visible: window.pageYOffset > 0
     });
   }
-});
 
 
-module.exports = TopAction;
+  render() {
+    const {
+            visible
+          } = this.state,
+
+          visibilityStyle = {
+            display: visible ? 'block' : 'none'
+          };
+
+    return (
+      <span className="top-action"
+            style={visibilityStyle}
+            onTouchTap={this.scrollTop.bind(this)}>
+        <Icon name="top" />
+      </span>
+    );
+  }
+}
+
+reactMixin(TopAction.prototype, PureRenderMixin);

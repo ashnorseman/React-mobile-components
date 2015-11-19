@@ -3,42 +3,95 @@
  */
 
 
-'use strict';
+import './FormControl.less';
 
-require('./FormControl.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
-const validate = require('./validate');
-const Icon = require('../Icon/Icon.js');
+import mixClass from '../../common/utils/mix-class';
+import validate from './validate';
+import Icon from '../Icon/Icon';
 
 
-const FormControl = React.createClass({
-  mixins: [PureRenderMixin],
+export default class FormControl extends Component {
 
-  propTypes: {
-    className: React.PropTypes.string,
-    name: React.PropTypes.string.isRequired,
-    options: React.PropTypes.arrayOf(React.PropTypes.object),
-    placeholder: React.PropTypes.string,
-    type: React.PropTypes.string.isRequired
-  },
+  constructor(props) {
+    super(props);
 
-  getDefaultProps() {
-    return {
-      autoComplete: false,
-      options: [],
-      type: 'text'
-    };
-  },
+    this._validate = this._validate.bind(this);
 
-  getInitialState() {
-    return {
+    this.state = {
       focused: false
     };
-  },
+  }
+
+  /**
+   * Focus the control
+   */
+  focusControl(e) {
+    this.setState({
+      focused: true
+    });
+
+    if (typeof this.props.onFocus === 'function') {
+      this.props.onFocus(e);
+    }
+  }
+
+
+  /**
+   * Blur the control
+   */
+  blurControl(e) {
+    this.setState({
+      focused: false
+    });
+
+    if (typeof this.props.onBlur === 'function') {
+      this.props.onBlur(e);
+    }
+  }
+
+
+  /**
+   * Toggle `hasValue` and triggers onChange callback
+   * @param e
+   */
+  changeControl(e) {
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(this.props.name, e.currentTarget.value);
+    }
+  }
+
+
+  /**
+   * Clear value
+   */
+  clearControl() {
+    this.changeControl({
+      currentTarget: {
+        value: ''
+      }
+    });
+  }
+
+
+  /**
+   * Validate a control
+   * @param {string} value
+   * @returns {boolean}
+   * @private
+   */
+  _validate(value) {
+    const props = this.props;
+
+    return validate({
+      value: value.toString().trim(),
+      ...props
+    });
+  }
+
 
   render() {
     const {
@@ -67,17 +120,17 @@ const FormControl = React.createClass({
           }),
 
           clear = (type === 'select')
-                    ? null
-                    : <span className='form-clear' onTouchTap={this.clearControl}>
-                        <Icon name='clear'></Icon>
-                      </span>;
+            ? null
+            : <span className="form-clear" onTouchTap={this.clearControl.bind(this)}>
+                <Icon name="close" />
+              </span>;
 
     let control = null;
 
     // Tuning change and blur callbacks
-    props.onChange = this.changeControl;
-    props.onBlur = this.blurControl;
-    props.onFocus = this.focusControl;
+    props.onChange = this.changeControl.bind(this);
+    props.onBlur = this.blurControl.bind(this);
+    props.onFocus = this.focusControl.bind(this);
 
     switch (type) {
     case 'date':
@@ -92,12 +145,12 @@ const FormControl = React.createClass({
       control = <input type={type} {...props} />;
       break;
     case 'textarea':
-      control = <textarea {...props}></textarea>;
+      control = <textarea {...props} />;
       break;
     case 'select':
       let optionNodes = options.map(({ text, value }, index) => {
-        return <option value={value} key={index}>{text}</option>;
-      });
+            return <option value={value} key={index}>{text}</option>;
+          });
       control = <select {...props}>{optionNodes}</select>;
       break;
     default:
@@ -105,80 +158,30 @@ const FormControl = React.createClass({
 
     return (
       <div className={classes}>
-        <span className='form-placeholder'>{placeholder}</span>
+        <span className="form-placeholder">{placeholder}</span>
         {clear}
         {control}
       </div>
     );
-  },
-
-
-  /**
-   * Focus the control
-   */
-  focusControl(e) {
-    this.setState({
-      focused: true
-    });
-
-    if (typeof this.props.onFocus === 'function') {
-      this.props.onFocus(e);
-    }
-  },
-
-
-  /**
-   * Blur the control
-   */
-  blurControl(e) {
-    this.setState({
-      focused: false
-    });
-
-    if (typeof this.props.onBlur === 'function') {
-      this.props.onBlur(e);
-    }
-  },
-
-
-  /**
-   * Toggle `hasValue` and triggers onChange callback
-   * @param e
-   */
-  changeControl(e) {
-    if (typeof this.props.onChange === 'function') {
-      this.props.onChange(this.props.name, e.currentTarget.value);
-    }
-  },
-
-
-  /**
-   * Clear value
-   */
-  clearControl() {
-    this.changeControl({
-      currentTarget: {
-        value: ''
-      }
-    });
-  },
-
-
-  /**
-   * Validate a control
-   * @param {string} value
-   * @returns {boolean}
-   * @private
-   */
-  _validate(value) {
-    const props = this.props;
-
-    return validate({
-      value: value.toString().trim(),
-      ...props
-    });
   }
-});
+}
 
+FormControl.propTypes = {
+  className: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.object),
+  placeholder: PropTypes.string,
+  type: PropTypes.string.isRequired,
 
-module.exports = FormControl;
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func
+};
+
+FormControl.defaultProps = {
+  autoComplete: false,
+  options: [],
+  type: 'text'
+};
+
+reactMixin(FormControl.prototype, PureRenderMixin);

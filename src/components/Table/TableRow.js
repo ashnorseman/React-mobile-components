@@ -3,34 +3,17 @@
  */
 
 
-'use strict';
+import './TableRow.less';
 
-require('./TableRow.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
-const Icon = require('../Icon/Icon.js');
+import mixClass from '../../common/utils/mix-class';
+import Icon from '../Icon/Icon';
 
 
-const TableRow = React.createClass({
-  mixins: [PureRenderMixin],
-
-  propTypes: {
-    className: React.PropTypes.string,
-    children: React.PropTypes.node,
-    disclosure: React.PropTypes.bool,
-    href: React.PropTypes.string,
-    note: React.PropTypes.string,
-    text: React.PropTypes.string.isRequired
-  },
-
-  getDefaultProps() {
-    return {
-      disclosure: false
-    };
-  },
+export default class TableRow extends Component {
 
   render() {
     const {
@@ -49,27 +32,35 @@ const TableRow = React.createClass({
           }),
 
           noteNode = note
-            ? <div className='table-row-note'>{note}</div>
+            ? <div className="table-row-note">{note}</div>
             : null,
 
           arrowIcon = disclosure
-            ? <Icon name='arrow-right'></Icon>
+            ? <Icon name="arrow-right" />
             : null;
 
     return (
       <li className={classes} {...props}>
-        <a href={href ? `#/${href}` : null} className='table-row-link clearfix'>
-          <div className='table-row-left'>
-            <div className='table-row-text'>{text}</div>
+        <a href={href ? `#/${href}` : null} className="table-row-link clearfix">
+          <div className="table-row-left">
+            <div className="table-row-text">{text}</div>
             {noteNode}
           </div>
-          <span className='table-row-content'>{children}</span>
+          <span className="table-row-content">{children}</span>
           {arrowIcon}
         </a>
       </li>
     );
   }
-});
+}
 
+TableRow.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node,
+  disclosure: PropTypes.bool,
+  href: PropTypes.string,
+  note: PropTypes.string,
+  text: PropTypes.string.isRequired
+};
 
-module.exports = TableRow;
+reactMixin(TableRow.prototype, PureRenderMixin);

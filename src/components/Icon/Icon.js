@@ -3,25 +3,17 @@
  */
 
 
-'use strict';
+import './fonts/iconfont.css';
+import './Icon.less';
 
-require('./fonts/iconfont.css');
-require('./Icon.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
+import mixClass from '../../common/utils/mix-class';
 
 
-const Icon = React.createClass({
-  mixins: [PureRenderMixin],
-
-  propTypes: {
-    className: React.PropTypes.string,
-    name: React.PropTypes.string.isRequired,
-    rotate: React.PropTypes.bool
-  },
+export default class Icon extends Component {
 
   render() {
     const {
@@ -38,10 +30,15 @@ const Icon = React.createClass({
           });
 
     return (
-      <i className={classes}></i>
+      <i className={classes} />
     );
   }
-});
+}
 
+Icon.propTypes = {
+  className: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  rotate: PropTypes.bool
+};
 
-module.exports = Icon;
+reactMixin(Icon.prototype, PureRenderMixin);

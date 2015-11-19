@@ -3,27 +3,24 @@
  */
 
 
-'use strict';
+import './TabNav.less';
 
-require('./TabNav.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const TabBase = require('./TabBase.js');
+import TabBase from './TabBase';
 
 
-const TabNav = React.createClass({
-  mixins: [PureRenderMixin],
+export default class TabNav extends Component {
 
   render() {
     return (
-      <TabBase {...this.props} {...this.state} type='nav'>
+      <TabBase {...this.props} {...this.state} type="nav">
         {this.props.children}
       </TabBase>
     );
   }
-});
+}
 
-
-module.exports = TabNav;
+reactMixin(TabNav.prototype, PureRenderMixin);

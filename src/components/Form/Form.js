@@ -3,99 +3,40 @@
  */
 
 
-'use strict';
+import './Form.less';
 
-require('./Form.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
-const validate = require('./validate');
-const FormControl = require('./FormControl.js');
-const Button = require('../Button/Button.js');
+import mixClass from '../../common/utils/mix-class';
+import validate from './validate';
+import FormControl from './FormControl';
+import Button from '../Button/Button';
 
 
-const Form = React.createClass({
-  mixins: [PureRenderMixin],
+export default class Form extends Component {
 
-  propTypes: {
-    action: React.PropTypes.string,
-    onSubmit: React.PropTypes.func,
-    beforeSubmit: React.PropTypes.func,
-    className: React.PropTypes.string,
-    controls: React.PropTypes.arrayOf(React.PropTypes.object),
-    submitAtPageBottom: React.PropTypes.bool,
-    submitText: React.PropTypes.string.isRequired,
-    onControlChange: React.PropTypes.func
-  },
+  constructor(props) {
+    super(props);
 
-  getDefaultProps() {
-    return {
-      submitText: '提交'
-    };
-  },
-
-  getInitialState() {
-    return {
+    this.state = {
       valid: this._validate(this.props.controls),
       submitting: false
     };
-  },
+  }
 
   componentDidMount() {
     if (this.props.submitAtPageBottom) {
       document.body.firstElementChild.classList.add('form-submit-bottom-mounted');
     }
-  },
+  }
 
   componentWillUnmount() {
     if (this.props.submitAtPageBottom) {
       document.body.firstElementChild.classList.remove('form-submit-bottom-mounted');
     }
-  },
-
-  render() {
-    const {
-            action,
-            submitAtPageBottom,
-            submitText,
-            controls,
-            ...props
-          } = this.props,
-
-          {
-            submitting,
-            valid
-          } = this.state,
-
-          formLines = controls.map(({ label, onChange, ...control }, index) => {
-            const labelSpan = label ? <span className='form-label'>{label}</span> : null;
-
-            return (
-              <div className='form-line' key={index}>
-                {labelSpan}
-                <FormControl {...control} onChange={this.onControlChange.bind(null, onChange)} />
-              </div>
-            );
-          }),
-
-          submitClass = mixClass({
-            'form-submit': true,
-            'form-submit-bottom': submitAtPageBottom
-          });
-
-    return (
-      <form action={action} {...props} onSubmit={this.onFormSubmit}>
-        <div className='form-main'>
-          {formLines}
-        </div>
-        <div className={submitClass}>
-          <Button type='submit' disabled={!valid || submitting}>{submitText}</Button>
-        </div>
-      </form>
-    );
-  },
+  }
 
 
   /**
@@ -116,7 +57,7 @@ const Form = React.createClass({
     if (this.props.onControlChange) {
       this.props.onControlChange(name, value);
     }
-  },
+  }
 
 
   /**
@@ -144,7 +85,7 @@ const Form = React.createClass({
         this.props.onSubmit(formData, this);
       }
     }
-  },
+  }
 
 
   /**
@@ -157,7 +98,7 @@ const Form = React.createClass({
       formData[control.name] = control.value;
       return formData;
     }, {});
-  },
+  }
 
 
   /**
@@ -169,12 +110,71 @@ const Form = React.createClass({
   _validate(controls) {
     return controls.every(({ value, ...props }) => {
       return validate({
-        value: value,
+        value,
         ...props
       });
     });
   }
-});
+
+
+  render() {
+    const {
+            action,
+            submitAtPageBottom,
+            submitText,
+            controls,
+            ...props
+          } = this.props,
+
+          {
+            submitting,
+            valid
+          } = this.state,
+
+          formLines = controls.map(({ label, onChange, ...control }, index) => {
+            const labelSpan = label ? <span className="form-label">{label}</span> : null;
+
+            return (
+              <div className="form-line" key={index}>
+                {labelSpan}
+                <FormControl {...control} onChange={this.onControlChange.bind(this, onChange)} />
+              </div>
+            );
+          }),
+
+          submitClass = mixClass({
+            'form-submit': true,
+            'form-submit-bottom': submitAtPageBottom
+          });
+
+    return (
+      <form action={action} {...props} onSubmit={this.onFormSubmit.bind(this)}>
+        <div className="form-main">
+          {formLines}
+        </div>
+        <div className={submitClass}>
+          <Button type="submit" disabled={!valid || submitting}>{submitText}</Button>
+        </div>
+      </form>
+    );
+  }
+}
+
+Form.propTypes = {
+  action: PropTypes.string,
+  className: PropTypes.string,
+  controls: PropTypes.arrayOf(PropTypes.object),
+  submitAtPageBottom: PropTypes.bool,
+  submitText: PropTypes.string.isRequired,
+
+  onSubmit: PropTypes.func,
+  beforeSubmit: PropTypes.func,
+  onControlChange: PropTypes.func
+};
+
+Form.defaultProps = {
+  submitText: '提交'
+};
 
 
 /**
@@ -185,17 +185,16 @@ const Form = React.createClass({
  */
 Form.updateValue = (controls, name, value) => {
   const control = controls.filter((c) => {
-    return c.name === name;
-  })[0],
+          return c.name === name;
+        })[0],
         index = controls.indexOf(control);
 
   control.value = value;
 
   controls.splice(index, 1, Object.keys(control).reduce((c, key) => {
-    c.key = control[key];
+    c[key] = control[key];
     return c;
   }, {}));
 };
 
-
-module.exports = Form;
+reactMixin(Form.prototype, PureRenderMixin);

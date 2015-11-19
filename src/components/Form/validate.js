@@ -3,8 +3,6 @@
  */
 
 
-'use strict';
-
 const VALIDATIONS = ['maxLength', 'minLength', 'max', 'min', 'pattern'],
       emailReg = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
       telReg = /(^1[3-9]\d{9}$)|(^([08][1-9]\d{1,2}-?)?[2-9]\d{6,7}$)/;
@@ -65,4 +63,4 @@ function _isValid(type, prop, value) {
 }
 
 
-module.exports = validate;
+export default validate;

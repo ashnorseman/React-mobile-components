@@ -3,33 +3,34 @@
  */
 
 
-'use strict';
+import './PlusMinus.less';
 
-require('./PlusMinus.less');
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import reactMixin from 'react-mixin';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-
-const mixClass = require('../../common/utils/mix-class');
-const Button = require('../Button/Button');
-const Icon = require('../Icon/Icon');
+import mixClass from '../../common/utils/mix-class';
+import Button from '../Button/Button';
+import Icon from '../Icon/Icon';
 
 
-const PlusMinus = React.createClass({
-  mixins: [PureRenderMixin],
+export default class PlusMinus extends Component {
 
-  propTypes: {
-    value: React.PropTypes.number,
-    max: React.PropTypes.number,
-    min: React.PropTypes.number,
-    onChange: React.PropTypes.func
-  },
+  plus() {
+    const value = this.props.value + 1;
 
-  getDefaultProps() {
-    return {
-      min: 0
-    };
-  },
+    if (value <= this.props.max && (typeof this.props.onChange === 'function')) {
+      this.props.onChange.call(this, value);
+    }
+  }
+
+  minus() {
+    const value = this.props.value - 1;
+
+    if (value >= this.props.min && (typeof this.props.onChange === 'function')) {
+      this.props.onChange.call(this, value);
+    }
+  }
 
   render() {
     const {
@@ -39,36 +40,29 @@ const PlusMinus = React.createClass({
 
           classes = mixClass({
             'plus-minus': true,
-            '$': className
+            '$'         : className
           });
 
     return (
       <div className={classes}>
-        <Button className='plus-minus-btn' link onTouchTap={this.minus} icon='minus'></Button>
-        <input className='plus-minus-text' type='text' value={value} readOnly />
-        <Button className='plus-minus-btn' link onTouchTap={this.plus} icon='plus'></Button>
+        <Button className="plus-minus-btn" link onTouchTap={this.minus.bind(this)} icon="minus" />
+        <input className="plus-minus-text" type="text" value={value} readOnly />
+        <Button className="plus-minus-btn" link onTouchTap={this.plus.bind(this)} icon="plus" />
       </div>
     );
-  },
-
-
-  plus() {
-    const value = this.props.value + 1;
-
-    if (value <= this.props.max && (typeof this.props.onChange === 'function')) {
-      this.props.onChange.call(this, value);
-    }
-  },
-
-
-  minus() {
-    const value = this.props.value - 1;
-
-    if (value >= this.props.min && (typeof this.props.onChange === 'function')) {
-      this.props.onChange.call(this, value);
-    }
   }
-});
+}
 
+PlusMinus.propTypes = {
+  className: PropTypes.string,
+  max      : PropTypes.number,
+  min      : PropTypes.number,
+  value    : PropTypes.number,
+  onChange : PropTypes.func
+};
 
-module.exports = PlusMinus;
+PlusMinus.defaultProps = {
+  min: 0
+};
+
+reactMixin(PlusMinus.prototype, PureRenderMixin);
