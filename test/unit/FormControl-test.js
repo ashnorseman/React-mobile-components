@@ -154,12 +154,15 @@ describe('FormControl', () => {
 
     TestUtils.Simulate.focus(input);
     expect(formControlNode.classList.contains('form-focused')).toBeTruthy();
+    expect(document.body.classList.contains('form-control-focused')).toBeTruthy();
 
     TestUtils.Simulate.blur(input);
     expect(formControlNode.classList.contains('form-focused')).toBeFalsy();
+    expect(document.body.classList.contains('form-control-focused')).toBeFalsy();
 
     TestUtils.Simulate.focus(input);
     expect(formControlNode.classList.contains('form-focused')).toBeTruthy();
+    expect(document.body.classList.contains('form-control-focused')).toBeTruthy();
   });
 
   it('validation', () => {

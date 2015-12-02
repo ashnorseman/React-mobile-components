@@ -34,6 +34,8 @@ export default class FormControl extends Component {
       focused: true
     });
 
+    document.body.classList.add('form-control-focused');
+
     if (typeof this.props.onFocus === 'function') {
       this.props.onFocus(e);
     }
@@ -47,6 +49,8 @@ export default class FormControl extends Component {
     this.setState({
       focused: false
     });
+
+    document.body.classList.remove('form-control-focused');
 
     if (typeof this.props.onBlur === 'function') {
       this.props.onBlur(e);

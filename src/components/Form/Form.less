@@ -54,6 +54,12 @@
     left: 0;
     z-index: @z-submit-bottom;
   width: 100%;
+
+  .form-control-focused & {
+    background: transparent;
+    padding-top: @gap;
+    position: static;
+  }
 }
 
 .form-submit-bottom-mounted {
