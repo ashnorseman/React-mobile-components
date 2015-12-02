@@ -289,7 +289,7 @@ class TestPage extends Component {
         </div>
 
         <h2 className='gap-side gap-t'>表单（带说明）</h2>
-        <Form {...formData} submitAtPageBottom></Form>
+        <Form {...formData}></Form>
 
         <h2 className='gap-side gap-t'>表单</h2>
         <Form {...form2} className='gap-t' onControlChange={this.formControlChange.bind(this)} />
@@ -301,7 +301,7 @@ class TestPage extends Component {
         <Tab.Scope data={tabScopeData} style={{ position: 'relative' }}></Tab.Scope>
 
         <h2 className='gap-side gap-t'>Tab.Bar (见最下)</h2>
-        {/*<Tab.Bar data={tabBarData}></Tab.Bar>*/}
+        <Tab.Bar data={tabBarData}></Tab.Bar>
 
         <h2 className='gap-side gap-t'>Table</h2>
         <Table data={tableData} expanded={true}>
