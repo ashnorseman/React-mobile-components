@@ -23,10 +23,20 @@
 
 .btn.plus-minus-btn {
   background: @color-bg;
+  position: relative;
   width: @plus-minus-size;
 
   .iconfont {
     margin-right: 0;
+  }
+
+  &::before {
+    content: ' ';
+    height: @control-base-size;
+    position: absolute;
+      left: (@plus-minus-size - @control-base-size) / 2;
+      top: (@plus-minus-size - @control-base-size) / 2;
+    width: @control-base-size;
   }
 }
 
