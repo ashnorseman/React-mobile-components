@@ -126,4 +126,9 @@ Calendar.propTypes = {
   marks: PropTypes.arrayOf(PropTypes.number)
 };
 
+Calendar.defaultProps = {
+  highlights: [],
+  marks: []
+};
+
 reactMixin(Calendar.prototype, PureRenderMixin);
