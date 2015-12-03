@@ -9,6 +9,7 @@ import '../common/styles/app.less';
 
 import Badge from './Badge/Badge';
 import Button from './Button/Button';
+import Calendar from './Calendar/Calendar';
 import CheckButton from './CheckButton/CheckButton';
 import Dropdown from './Dropdown/Dropdown';
 import Form from './Form/Form';
@@ -31,6 +32,7 @@ import TopAction from './TopAction/TopAction';
 export default {
   Badge,
   Button,
+  Calendar,
   CheckButton,
   Dropdown,
   Form,

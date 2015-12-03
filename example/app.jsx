@@ -8,9 +8,15 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Badge, Button, CheckButton, Dropdown, Form, FormControl, Icon, ImageBox, ImageSlider, Loading, Mask, Message, PlusMinus, PullLoader, Tab, Table, TopAction } from '../src/components/index.js';
+import { Badge, Button, Calendar, CheckButton, Dropdown, Form, FormControl, Icon, ImageBox, ImageSlider, Loading, Mask, Message, PlusMinus, PullLoader, Tab, Table, TopAction } from '../src/components/index.js';
 
 injectTapEventPlugin();
+
+const calendarData = {
+  date: new Date(2015, 11, 31),
+  highlights: [new Date(2015, 11, 1).valueOf(), new Date(2015, 11, 10).valueOf()],
+  marks: [new Date(2015, 11, 1).valueOf(), new Date(2015, 11, 20).valueOf()]
+};
 
 const dropDownData = {
   toggle: {
@@ -240,11 +246,6 @@ class TestPage extends Component {
 
     return (
       <div>
-        <h2 className='gap-side gap-t'>加加减减</h2>
-        <div className='gap-side'>
-          <PlusMinus value={10} min={0} max={100} onChange={this.handleEvents} />
-        </div>
-
         <h2 className='gap-side gap-t'>图标</h2>
         <div className='gap-side'>
           <Icon name='loading'></Icon>
@@ -271,6 +272,12 @@ class TestPage extends Component {
         <div className='gap-side'>
           <CheckButton className='gap-r' onToggle={this.handleEvents}>设为默认</CheckButton>
           <CheckButton checked onToggle={this.handleEvents}>设为默认</CheckButton>
+        </div>
+
+        <h2 className='gap-side gap-t'>日历</h2>
+
+        <div className='gap-side'>
+          <Calendar {...calendarData} />
         </div>
 
         <h2 className='gap-side gap-t'>下拉列表 (见最上)</h2>
@@ -333,6 +340,11 @@ class TestPage extends Component {
         <h2 className='gap-side gap-t'>遮罩层</h2>
         <div className='gap-side'>
           <Button onTouchTap={this.mask}>点击弹出</Button>
+        </div>
+
+        <h2 className='gap-side gap-t'>加加减减</h2>
+        <div className='gap-side'>
+          <PlusMinus value={10} min={0} max={100} onChange={this.handleEvents}/>
         </div>
 
         <h2 className='gap-side gap-t'>TopAction (滚动屏幕后见右下角)</h2>

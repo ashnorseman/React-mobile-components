@@ -23,8 +23,6 @@ injectTapEventPlugin();
 
 ## 图标
 
-PS：目前只有样式，具体的图标 UI 还在画，略坑……இдஇ
-
 ```javascript
 <Icon name='home' />
 <Icon name='loading' rotate />    // 旋转
@@ -44,6 +42,12 @@ PS：目前只有样式，具体的图标 UI 还在画，略坑……இдஇ
 <Button type='submit'>提交表单</Button>
 <Button icon='money'>前面带个图标</Button>
 <Button icon='money' link>链接样式</Button>
+```
+
+## 日历
+
+```javascript
+<Calendar date={new Date()} />
 ```
 
 ## 勾选按钮（类似 checkbox）

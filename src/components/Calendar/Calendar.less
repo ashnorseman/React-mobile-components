@@ -1,0 +1,84 @@
+/**
+ * Created by AshZhang on 15/12/3.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+
+
+@title-bg:  #ffcbca;
+@day-size:  2rem;
+
+.calendar {
+  border-radius: @gap / 2;
+  color: @color-text-light;
+  overflow: hidden;
+  text-align: center;
+
+  li {
+    display: inline-block;
+    width: percentage(1 / 7);
+  }
+}
+
+.calendar-weeks {
+
+  > li {
+    background: @title-bg;
+    line-height: 2.5rem;
+  }
+}
+
+.calendar-days {
+  background: @color-bg;
+  line-height: @day-size;
+  padding: (@gap - 0.125rem) 0;
+
+  > li {
+    padding: 0.125rem 0;
+
+    > span {
+      border-radius: @day-size / 2;
+      display: inline-block;
+      width: @day-size;
+    }
+  }
+}
+
+.calendar-today {
+  color: @color-primary;
+}
+
+.calendar-highlight {
+
+  > span {
+    background: @color-style-1;
+  }
+}
+
+.calendar-mark {
+
+  > span {
+    position: relative;
+  }
+
+  .iconfont {
+    color: @color-style-2;
+    font-size: @font-xs;
+    line-height: 1;
+    position: absolute;
+      right: 0;
+      top: 0;
+  }
+}
+
+.calendar-not-this-month {
+  color: @color-text-lightest;
+
+  &.calendar-highlight {
+
+    > span {
+      background: @color-style-1-light;
+    }
+  }
+}
