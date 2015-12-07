@@ -1,6 +1,6 @@
 {
   "name": "react-mobile-components",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "React mobile components",
   "main": "src/components/index.js",
   "scripts": {
@@ -15,6 +15,10 @@
   ],
   "author": "Ash Zhang",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url" : "https://github.com/ashnorseman/React-mobile-components.git"
+  },
   "dependencies": {
     "react-addons-css-transition-group": "^0.14.1",
     "react-addons-pure-render-mixin": "^0.14.1",

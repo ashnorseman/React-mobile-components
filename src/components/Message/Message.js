@@ -11,6 +11,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
+import DialogMixin from '../../common/utils/dialog-mixin';
 import Icon from '../Icon/Icon';
 
 
@@ -20,26 +21,8 @@ document.body.appendChild(_messageHolder);
 
 class Message extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      closed: false,
-      opened: false
-    };
-  }
-
   componentDidMount() {
-    const el = ReactDOM.findDOMNode(this);
-
-    /* eslint-disable */
-    this.setState({
-      opened: true,
-      left: Math.max((document.documentElement.clientWidth - el.clientWidth) / 2),
-      top: Math.max((document.documentElement.clientHeight - el.clientHeight) / 2) + window.scrollY
-    });
-    /* eslint-enable */
-
+    this.open();
     this._setAnimation();
   }
 
@@ -48,10 +31,7 @@ class Message extends Component {
    */
   _setAnimation() {
     setTimeout(() => {
-      this.setState({
-        opened: false,
-        closed: true
-      });
+      this.close();
 
       setTimeout(() => {
         ReactDOM.unmountComponentAtNode(_messageHolder);
@@ -67,22 +47,14 @@ class Message extends Component {
             ...props
           } = this.props,
 
-          {
-            closed,
-            opened,
-            left,
-            top
-          } = this.state,
-
           classes = mixClass({
             'message': true,
-            'message-opened': opened,
-            'message-closed': closed,
+            'dialog': true,
             '$': className
           });
 
     return (
-      <div className={classes} {...props} style={{ left, top }}>
+      <div className={classes} {...props}>
         <Icon name="exclamation" />
         {children}
       </div>
@@ -100,6 +72,7 @@ Message.defaultProps = {
 };
 
 reactMixin(Message.prototype, PureRenderMixin);
+reactMixin(Message.prototype, DialogMixin);
 
 
 export default function (text, duration) {
