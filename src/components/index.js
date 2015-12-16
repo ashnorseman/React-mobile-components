@@ -11,6 +11,7 @@ import Badge from './Badge/Badge';
 import Button from './Button/Button';
 import Calendar from './Calendar/Calendar';
 import CheckButton from './CheckButton/CheckButton';
+import ChoiceList from './ChoiceList/ChoiceList';
 import Dropdown from './Dropdown/Dropdown';
 import Form from './Form/Form';
 import FormControl from './Form/FormControl';
@@ -34,6 +35,7 @@ export default {
   Button,
   Calendar,
   CheckButton,
+  ChoiceList,
   Dropdown,
   Form,
   FormControl,

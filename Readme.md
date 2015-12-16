@@ -58,6 +58,29 @@ injectTapEventPlugin();
 <CheckButton onToggle={this.toggle}>onToggle(checked<bool>)</CheckButton>
 ```
 
+## 选择列表
+
+```javascript
+const choiceData = [
+  {
+    name: 'white',
+    text: '白色'
+  },
+  {
+    name: 'black',
+    text: '黑色',
+    checked: true
+  },
+  {
+    name: 'khaki',
+    text: '卡其色',
+    disabled: true
+  }
+];
+<ChoiceList data={choiceData} onToggle={this.handleEvents} />
+// onToggle(name, checked)
+```
+
 ## 下拉筛选
 
 支持多组下拉筛选列表，可附加一个勾选选项

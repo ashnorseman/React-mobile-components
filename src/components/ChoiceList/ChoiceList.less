@@ -1,0 +1,31 @@
+/**
+ * Created by AshZhang on 15/12/14.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+
+
+
+.choice-item {
+  background: @color-bg;
+  border: @border-width solid @color-border;
+  border-radius: @border-radius;
+  font-size: @font-xs;
+  display: inline-block;
+  line-height: 2;
+  margin-right: @gap * 2;
+  padding: 0 @gap;
+}
+
+.choice-item-checked {
+  background: @color-primary;
+  border-color: @color-primary;
+  color: @color-bg;
+}
+
+.choice-item-disabled {
+  background: @color-disabled;
+  border-color: @color-disabled;
+  color: @color-text-lighter;
+}

@@ -1,0 +1,35 @@
+/**
+ * Created by AshZhang on 15/10/25.
+ */
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
+
+import { Icon } from '../../index';
+
+
+describe('Icon', () => {
+  const iconName = 'home';
+
+  it('renders an icon', () => {
+    const icon = TestUtils.renderIntoDocument(
+            <Icon name={iconName}></Icon>
+          ),
+          iconNode = ReactDOM.findDOMNode(icon);
+
+    expect(iconNode.classList.contains('iconfont')).toBeTruthy();
+    expect(iconNode.classList.contains('icon-home')).toBeTruthy();
+  });
+
+  it('rotate', () => {
+    const icon = TestUtils.renderIntoDocument(
+            <Icon name={iconName} rotate></Icon>
+          ),
+          iconNode = ReactDOM.findDOMNode(icon);
+
+    expect(iconNode.classList.contains('iconfont')).toBeTruthy();
+    expect(iconNode.classList.contains('icon-rotate')).toBeTruthy();
+  });
+});
