@@ -1,0 +1,22 @@
+/**
+ * Created by AshZhang on 15/11/9.
+ */
+
+
+@import '../../common/styles/modules/_variables';
+
+
+.dropdown-menu {
+  border-top: @border-width solid @color-border;
+  padding: 0 @gap * 2;
+
+  &.active {
+    background: @color-bg-lighter;
+    color: @color-primary;
+    margin-right: -@border-width;
+  }
+
+  &:first-child {
+    border-top: 0;
+  }
+}

@@ -7,6 +7,8 @@
 @import '../../common/styles/modules/_mixins';
 
 
+@menu-width:  45%;
+
 .dropdown-mounted {
   padding-top: @control-base-size;
 }
@@ -47,6 +49,27 @@
   -webkit-transition: all @duration linear;
   transition: all @duration linear;
 }
+
+.dropdown-menus,
+.dropdown-items {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.dropdown-menus {
+  background: darken(@color-bg-lighter, 3);
+  border-right: @border-width solid @color-border;
+  width: @menu-width;
+}
+
+.dropdown-items {
+  background: @color-bg-lighter;
+  width: 100% - @menu-width;
+}
+
+
+// Animations
+// ---------------------------
 
 .dropdown-enter,
 .dropdown-leave.dropdown-leave-active {

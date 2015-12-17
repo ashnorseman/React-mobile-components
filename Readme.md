@@ -118,6 +118,47 @@ const dropDownData = {
 // onFilter 参数格式：{ exchangeable: true, sort: 'count', category: 'all' }
 ```
 
+两级菜单：
+
+```javascript
+const dropDownData = {
+  filters: [
+    {
+      name: 'category',
+      text: '分类',
+      depth: 2,
+      list: [
+        {
+          name: 'all',
+          text: '全部'
+        },
+        {
+          name: 'physical',
+          text: '实物礼品'
+        },
+        {
+          name: 'discount',
+          text: '淘宝优惠',
+          list: [
+            {
+              name: 'all',
+              text: '全部'
+            },
+            {
+              name: 'free-shipping-card',
+              text: '包邮卡'
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+<Dropdown {...dropDownData} onFilter={this.filter} />
+// onFilter 参数格式：{ exchangeable: true, sort: 'count', category: ['discount', 'all'] }
+```
+
 ## 表单控件
 
 * 可以加一个 label，也可以不要

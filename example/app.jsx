@@ -3,8 +3,6 @@
  */
 
 
-'use strict';
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -44,6 +42,7 @@ const dropDownData = {
     {
       name: 'sort',
       text: '排序',
+      depth: 1,
       list: [
         {
           name: 'count',
@@ -58,6 +57,7 @@ const dropDownData = {
     {
       name: 'category',
       text: '分类',
+      depth: 2,
       list: [
         {
           name: 'all',
@@ -66,6 +66,32 @@ const dropDownData = {
         {
           name: 'physical',
           text: '实物礼品'
+        },
+        {
+          name: 'virtual',
+          text: '虚拟礼品'
+        },
+        {
+          name: 'discount',
+          text: '淘宝优惠',
+          list: [
+            {
+              name: 'all',
+              text: '全部'
+            },
+            {
+              name: 'free-shipping-card',
+              text: '包邮卡'
+            },
+            {
+              name: 'coupon',
+              text: '抵钱购'
+            },
+            {
+              name: 'alipay-wallet',
+              text: '支付宝钱包'
+            }
+          ]
         }
       ]
     }
