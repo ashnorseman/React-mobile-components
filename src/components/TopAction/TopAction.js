@@ -6,8 +6,6 @@
 import './TopAction.less';
 
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import reactMixin from 'react-mixin';
 
 import Icon from '../Icon/Icon';
 
@@ -54,12 +52,12 @@ export default class TopAction extends Component {
 
   render() {
     const {
-            visible
-          } = this.state,
+        visible
+      } = this.state,
 
-          visibilityStyle = {
-            display: visible ? 'block' : 'none'
-          };
+      visibilityStyle = {
+        display: visible ? 'block' : 'none'
+      };
 
     return (
       <span className="top-action"
@@ -70,5 +68,3 @@ export default class TopAction extends Component {
     );
   }
 }
-
-reactMixin(TopAction.prototype, PureRenderMixin);

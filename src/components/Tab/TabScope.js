@@ -6,7 +6,6 @@
 import './TabScope.less';
 
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import reactMixin from 'react-mixin';
 
 import activeTabMixin from './activeTabMixin';
@@ -39,5 +38,4 @@ export default class TabScope extends Component {
   }
 }
 
-reactMixin(TabScope.prototype, PureRenderMixin);
 reactMixin(TabScope.prototype, activeTabMixin);

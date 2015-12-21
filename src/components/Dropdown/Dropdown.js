@@ -6,9 +6,7 @@
 import './Dropdown.less';
 
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
 import CheckButton from '../CheckButton/CheckButton';
@@ -281,52 +279,52 @@ export default class Dropdown extends Component {
 
   render() {
     const {
-            className,
-            filters,
-            toggle,
-            ...props
-          } = this.props,
+        className,
+        filters,
+        toggle,
+        ...props
+      } = this.props,
 
-          {
-            filterOpened
-          } = this.state,
+      {
+        filterOpened
+      } = this.state,
 
-          classes = mixClass({
-            'dropdown': true,
-            '$': className
-          }),
+      classes = mixClass({
+        'dropdown': true,
+        '$': className
+      }),
 
-          titles = filters.map(({ name, text, list }, index) => {
-            const activeItem = this.getActiveItem(name, list),
-              activeItemText = this.parseTitleText(name, text, activeItem);
+      titles = filters.map(({ name, text, list }, index) => {
+        const activeItem = this.getActiveItem(name, list),
+          activeItemText = this.parseTitleText(name, text, activeItem);
 
-            return (
-              <DropDownTitle key={index}
-                             name={name}
-                             text={activeItemText}
-                             active={!!activeItem}
-                             opened={filterOpened === name}
-                             onTouchTap={this.toggleList.bind(this, name)} />
-            );
-          }),
+        return (
+          <DropDownTitle key={index}
+                         name={name}
+                         text={activeItemText}
+                         active={!!activeItem}
+                         opened={filterOpened === name}
+                         onTouchTap={this.toggleList.bind(this, name)} />
+        );
+      }),
 
-          checkToggle = toggle
-            ? <CheckButton className="pull-right"
-                           checked={this.state[toggle.name]}
-                           onToggle={this.toggleButton.bind(this)}>
-                {toggle.text}
-              </CheckButton>
-            : null,
+      checkToggle = toggle
+        ? <CheckButton className="pull-right"
+                       checked={this.state[toggle.name]}
+                       onToggle={this.toggleButton.bind(this)}>
+            {toggle.text}
+          </CheckButton>
+        : null,
 
-          currentList = filters.filter(({ name }) => {
-            return name === filterOpened;
-          })[0],
+      currentList = filters.filter(({ name }) => {
+        return name === filterOpened;
+      })[0],
 
-          list = currentList && currentList.list.length
-            ? <div className="dropdown-list">
-                {this.renderDropdown(currentList)}
-              </div>
-            : null;
+      list = currentList && currentList.list.length
+        ? <div className="dropdown-list">
+            {this.renderDropdown(currentList)}
+          </div>
+        : null;
 
     return (
       <div className={classes} {...props}>
@@ -355,5 +353,3 @@ Dropdown.defaultProps = {
   filters: [],
   toggle : {}
 };
-
-reactMixin(Dropdown.prototype, PureRenderMixin);

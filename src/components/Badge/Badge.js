@@ -6,36 +6,30 @@
 import './Badge.less';
 
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
 
 
-export default class Badge extends Component {
+const BADGE_MAX = 99;
 
-  render() {
-    const {
-            children,
-            className
-          } = this.props,
+export default function Badge({
+  children,
+  className,
+  ...props
+}) {
+  const classes = mixClass({
+          'badge': true,
+          '$': className
+        });
 
-          classes = mixClass({
-            'badge': true,
-            '$': className
-          });
-
-    return (
-      <span className={classes}>
-        {+children > 99 ? '99+' : children}
-      </span>
-    );
-  }
+  return (
+    <span className={classes} {...props}>
+      {+children > BADGE_MAX ? BADGE_MAX + '+' : children}
+    </span>
+  );
 }
 
 Badge.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string
 };
-
-reactMixin(Badge.prototype, PureRenderMixin);

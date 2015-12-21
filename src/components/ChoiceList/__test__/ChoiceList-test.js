@@ -30,9 +30,9 @@ describe('Choice', () => {
 
   it('renders a choice list', () => {
     const instance = TestUtils.renderIntoDocument(
-        <ChoiceList data={choiceData} />
+        <div><ChoiceList data={choiceData} /></div>
       ),
-      choice = ReactDOM.findDOMNode(instance);
+      choice = ReactDOM.findDOMNode(instance).firstChild;
 
     expect(choice.querySelectorAll('.choice-item').length).toEqual(3);
     expect(choice.querySelector('.choice-item-checked').textContent).toEqual('黑色');
@@ -42,9 +42,9 @@ describe('Choice', () => {
   it('onToggle', () => {
     const spy = jasmine.createSpy(),
       instance = TestUtils.renderIntoDocument(
-        <ChoiceList data={choiceData} onToggle={spy} />
+        <div><ChoiceList data={choiceData} onToggle={spy} /></div>
       ),
-      choice = ReactDOM.findDOMNode(instance),
+      choice = ReactDOM.findDOMNode(instance).firstChild,
       items = choice.querySelectorAll('.choice-item');
 
     TestUtils.Simulate.touchTap(items[0]);

@@ -3,8 +3,6 @@
  */
 
 
-'use strict';
-
 import '../common/styles/app.less';
 
 import Badge from './Badge/Badge';

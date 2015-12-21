@@ -3,42 +3,47 @@
  */
 
 
+import './ChoiceItem.less';
+
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
 
 
-export default class ChoiceItem extends Component {
+/**
+ * Toggle checked status
+ * @param {Object} props
+ */
+function toggle(props) {
+  if (!props.onToggle || props.disabled) return;
 
-  toggle() {
-    if (!this.props.onToggle || this.props.disabled) return;
-    this.props.onToggle(this.props.name, !this.props.checked);
-  }
-
-  render() {
-    const {
-          checked,
-          disabled,
-          name,
-          text,
-          onToggle
-        } = this.props,
-
-      classes = mixClass({
-        'choice-item': true,
-        'choice-item-checked': checked,
-        'choice-item-disabled': disabled
-      });
-
-    return (
-      <div className={classes} onTouchTap={this.toggle.bind(this)}>
-        {text}
-      </div>
-    );
-  }
+  props.onToggle(props.name, !props.checked);
 }
+
+
+export default function ChoiceItem({
+  checked,
+  disabled,
+  name,
+  text,
+  onToggle,
+  ...props
+}) {
+  const classes = mixClass({
+      'choice-item': true,
+      'choice-item-checked': checked,
+      'choice-item-disabled': disabled
+    });
+
+  return (
+    <div className={classes}
+         {...props}
+         onTouchTap={toggle.bind(null, arguments[0])}>
+      {text}
+    </div>
+  );
+}
+
 
 ChoiceItem.propTypes = {
   checked: PropTypes.bool,
@@ -53,5 +58,3 @@ ChoiceItem.defaultProps = {
   checked: false,
   disabled: false
 };
-
-reactMixin(ChoiceItem.prototype, PureRenderMixin);

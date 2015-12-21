@@ -24,9 +24,9 @@ describe('DropdownTitle', () => {
 
   it('renders a dropdown title', () => {
     const instance = TestUtils.renderIntoDocument(
-            <DropdownTitle {...dropDownTitle} />
+            <div><DropdownTitle {...dropDownTitle} /></div>
           ),
-          titleNode = ReactDOM.findDOMNode(instance);
+          titleNode = ReactDOM.findDOMNode(instance).firstChild;
 
     expect(titleNode.classList.contains('dropdown-title')).toBeTruthy();
     expect(titleNode.classList.contains('active')).toBeFalsy();
@@ -37,9 +37,9 @@ describe('DropdownTitle', () => {
     dropDownTitle.active = true;
 
     const instance = TestUtils.renderIntoDocument(
-            <DropdownTitle {...dropDownTitle} />
+            <div><DropdownTitle {...dropDownTitle} /></div>
           ),
-          titleNode = ReactDOM.findDOMNode(instance);
+          titleNode = ReactDOM.findDOMNode(instance).firstChild;
 
     expect(titleNode.classList.contains('active')).toBeTruthy();
   });
@@ -48,9 +48,9 @@ describe('DropdownTitle', () => {
     dropDownTitle.opened = true;
 
     const instance = TestUtils.renderIntoDocument(
-            <DropdownTitle {...dropDownTitle} />
+            <div><DropdownTitle {...dropDownTitle} /></div>
           ),
-          titleNode = ReactDOM.findDOMNode(instance);
+          titleNode = ReactDOM.findDOMNode(instance).firstChild;
 
     expect(titleNode.classList.contains('opened')).toBeTruthy();
     expect(titleNode.querySelector('.icon-arrow-down')).not.toBeNull();

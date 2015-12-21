@@ -6,39 +6,32 @@
 import './DropdownItem.less';
 
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
 import Icon from '../Icon/Icon';
 
 
-export default class DropdownItem extends Component {
+export default function DropdownItem({
+  active,
+  className,
+  name,
+  text,
+  ...props
+}) {
+  const classes = mixClass({
+      'dropdown-item': true,
+      '$': className,
+      active
+    });
 
-  render() {
-    const {
-            active,
-            className,
-            name,
-            text,
-            ...props
-          } = this.props,
-
-          classes = mixClass({
-            'dropdown-item': true,
-            '$': className,
-            active
-          });
-
-    return (
-      <li className={classes} {...props}>
-        <div className="dropdown-item-text">
-          {text}
-          {active ? <Icon name="checked" /> : null}
-        </div>
-      </li>
-    );
-  }
+  return (
+    <li className={classes} {...props}>
+      <div className="dropdown-item-text">
+        {text}
+        {active ? <Icon name="checked" /> : null}
+      </div>
+    </li>
+  );
 }
 
 DropdownItem.propTypes = {
@@ -47,5 +40,3 @@ DropdownItem.propTypes = {
   name: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired
 };
-
-reactMixin(DropdownItem.prototype, PureRenderMixin);

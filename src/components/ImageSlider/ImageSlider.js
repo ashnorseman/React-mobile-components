@@ -7,9 +7,7 @@ import './ImageSlider.less';
 
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import reactMixin from 'react-mixin';
 import { Swiper } from 'react-swiper-ash';
 
 import mixClass from '../../common/utils/mix-class';
@@ -147,5 +145,3 @@ ImageSlider.propTypes = {
 ImageSlider.defaultProps = {
   data: []
 };
-
-reactMixin(ImageSlider.prototype, PureRenderMixin);

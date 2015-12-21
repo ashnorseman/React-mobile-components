@@ -1,6 +1,6 @@
 {
   "name": "react-mobile-components",
-  "version": "1.3.6",
+  "version": "1.3.7",
   "description": "React mobile components",
   "main": "src/components/index.js",
   "scripts": {
@@ -17,11 +17,10 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url" : "https://github.com/ashnorseman/React-mobile-components.git"
+    "url": "https://github.com/ashnorseman/React-mobile-components.git"
   },
   "dependencies": {
     "react-addons-css-transition-group": "^0.14.1",
-    "react-addons-pure-render-mixin": "^0.14.1",
     "react-mixin": "^3.0.3",
     "react-swiper-ash": "^1.0.4",
     "react-tap-event-plugin": "^0.2.1"

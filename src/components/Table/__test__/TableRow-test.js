@@ -23,9 +23,9 @@ describe('TableRow', () => {
 
   it('renders a table row', () => {
     const tableRow = TestUtils.renderIntoDocument(
-            <TableRow {...tableRowData}></TableRow>
+            <div><TableRow {...tableRowData}></TableRow></div>
           ),
-          tableRowNode = ReactDOM.findDOMNode(tableRow);
+          tableRowNode = ReactDOM.findDOMNode(tableRow).firstChild;
 
     expect(tableRowNode.nodeName).toEqual('LI');
     expect(tableRowNode.classList.contains('table-row')).toBeTruthy();
@@ -39,20 +39,22 @@ describe('TableRow', () => {
     tableRowData.disclosure = true;
 
     const tableRow = TestUtils.renderIntoDocument(
-            <TableRow {...tableRowData}></TableRow>
+            <div><TableRow {...tableRowData}></TableRow></div>
           ),
-          tableRowNode = ReactDOM.findDOMNode(tableRow);
+          tableRowNode = ReactDOM.findDOMNode(tableRow).firstChild;;
 
     expect(tableRowNode.querySelector('.icon-arrow-right')).not.toBeNull();
   });
 
   it('children', () => {
     const tableRow = TestUtils.renderIntoDocument(
-            <TableRow {...tableRowData}>
-              <img src='' alt='' />
-            </TableRow>
+            <div>
+              <TableRow {...tableRowData}>
+                <img src='' alt='' />
+              </TableRow>
+            </div>
           ),
-          tableRowNode = ReactDOM.findDOMNode(tableRow);
+          tableRowNode = ReactDOM.findDOMNode(tableRow).firstChild;;
 
     expect(tableRowNode.querySelector('.table-row-content img')).not.toBeNull();
   });
@@ -63,11 +65,13 @@ describe('TableRow', () => {
     tableRowData.onTouchTap = spy();
 
     const tableRow = TestUtils.renderIntoDocument(
-            <TableRow {...tableRowData}>
-              <img src='' alt='' />
-            </TableRow>
+            <div>
+              <TableRow {...tableRowData}>
+                <img src='' alt='' />
+              </TableRow>
+            </div>
           ),
-          tableRowNode = ReactDOM.findDOMNode(tableRow);
+          tableRowNode = ReactDOM.findDOMNode(tableRow).firstChild;;
 
     TestUtils.Simulate.touchTap(tableRowNode);
     expect(spy.calls.count()).toEqual(1);

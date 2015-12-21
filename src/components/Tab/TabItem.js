@@ -6,50 +6,46 @@
 import './TabItem.less';
 
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
 import Badge from '../Badge/Badge';
 import Icon from '../Icon/Icon';
 
 
-export default class TabItem extends Component {
+export default function TabItem({
+  active,
+  badge,
+  className,
+  icon,
+  link,
+  type,
+  text,
+  ...props
+}) {
+  const classes = mixClass({
+      'tab-item': true,
+      'tab-item-type-$': type,
+      '$': className,
+      active
+    }),
 
-  render() {
-    const {
-            active,
-            badge,
-            className,
-            icon,
-            link,
-            type,
-            text
-          } = this.props,
+    badgeElement = badge
+      ? <Badge>{badge}</Badge>
+      : null,
 
-          classes = mixClass({
-            'tab-item'       : true,
-            'tab-item-type-$': type,
-            '$'              : className,
-            active
-          }),
+    iconElement = icon ? <Icon name={icon} /> : null,
 
-          badgeElement = badge
-            ? <Badge>{badge}</Badge>
-            : null,
+    href = /^(https?)|(\/\/)/.test(link) ? link : `#/${link}`;
 
-          iconElement = icon ? <Icon name={icon}/> : null,
-
-          href = /^(https?)|(\/\/)/.test(link) ? link : `#/${link}`;
-
-    return (
-      <a className={classes} href={href}>
-        {badgeElement}
-        {iconElement}
-        <span className="tab-text">{text}</span>
-      </a>
-    );
-  }
+  return (
+    <a className={classes}
+       href={href}
+       {...props}>
+      {badgeElement}
+      {iconElement}
+      <span className="tab-text">{text}</span>
+    </a>
+  );
 }
 
 TabItem.propTypes = {
@@ -65,5 +61,3 @@ TabItem.propTypes = {
 TabItem.defaultProps = {
   type  : 0
 };
-
-reactMixin(TabItem.prototype, PureRenderMixin);

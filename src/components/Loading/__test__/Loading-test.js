@@ -14,9 +14,9 @@ describe('Loading', () => {
 
   it('renders a loading', () => {
     const instance = TestUtils.renderIntoDocument(
-            <Loading />
+            <div><Loading /></div>
           ),
-          loadingNode = ReactDOM.findDOMNode(instance);
+          loadingNode = ReactDOM.findDOMNode(instance).firstChild;
 
     expect(loadingNode.classList.contains('loading')).toBeTruthy();
   });

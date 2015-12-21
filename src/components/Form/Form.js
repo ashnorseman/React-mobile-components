@@ -6,8 +6,6 @@
 import './Form.less';
 
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
 import validate from './validate';
@@ -119,33 +117,33 @@ export default class Form extends Component {
 
   render() {
     const {
-            action,
-            submitAtPageBottom,
-            submitText,
-            controls,
-            ...props
-          } = this.props,
+        action,
+        submitAtPageBottom,
+        submitText,
+        controls,
+        ...props
+      } = this.props,
 
-          {
-            submitting,
-            valid
-          } = this.state,
+      {
+        submitting,
+        valid
+      } = this.state,
 
-          formLines = controls.map(({ label, onChange, ...control }, index) => {
-            const labelSpan = label ? <span className="form-label">{label}</span> : null;
+      formLines = controls.map(({ label, onChange, ...control }, index) => {
+        const labelSpan = label ? <span className="form-label">{label}</span> : null;
 
-            return (
-              <div className="form-line" key={index}>
-                {labelSpan}
-                <FormControl {...control} onChange={this.onControlChange.bind(this, onChange)} />
-              </div>
-            );
-          }),
+        return (
+          <div className="form-line" key={index}>
+            {labelSpan}
+            <FormControl {...control} onChange={this.onControlChange.bind(this, onChange)} />
+          </div>
+        );
+      }),
 
-          submitClass = mixClass({
-            'form-submit': true,
-            'form-submit-bottom': submitAtPageBottom
-          });
+      submitClass = mixClass({
+        'form-submit': true,
+        'form-submit-bottom': submitAtPageBottom
+      });
 
     return (
       <form action={action} {...props} onSubmit={this.onFormSubmit.bind(this)}>
@@ -196,5 +194,3 @@ Form.updateValue = (controls, name, value) => {
     return c;
   }, {}));
 };
-
-reactMixin(Form.prototype, PureRenderMixin);

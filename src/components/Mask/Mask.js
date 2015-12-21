@@ -7,36 +7,29 @@ import './Mask.less';
 
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import reactMixin from 'react-mixin';
 
 
 const _maskHolder = document.createElement('div');
 document.body.appendChild(_maskHolder);
 
 
-class Mask extends Component {
+function Mask({
+  onTouchTap,
+  zIndex
+}) {
+  const style = zIndex ? { zIndex } : null;
 
-  render() {
-    const {
-            onTouchTap,
-            zIndex
-          } = this.props,
-
-          style = zIndex ? { zIndex } : null;
-
-    return (
-      <div className="mask" style={style} onTouchTap={onTouchTap} />
-    );
-  }
+  return (
+    <div className="mask"
+         style={style}
+         onTouchTap={onTouchTap} />
+  );
 }
 
 Mask.propTypes = {
   onTouchTap: React.PropTypes.func,
   zIndex    : React.PropTypes.number
 };
-
-reactMixin(Mask.prototype, PureRenderMixin);
 
 
 export default {

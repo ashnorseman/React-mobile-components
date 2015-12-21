@@ -15,9 +15,9 @@ describe('CheckButton', () => {
 
   it('renders a check button', () => {
     const checkBtn = TestUtils.renderIntoDocument(
-            <CheckButton>{buttonText}</CheckButton>
+            <div><CheckButton>{buttonText}</CheckButton></div>
           ),
-          checkBtnNode = ReactDOM.findDOMNode(checkBtn);
+          checkBtnNode = ReactDOM.findDOMNode(checkBtn).firstChild;
 
     expect(checkBtnNode.nodeName).toEqual('BUTTON');
     expect(checkBtnNode.querySelector('.icon-unchecked')).not.toBeNull();
@@ -26,9 +26,9 @@ describe('CheckButton', () => {
 
   it('checked', () => {
     const checkBtn = TestUtils.renderIntoDocument(
-            <CheckButton checked>{buttonText}</CheckButton>
+            <div><CheckButton checked>{buttonText}</CheckButton></div>
           ),
-          checkBtnNode = ReactDOM.findDOMNode(checkBtn);
+          checkBtnNode = ReactDOM.findDOMNode(checkBtn).firstChild;
 
     expect(checkBtnNode.classList.contains('check-btn-checked')).toBeTruthy();
     expect(checkBtnNode.querySelector('.icon-checked')).not.toBeNull();
@@ -38,9 +38,9 @@ describe('CheckButton', () => {
     const spy = jasmine.createSpy();
 
     const checkBtn = TestUtils.renderIntoDocument(
-            <CheckButton onToggle={spy}>{buttonText}</CheckButton>
+            <div><CheckButton onToggle={spy}>{buttonText}</CheckButton></div>
           ),
-          checkBtnNode = ReactDOM.findDOMNode(checkBtn);
+          checkBtnNode = ReactDOM.findDOMNode(checkBtn).firstChild;
 
     TestUtils.Simulate.touchTap(checkBtnNode);
     expect(spy.calls.count()).toEqual(1);

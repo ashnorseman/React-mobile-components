@@ -6,39 +6,32 @@
 import './DropdownTitle.less';
 
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
 import Icon from '../Icon/Icon';
 
 
-export default class DropdownTitle extends Component {
+export default function DropdownTitle({
+  active,
+  className,
+  name,
+  opened,
+  text,
+  ...props
+}) {
+  const classes = mixClass({
+      'dropdown-title': true,
+      active,
+      opened,
+      '$': className
+    });
 
-  render() {
-    const {
-            active,
-            className,
-            name,
-            opened,
-            text,
-            ...props
-          } = this.props,
-
-          classes = mixClass({
-            'dropdown-title': true,
-            active,
-            opened,
-            '$': className
-          });
-
-    return (
-      <div className={classes} {...props}>
-        {text}
-        <Icon name="arrow-down" />
-      </div>
-    );
-  }
+  return (
+    <div className={classes} {...props}>
+      {text}
+      <Icon name="arrow-down" />
+    </div>
+  );
 }
 
 DropdownTitle.propTypes = {
@@ -48,5 +41,3 @@ DropdownTitle.propTypes = {
   opened: PropTypes.bool,
   text: PropTypes.string.isRequired
 };
-
-reactMixin(DropdownTitle.prototype, PureRenderMixin);

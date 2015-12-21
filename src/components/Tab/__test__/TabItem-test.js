@@ -24,9 +24,9 @@ describe('Tab', () => {
 
   it('renders a tab', () => {
     const tab = TestUtils.renderIntoDocument(
-            <Tab {...tabData}></Tab>
+            <div><Tab {...tabData}></Tab></div>
           ),
-          tabNode = ReactDOM.findDOMNode(tab);
+          tabNode = ReactDOM.findDOMNode(tab).firstChild;
 
     expect(tabNode.nodeName).toEqual('A');
     expect(tabNode.href).toEqual(document.baseURI + '#/home');
@@ -40,17 +40,17 @@ describe('Tab', () => {
 
   it('link to other pages', () => {
     const tab = TestUtils.renderIntoDocument(
-            <Tab {...tabData} link='http://www.taobao.com/'></Tab>
+            <div><Tab {...tabData} link='http://www.taobao.com/'></Tab></div>
           ),
-          tabNode = ReactDOM.findDOMNode(tab),
+          tabNode = ReactDOM.findDOMNode(tab).firstChild,
           tab2 = TestUtils.renderIntoDocument(
-            <Tab {...tabData} link='https://www.taobao.com/'></Tab>
+            <div><Tab {...tabData} link='https://www.taobao.com/'></Tab></div>
           ),
-          tabNode2 = ReactDOM.findDOMNode(tab2),
+          tabNode2 = ReactDOM.findDOMNode(tab2).firstChild,
           tab3 = TestUtils.renderIntoDocument(
-            <Tab {...tabData} link='//www.taobao.com/'></Tab>
+            <div><Tab {...tabData} link='//www.taobao.com/'></Tab></div>
           ),
-          tabNode3 = ReactDOM.findDOMNode(tab3);
+          tabNode3 = ReactDOM.findDOMNode(tab3).firstChild;
 
     expect(tabNode.href).toEqual('http://www.taobao.com/');
     expect(tabNode2.href).toEqual('https://www.taobao.com/');
@@ -61,9 +61,9 @@ describe('Tab', () => {
     tabData.badge = '9';
 
     const tab = TestUtils.renderIntoDocument(
-            <Tab {...tabData}></Tab>
+            <div><Tab {...tabData}></Tab></div>
           ),
-          tabNode = ReactDOM.findDOMNode(tab);
+          tabNode = ReactDOM.findDOMNode(tab).firstChild;
 
     expect(tabNode.querySelector('.badge').textContent).toEqual(tabData.badge);
   });
@@ -72,9 +72,9 @@ describe('Tab', () => {
     tabData.active = true;
 
     const tab = TestUtils.renderIntoDocument(
-            <Tab {...tabData}></Tab>
+            <div><Tab {...tabData}></Tab></div>
           ),
-          tabNode = ReactDOM.findDOMNode(tab);
+          tabNode = ReactDOM.findDOMNode(tab).firstChild;
 
     expect(tabNode.classList.contains('active')).toBeTruthy();
   });

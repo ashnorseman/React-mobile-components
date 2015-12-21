@@ -6,8 +6,6 @@
 import './FormControl.less';
 
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
 import validate from './validate';
@@ -99,35 +97,35 @@ export default class FormControl extends Component {
 
   render() {
     const {
-            className,
-            options,
-            placeholder,
-            type,
-            ...props
-          } = this.props,
+        className,
+        options,
+        placeholder,
+        type,
+        ...props
+      } = this.props,
 
-          {
-            focused
-          } = this.state,
+      {
+        focused
+      } = this.state,
 
-          hasValue = !!props.value,
+      hasValue = !!props.value,
 
-          valid = (props.value && !focused) ? this._validate(props.value) : true,
+      valid = (props.value && !focused) ? this._validate(props.value) : true,
 
-          classes = mixClass({
-            'form-control': true,
-            'form-focused': focused,
-            'form-has-value': hasValue,
-            'form-no-value': !hasValue,
-            'form-error': !valid,
-            '$': className
-          }),
+      classes = mixClass({
+        'form-control': true,
+        'form-focused': focused,
+        'form-has-value': hasValue,
+        'form-no-value': !hasValue,
+        'form-error': !valid,
+        '$': className
+      }),
 
-          clear = (type === 'select')
-            ? null
-            : <span className="form-clear" onTouchTap={this.clearControl.bind(this)}>
-                <Icon name="close" />
-              </span>;
+      clear = (type === 'select')
+        ? null
+        : <span className="form-clear" onTouchTap={this.clearControl.bind(this)}>
+            <Icon name="close" />
+          </span>;
 
     let control = null;
 
@@ -187,5 +185,3 @@ FormControl.defaultProps = {
   options: [],
   type: 'text'
 };
-
-reactMixin(FormControl.prototype, PureRenderMixin);

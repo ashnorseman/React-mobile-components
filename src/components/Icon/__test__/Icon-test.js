@@ -15,9 +15,9 @@ describe('Icon', () => {
 
   it('renders an icon', () => {
     const icon = TestUtils.renderIntoDocument(
-            <Icon name={iconName}></Icon>
+            <div><Icon name={iconName}></Icon></div>
           ),
-          iconNode = ReactDOM.findDOMNode(icon);
+          iconNode = ReactDOM.findDOMNode(icon).firstChild;
 
     expect(iconNode.classList.contains('iconfont')).toBeTruthy();
     expect(iconNode.classList.contains('icon-home')).toBeTruthy();
@@ -25,9 +25,9 @@ describe('Icon', () => {
 
   it('rotate', () => {
     const icon = TestUtils.renderIntoDocument(
-            <Icon name={iconName} rotate></Icon>
+            <div><Icon name={iconName} rotate></Icon></div>
           ),
-          iconNode = ReactDOM.findDOMNode(icon);
+          iconNode = ReactDOM.findDOMNode(icon).firstChild;
 
     expect(iconNode.classList.contains('iconfont')).toBeTruthy();
     expect(iconNode.classList.contains('icon-rotate')).toBeTruthy();

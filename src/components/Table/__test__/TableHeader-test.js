@@ -13,12 +13,14 @@ describe('TableHeader', () => {
 
   it('renders a table header', () => {
     const tableHeader = TestUtils.renderIntoDocument(
-            <TableHeader>
-              <span>本月积分</span>
-              <span className='text-primary'>600</span>
-            </TableHeader>
-          ),
-          tableHeaderNode = ReactDOM.findDOMNode(tableHeader);
+        <div>
+          <TableHeader>
+            <span>本月积分</span>
+            <span className='text-primary'>600</span>
+          </TableHeader>
+        </div>
+      ),
+      tableHeaderNode = ReactDOM.findDOMNode(tableHeader).firstChild;
 
     expect(tableHeaderNode.nodeName).toEqual('HEADER');
     expect(tableHeaderNode.className).toEqual('table-header');
@@ -28,13 +30,13 @@ describe('TableHeader', () => {
 
   it('expanded', () => {
     const tableHeader = TestUtils.renderIntoDocument(
-            <TableHeader expanded={true}></TableHeader>
-          ),
-          tableHeaderNode = ReactDOM.findDOMNode(tableHeader),
-          tableHeader2 = TestUtils.renderIntoDocument(
-            <TableHeader expanded={false}></TableHeader>
-          ),
-          tableHeaderNode2 = ReactDOM.findDOMNode(tableHeader2);
+        <div><TableHeader expanded={true}></TableHeader></div>
+      ),
+      tableHeaderNode = ReactDOM.findDOMNode(tableHeader).firstChild,
+      tableHeader2 = TestUtils.renderIntoDocument(
+        <div><TableHeader expanded={false}></TableHeader></div>
+      ),
+      tableHeaderNode2 = ReactDOM.findDOMNode(tableHeader2).firstChild;
 
     expect(tableHeaderNode.querySelector('.expanded.icon-arrow-down')).not.toBeNull();
     expect(tableHeaderNode2.querySelector('.expanded.icon-arrow-down')).toBeNull();

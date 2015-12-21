@@ -19,9 +19,9 @@ describe('CalendarDay', () => {
 
   it('renders a calendar day', () => {
     const calendar = TestUtils.renderIntoDocument(
-        <CalendarDay {...calendarData} />
+        <div><CalendarDay {...calendarData} /></div>
       ),
-      calendarNode = ReactDOM.findDOMNode(calendar);
+      calendarNode = ReactDOM.findDOMNode(calendar).firstChild;
 
     expect(calendarNode.classList.contains('calendar-not-this-month')).toBeTruthy();
     expect(calendarNode.classList.contains('calendar-highlight')).toBeFalsy();
@@ -32,9 +32,9 @@ describe('CalendarDay', () => {
     calendarData.date = new Date(2015, 11, 10);
 
     const calendar = TestUtils.renderIntoDocument(
-        <CalendarDay {...calendarData} />
+        <div><CalendarDay {...calendarData} /></div>
       ),
-      calendarNode = ReactDOM.findDOMNode(calendar);
+      calendarNode = ReactDOM.findDOMNode(calendar).firstChild;
 
     expect(calendarNode.classList.contains('calendar-not-this-month')).toBeFalsy();
     expect(calendarNode.classList.contains('calendar-highlight')).toBeTruthy();
@@ -45,9 +45,9 @@ describe('CalendarDay', () => {
     calendarData.date = new Date(2015, 11, 20);
 
     const calendar = TestUtils.renderIntoDocument(
-        <CalendarDay {...calendarData} />
+        <div><CalendarDay {...calendarData} /></div>
       ),
-      calendarNode = ReactDOM.findDOMNode(calendar);
+      calendarNode = ReactDOM.findDOMNode(calendar).firstChild;
 
     expect(calendarNode.classList.contains('calendar-not-this-month')).toBeFalsy();
     expect(calendarNode.classList.contains('calendar-highlight')).toBeFalsy();
@@ -59,9 +59,9 @@ describe('CalendarDay', () => {
     calendarData.date = new Date(2015, 11, 1);
 
     const calendar = TestUtils.renderIntoDocument(
-        <CalendarDay {...calendarData} />
+        <div><CalendarDay {...calendarData} /></div>
       ),
-      calendarNode = ReactDOM.findDOMNode(calendar);
+      calendarNode = ReactDOM.findDOMNode(calendar).firstChild;
 
     expect(calendarNode.classList.contains('calendar-not-this-month')).toBeFalsy();
     expect(calendarNode.classList.contains('calendar-highlight')).toBeTruthy();

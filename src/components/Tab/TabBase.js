@@ -6,41 +6,34 @@
 import './TabBase.less';
 
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
 import TabItem from './TabItem';
 
 
-export default class TabBase extends Component {
+export default function TabBase({
+  className,
+  data,
+  type,
+  ...props
+}) {
+  const classes = mixClass({
+      'tab'  : true,
+      'tab-$': type,
+      '$'    : className
+    }),
 
-  render() {
-    const {
-            className,
-            data,
-            type,
-            ...props
-          } = this.props,
+    tabList = data.map((tab, index) => {
+      return <TabItem key={index} {...tab} />;
+    });
 
-          classes = mixClass({
-            'tab'  : true,
-            'tab-$': type,
-            '$'    : className
-          }),
-
-          tabList = data.map((tab, index) => {
-            return <TabItem {...tab} key={index}/>;
-          });
-
-    return (
-      <nav className={classes} {...props}>
-        <div className="tab-inner">
-          {tabList}
-        </div>
-      </nav>
-    );
-  }
+  return (
+    <nav className={classes} {...props}>
+      <div className="tab-inner">
+        {tabList}
+      </div>
+    </nav>
+  );
 }
 
 TabBase.propTypes = {
@@ -50,5 +43,3 @@ TabBase.propTypes = {
   tabBar   : PropTypes.bool,
   tabNav   : PropTypes.bool
 };
-
-reactMixin(TabBase.prototype, PureRenderMixin);

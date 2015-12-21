@@ -6,35 +6,28 @@
 import './DropdownMenu.less';
 
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
 
 
-export default class DropDownMenu extends Component {
+export default function DropDownMenu({
+  active,
+  className,
+  name,
+  text,
+  ...props
+}) {
+  const classes = mixClass({
+      'dropdown-menu': true,
+      '$': className,
+      active
+    });
 
-  render() {
-    const {
-            active,
-            className,
-            name,
-            text,
-            ...props
-          } = this.props,
-
-          classes = mixClass({
-            'dropdown-menu': true,
-            '$': className,
-            active
-          });
-
-    return (
-      <li className={classes} {...props}>
-        {text}
-      </li>
-    );
-  }
+  return (
+    <li className={classes} {...props}>
+      {text}
+    </li>
+  );
 }
 
 DropDownMenu.propTypes = {
@@ -43,5 +36,3 @@ DropDownMenu.propTypes = {
   name: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired
 };
-
-reactMixin(DropDownMenu.prototype, PureRenderMixin);

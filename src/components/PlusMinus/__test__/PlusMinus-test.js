@@ -19,9 +19,9 @@ describe('PlusMinus', () => {
 
   it('renders a plus-minus', () => {
     const instance = TestUtils.renderIntoDocument(
-            <PlusMinus {...setting} />
+            <div><PlusMinus {...setting} /></div>
           ),
-          plusMinus = ReactDOM.findDOMNode(instance);
+          plusMinus = ReactDOM.findDOMNode(instance).firstChild;
 
     expect(plusMinus.classList.contains('plus-minus')).toBeTruthy();
     expect(plusMinus.querySelector('input').value).toEqual('10');
@@ -31,15 +31,15 @@ describe('PlusMinus', () => {
   it('plus', () => {
     const spy = jasmine.createSpy(),
           instance  = TestUtils.renderIntoDocument(
-            <PlusMinus {...setting} onChange={spy} />
+            <div><PlusMinus {...setting} onChange={spy} /></div>
           ),
-          plusMinus = ReactDOM.findDOMNode(instance),
+          plusMinus = ReactDOM.findDOMNode(instance).firstChild,
           plus = plusMinus.querySelectorAll('.plus-minus-btn')[1],
           spy2 = jasmine.createSpy(),
           instance2  = TestUtils.renderIntoDocument(
-            <PlusMinus {...setting} value={11} onChange={spy2} />
+            <div><PlusMinus {...setting} value={11} onChange={spy2} /></div>
           ),
-          plusMinus2 = ReactDOM.findDOMNode(instance2),
+          plusMinus2 = ReactDOM.findDOMNode(instance2).firstChild,
           plus2 = plusMinus2.querySelectorAll('.plus-minus-btn')[1];
 
     TestUtils.Simulate.touchTap(plus);
@@ -53,15 +53,15 @@ describe('PlusMinus', () => {
   it('minus', () => {
     const spy = jasmine.createSpy(),
           instance  = TestUtils.renderIntoDocument(
-            <PlusMinus {...setting} onChange={spy} />
+            <div><PlusMinus {...setting} onChange={spy} /></div>
           ),
-          plusMinus = ReactDOM.findDOMNode(instance),
+          plusMinus = ReactDOM.findDOMNode(instance).firstChild,
           plus = plusMinus.querySelectorAll('.plus-minus-btn')[0],
           spy2 = jasmine.createSpy(),
           instance2  = TestUtils.renderIntoDocument(
-            <PlusMinus {...setting} value={9} onChange={spy2} />
+            <div><PlusMinus {...setting} value={9} onChange={spy2} /></div>
           ),
-          plusMinus2 = ReactDOM.findDOMNode(instance2),
+          plusMinus2 = ReactDOM.findDOMNode(instance2).firstChild,
           plus2 = plusMinus2.querySelectorAll('.plus-minus-btn')[0];
 
     TestUtils.Simulate.touchTap(plus);

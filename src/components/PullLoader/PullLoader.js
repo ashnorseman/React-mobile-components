@@ -4,8 +4,6 @@
 
 
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
 import Loading from '../Loading/Loading';
@@ -42,9 +40,9 @@ export default class PullLoader extends Component {
 
   render() {
     const {
-            loading,
-            ...props
-          } = this.props;
+        loading,
+        ...props
+      } = this.props;
 
     return (
       <div {...props}>
@@ -59,5 +57,3 @@ PullLoader.propTypes = {
   loading: PropTypes.bool,
   onPull : PropTypes.func.isRequired
 };
-
-reactMixin(PullLoader.prototype, PureRenderMixin);

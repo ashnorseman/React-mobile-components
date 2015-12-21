@@ -7,7 +7,6 @@ import './Message.less';
 
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
@@ -71,7 +70,6 @@ Message.defaultProps = {
   duration: 1800
 };
 
-reactMixin(Message.prototype, PureRenderMixin);
 reactMixin(Message.prototype, DialogMixin);
 
 

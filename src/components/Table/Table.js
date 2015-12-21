@@ -6,8 +6,6 @@
 import './Table.less';
 
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
 import TableHeader from './TableHeader';
@@ -43,27 +41,27 @@ export default class Table extends Component {
 
   render() {
     const {
-            children,
-            className,
-            data
-          } = this.props,
+        children,
+        className,
+        data
+      } = this.props,
 
-          { expanded } = this.state,
+      { expanded } = this.state,
 
-          classes = mixClass({
-            'table': true,
-            '$': className
-          }),
+      classes = mixClass({
+        'table': true,
+        '$': className
+      }),
 
-          touchTap = (expanded !== undefined) ? this.toggle.bind(this) : null,
+      touchTap = (expanded !== undefined) ? this.toggle.bind(this) : null,
 
-          tableHeader = children
-            ? <TableHeader expanded={expanded} onTouchTap={touchTap}>{children}</TableHeader>
-            : null,
+      tableHeader = children
+        ? <TableHeader expanded={expanded} onTouchTap={touchTap}>{children}</TableHeader>
+        : null,
 
-          tableRows = data.map((row, index) => {
-            return <TableRow {...row} key={index} />;
-          });
+      tableRows = data.map((row, index) => {
+        return <TableRow {...row} key={index} />;
+      });
 
     return (
       <div className={classes}>
@@ -86,5 +84,3 @@ Table.propTypes = {
 Table.defaultProps = {
   data: []
 };
-
-reactMixin(Table.prototype, PureRenderMixin);

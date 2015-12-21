@@ -14,19 +14,19 @@ describe('Badge', () => {
 
   it('renders a badge', () => {
     const badge = TestUtils.renderIntoDocument(
-            <Badge>9</Badge>
+            <div><Badge>9</Badge></div>
           ),
-          badgeNode = ReactDOM.findDOMNode(badge);
+          badgeNode = ReactDOM.findDOMNode(badge).firstChild;
 
     expect(badgeNode.classList.contains('badge')).toBeTruthy();
     expect(badgeNode.textContent).toEqual('9');
   });
 
-  it('N', () => {
+  it('99+', () => {
     const badge = TestUtils.renderIntoDocument(
-            <Badge>100</Badge>
+            <div><Badge>100</Badge></div>
           ),
-          badgeNode = ReactDOM.findDOMNode(badge);
+          badgeNode = ReactDOM.findDOMNode(badge).firstChild;
 
     expect(badgeNode.classList.contains('badge')).toBeTruthy();
     expect(badgeNode.textContent).toEqual('99+');

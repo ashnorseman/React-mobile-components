@@ -14,9 +14,9 @@ describe('ImageBox', () => {
 
   it('renders a image box', () => {
     const imageBox = TestUtils.renderIntoDocument(
-            <ImageBox src=''></ImageBox>
+            <div><ImageBox src='' /></div>
           ),
-          imageBoxNode = ReactDOM.findDOMNode(imageBox);
+          imageBoxNode = ReactDOM.findDOMNode(imageBox).firstChild;
 
     expect(imageBoxNode.nodeName).toEqual('DIV');
     expect(imageBoxNode.classList.contains('image-box')).toBeTruthy();

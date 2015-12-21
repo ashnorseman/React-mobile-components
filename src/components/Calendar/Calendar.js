@@ -6,11 +6,8 @@
 import './Calendar.less';
 
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
-
 import CalendarDay from './CalendarDay';
 
 
@@ -50,6 +47,27 @@ function getMonthRange(timestamp) {
 
 
 /**
+ * Get the start and end time of a month shown in calendar view
+ * - previous and trailing dates of other months
+ * @param timestamp {Number}
+ * @returns [Date]
+ */
+function getShowMonthRange(timestamp) {
+  let monthRange = getMonthRange(timestamp),
+    rangeStart = getWeekRange(monthRange.rangeStart).rangeStart,
+    rangeEnd = getWeekRange(monthRange.rangeEnd).rangeEnd,
+    dates = [];
+
+  while (rangeStart < rangeEnd) {
+    dates.push(rangeStart);
+    rangeStart += 1000 * 60 * 60 * 24;
+  }
+
+  return dates;
+}
+
+
+/**
  * Remove hour, minutes, seconds and milliseconds
  * @param timestamp {Number}
  * @returns {Number}
@@ -64,60 +82,46 @@ function trimHours(timestamp) {
 }
 
 
-export default class Calendar extends Component {
+/**
+ * Calendar class
+ * @returns {XML}
+ * @constructor
+ */
+export default function Calendar({
+  className,
+  date,
+  highlights,
+  marks,
+  ...props
+}) {
+  const classes = mixClass({
+      'calendar': true,
+      '$': className
+    }),
 
+    timeRange = getShowMonthRange(date),
 
-  /**
-   * Get the start and end time of a month shown in calendar view
-   * - previous and trailing dates of other months
-   * @param timestamp {Number}
-   * @returns [Date]
-   */
-  getShowMonthRange(timestamp) {
-    let monthRange = getMonthRange(timestamp),
-      rangeStart = getWeekRange(monthRange.rangeStart).rangeStart,
-      rangeEnd = getWeekRange(monthRange.rangeEnd).rangeEnd,
-      dates = [];
+    dates = timeRange.map((date) => {
+      return (
+        <CalendarDay key={date}
+                     date={new Date(date)}
+                     highlights={highlights}
+                     marks={marks} />
+      );
+    });
 
-    while (rangeStart < rangeEnd) {
-      dates.push(rangeStart);
-      rangeStart += 1000 * 60 * 60 * 24;
-    }
-
-    return dates;
-  }
-
-  render() {
-    const {
-        className,
-        date,
-        highlights,
-        marks
-      } = this.props,
-
-      classes = mixClass({
-        'calendar': true,
-        '$': className
-      }),
-
-      timeRange = this.getShowMonthRange(date),
-
-      dates = timeRange.map((date) => {
-        return <CalendarDay key={date} date={new Date(date)} highlights={highlights} marks={marks} />;
-      });
-
-    return (
-      <div className={classes}>
-        <ul className="calendar-weeks">
-          <li>日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li>六</li>
-        </ul>
-        <ul className="calendar-days">
-          {dates}
-        </ul>
-      </div>
-    );
-  }
+  return (
+    <div className={classes} {...props}>
+      <ul className="calendar-weeks">
+        <li>日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li>六</li>
+      </ul>
+      <ul className="calendar-days">
+        {dates}
+      </ul>
+    </div>
+  );
 }
+
 
 Calendar.propTypes = {
   className: PropTypes.string,
@@ -130,5 +134,3 @@ Calendar.defaultProps = {
   highlights: [],
   marks: []
 };
-
-reactMixin(Calendar.prototype, PureRenderMixin);

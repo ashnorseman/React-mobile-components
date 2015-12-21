@@ -16,9 +16,9 @@ describe('Button', () => {
   it('renders a button', () => {
     const spy = jasmine.createSpy(),
           button = TestUtils.renderIntoDocument(
-            <Button onTouchTap={spy}>{buttonText}</Button>
+            <div><Button onTouchTap={spy}>{buttonText}</Button></div>
           ),
-          buttonNode = ReactDOM.findDOMNode(button);
+          buttonNode = ReactDOM.findDOMNode(button).firstChild;
 
     expect(buttonNode.nodeName).toEqual('BUTTON');
     expect(buttonNode.type).toEqual('button');
@@ -32,45 +32,45 @@ describe('Button', () => {
 
   it('disabled', () => {
     const button = TestUtils.renderIntoDocument(
-            <Button disabled>{buttonText}</Button>
+            <div><Button disabled>{buttonText}</Button></div>
           ),
-          buttonNode = ReactDOM.findDOMNode(button);
+          buttonNode = ReactDOM.findDOMNode(button).firstChild;
 
     expect(buttonNode.disabled).toBeTruthy();
   });
 
   it('submit', () => {
     const button = TestUtils.renderIntoDocument(
-            <Button type='submit'>{buttonText}</Button>
+            <div><Button type='submit'>{buttonText}</Button></div>
           ),
-          buttonNode = ReactDOM.findDOMNode(button);
+          buttonNode = ReactDOM.findDOMNode(button).firstChild;
 
     expect(buttonNode.type).toEqual('submit');
   });
 
   it('with icon', () => {
     const button = TestUtils.renderIntoDocument(
-            <Button icon='money'>{buttonText}</Button>
+            <div><Button icon='money'>{buttonText}</Button></div>
           ),
-          buttonNode = ReactDOM.findDOMNode(button);
+          buttonNode = ReactDOM.findDOMNode(button).firstChild;
 
     expect(buttonNode.querySelector('.icon-money')).not.toBeNull();
   });
 
   it('link', () => {
     const button = TestUtils.renderIntoDocument(
-            <Button icon='money' link>{buttonText}</Button>
+            <div><Button icon='money' link>{buttonText}</Button></div>
           ),
-          buttonNode = ReactDOM.findDOMNode(button);
+          buttonNode = ReactDOM.findDOMNode(button).firstChild;
 
     expect(buttonNode.classList.contains('btn-link')).toBeTruthy();
   });
 
   it('additional class names', () => {
     const button = TestUtils.renderIntoDocument(
-            <Button className='my-btn'>{buttonText}</Button>
+            <div><Button className='my-btn'>{buttonText}</Button></div>
           ),
-          buttonNode = ReactDOM.findDOMNode(button);
+          buttonNode = ReactDOM.findDOMNode(button).firstChild;
 
     expect(buttonNode.classList.contains('btn')).toBeTruthy();
     expect(buttonNode.classList.contains('my-btn')).toBeTruthy();

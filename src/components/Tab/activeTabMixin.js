@@ -16,18 +16,20 @@ export default {
    */
   _renderTab(type) {
     const {
-            data,
-            ...props
-          } = this.props,
+        data,
+        ...props
+      } = this.props,
 
-          {
-            active
-          } = this.state,
+      {
+        active
+      } = this.state,
 
-          tabData = this._findActiveTab(data, active);
+      tabData = this._findActiveTab(data, active);
 
     return (
-      <TabBase {...props} data={tabData} type={type}>
+      <TabBase data={tabData}
+               type={type}
+               {...props}>
         {this.props.children}
       </TabBase>
     );

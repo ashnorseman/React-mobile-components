@@ -19,9 +19,9 @@ describe('DropdownItem', () => {
 
   it('renders a dropdown item', () => {
     const instance = TestUtils.renderIntoDocument(
-            <DropdownItem {...itemData} />
+            <div><DropdownItem {...itemData} /></div>
           ),
-          itemNode = ReactDOM.findDOMNode(instance);
+          itemNode = ReactDOM.findDOMNode(instance).firstChild;
 
     expect(itemNode.classList.contains('dropdown-item')).toBeTruthy();
     expect(itemNode.textContent).toEqual(itemData.text);
@@ -31,9 +31,9 @@ describe('DropdownItem', () => {
     itemData.active = true;
 
     const instance = TestUtils.renderIntoDocument(
-            <DropdownItem {...itemData} />
+            <div><DropdownItem {...itemData} /></div>
           ),
-          itemNode = ReactDOM.findDOMNode(instance);
+          itemNode = ReactDOM.findDOMNode(instance).firstChild;
 
     expect(itemNode.classList.contains('active')).toBeTruthy();
     expect(itemNode.querySelector('.icon-checked')).not.toBeNull();

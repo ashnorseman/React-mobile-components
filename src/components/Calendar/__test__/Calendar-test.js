@@ -19,9 +19,9 @@ describe('Calendar', () => {
 
   it('renders a calendar', () => {
     const calendar = TestUtils.renderIntoDocument(
-        <Calendar {...calendarData} />
+        <div><Calendar {...calendarData} /></div>
       ),
-      calendarNode = ReactDOM.findDOMNode(calendar);
+      calendarNode = ReactDOM.findDOMNode(calendar).firstChild;
 
     expect(calendarNode.classList.contains('calendar')).toBeTruthy();
     expect(calendarNode.querySelectorAll('li').length).toEqual(42);
