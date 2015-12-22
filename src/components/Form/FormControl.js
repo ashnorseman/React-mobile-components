@@ -6,6 +6,7 @@
 import './FormControl.less';
 
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 
 import mixClass from '../../common/utils/mix-class';
 import validate from './validate';
@@ -18,41 +19,37 @@ export default class FormControl extends Component {
     super(props);
 
     this._validate = this._validate.bind(this);
+    this._focusControl = this._focusControl.bind(this);
+    this._blurControl = this._blurControl.bind(this);
+  }
 
-    this.state = {
-      focused: false
-    };
+  componentDidMount() {
+    const input = ReactDOM.findDOMNode(this).querySelector('input, textarea, select');
+
+    input.addEventListener('focus', this._focusControl, false);
+    input.addEventListener('blur', this._blurControl, false);
+  }
+
+  componentWillUnmount() {
+    const input = ReactDOM.findDOMNode(this).querySelector('input, textarea, select');
+
+    input.removeEventListener('focus', this._focusControl, false);
+    input.removeEventListener('blur', this._blurControl, false);
   }
 
   /**
    * Focus the control
    */
-  focusControl(e) {
-    this.setState({
-      focused: true
-    });
-
+  _focusControl() {
     document.body.classList.add('form-control-focused');
-
-    if (typeof this.props.onFocus === 'function') {
-      this.props.onFocus(e);
-    }
   }
 
 
   /**
    * Blur the control
    */
-  blurControl(e) {
-    this.setState({
-      focused: false
-    });
-
+  _blurControl() {
     document.body.classList.remove('form-control-focused');
-
-    if (typeof this.props.onBlur === 'function') {
-      this.props.onBlur(e);
-    }
   }
 
 
@@ -104,17 +101,12 @@ export default class FormControl extends Component {
         ...props
       } = this.props,
 
-      {
-        focused
-      } = this.state,
-
       hasValue = !!props.value,
 
-      valid = (props.value && !focused) ? this._validate(props.value) : true,
+      valid = props.value ? this._validate(props.value) : true,
 
       classes = mixClass({
         'form-control': true,
-        'form-focused': focused,
         'form-has-value': hasValue,
         'form-no-value': !hasValue,
         'form-error': !valid,
@@ -129,10 +121,8 @@ export default class FormControl extends Component {
 
     let control = null;
 
-    // Tuning change and blur callbacks
+    // Tuning change callbacks
     props.onChange = this.changeControl.bind(this);
-    props.onBlur = this.blurControl.bind(this);
-    props.onFocus = this.focusControl.bind(this);
 
     switch (type) {
     case 'date':
@@ -160,9 +150,9 @@ export default class FormControl extends Component {
 
     return (
       <div className={classes}>
-        <span className="form-placeholder">{placeholder}</span>
         {clear}
         {control}
+        <span className="form-placeholder">{placeholder}</span>
       </div>
     );
   }

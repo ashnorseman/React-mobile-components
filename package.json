@@ -5,7 +5,7 @@
   "main": "src/components/index.js",
   "scripts": {
     "build": "BABEL_ENV=production webpack",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server & npm test",
     "server": "node index",
     "test": "BABEL_ENV=production karma start"
   },

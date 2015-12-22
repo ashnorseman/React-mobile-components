@@ -19,14 +19,14 @@ export default function Button({
   ...props
 }) {
   const classes = mixClass({
-          'btn': true,
-          'btn-link': link,
-          '$': className
-        }),
+      'btn': true,
+      'btn-link': link,
+      '$': className
+    }),
 
-        iconNode = icon
-          ? <Icon name={icon} />
-          : null;
+    iconNode = icon
+      ? <Icon name={icon} />
+      : null;
 
   return (
     <button className={classes} {...props}>
