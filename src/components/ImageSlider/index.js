@@ -22,6 +22,9 @@ export default class ImageSlider extends Component {
       activeIndex: 0,
       zoomed     : false
     };
+
+    this.setActive = this.setActive.bind(this);
+    this.toggleZoom = this.toggleZoom.bind(this);
   }
 
   /**
@@ -121,8 +124,8 @@ export default class ImageSlider extends Component {
           }) : null;
 
     return (
-      <Swiper onSwipe={this.setActive.bind(this)}>
-        <div className={classes} onTouchTap={this.toggleZoom.bind(this)}>
+      <Swiper onSwipe={this.setActive}>
+        <div className={classes} onTouchTap={this.toggleZoom}>
           <CSSTransitionGroup transitionName={`image-slider-${direction}`}
                               transitionEnterTimeout={500}
                               transitionLeaveTimeout={500}>

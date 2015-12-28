@@ -8,8 +8,8 @@ import './PlusMinus.less';
 import React, { Component, PropTypes } from 'react';
 
 import mixClass from '../../common/utils/mix-class';
-import Button from '../Button/Button';
-import Icon from '../Icon/Icon';
+import Button from '../Button';
+import Icon from '../Icon';
 
 
 /**

@@ -35,7 +35,7 @@ if (TARGET === 'start') {
       progress: true
     },
     devtool: 'eval-source-map',
-    entry: path.resolve(ROOT_PATH, 'example/app.jsx'),
+    entry: path.resolve(ROOT_PATH, 'example/app.js'),
     module: {
       loaders: [
         {
@@ -104,7 +104,7 @@ if (TARGET === 'build') {
   module.exports = {
     devtool: 'source-map',
     entry: {
-      app: path.resolve(ROOT_PATH, 'example/app.jsx'),
+      app: path.resolve(ROOT_PATH, 'example/app.js'),
       libs: Object.keys(PACKAGE.dependencies)
     },
     output: {

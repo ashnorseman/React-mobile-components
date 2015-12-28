@@ -6,7 +6,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Badge, Button, Calendar, CheckButton, ChoiceList, Dropdown, Form, FormControl, Icon, ImageBox, ImageSlider, Loading, Mask, Message, PlusMinus, PullLoader, Tab, Table, TopAction } from '../src/components/index.js';
+import { Badge, Button, Calendar, CheckButton, ChoiceList, Dropdown, Form, FormControl, Icon, ImageBox, ImageSlider, Loading, Mask, Message, PlusMinus, PullLoader, Tab, Table, TopAction } from '../src/components';
 
 injectTapEventPlugin();
 

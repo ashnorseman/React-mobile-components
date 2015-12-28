@@ -5,27 +5,27 @@
 
 import '../common/styles/app.less';
 
-import Badge from './Badge/Badge';
-import Button from './Button/Button';
-import Calendar from './Calendar/Calendar';
-import CheckButton from './CheckButton/CheckButton';
-import ChoiceList from './ChoiceList/ChoiceList';
-import Dropdown from './Dropdown/Dropdown';
-import Form from './Form/Form';
+import Badge from './Badge';
+import Button from './Button';
+import Calendar from './Calendar';
+import CheckButton from './CheckButton';
+import ChoiceList from './ChoiceList';
+import Dropdown from './Dropdown';
+import Form from './Form';
 import FormControl from './Form/FormControl';
-import Icon from './Icon/Icon';
-import ImageBox from './ImageBox/ImageBox';
-import ImageSlider from './ImageSlider/ImageSlider';
-import Loading from './Loading/Loading';
-import Mask from './Mask/Mask';
-import Message from './Message/Message';
-import PlusMinus from './PlusMinus/PlusMinus';
-import PullLoader from './PullLoader/PullLoader';
+import Icon from './Icon';
+import ImageBox from './ImageBox';
+import ImageSlider from './ImageSlider';
+import Loading from './Loading';
+import Mask from './Mask';
+import Message from './Message';
+import PlusMinus from './PlusMinus';
+import PullLoader from './PullLoader';
 import TabBar from './Tab/TabBar';
 import TabNav from './Tab/TabNav';
 import TabScope from './Tab/TabScope';
-import Table from './Table/Table';
-import TopAction from './TopAction/TopAction';
+import Table from './Table';
+import TopAction from './TopAction';
 
 
 export default {

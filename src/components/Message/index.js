@@ -11,7 +11,7 @@ import reactMixin from 'react-mixin';
 
 import mixClass from '../../common/utils/mix-class';
 import DialogMixin from '../../common/utils/dialog-mixin';
-import Icon from '../Icon/Icon';
+import Icon from '../Icon';
 
 
 const _messageHolder = document.createElement('div');

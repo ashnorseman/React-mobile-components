@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom';
 
 import mixClass from '../../common/utils/mix-class';
 import validate from './validate';
-import Icon from '../Icon/Icon';
+import Icon from '../Icon';
 
 
 export default class FormControl extends Component {
@@ -21,6 +21,9 @@ export default class FormControl extends Component {
     this._validate = this._validate.bind(this);
     this._focusControl = this._focusControl.bind(this);
     this._blurControl = this._blurControl.bind(this);
+
+    this.changeControl = this.changeControl.bind(this);
+    this.clearControl = this.clearControl.bind(this);
   }
 
   componentDidMount() {
@@ -115,14 +118,14 @@ export default class FormControl extends Component {
 
       clear = (type === 'select')
         ? null
-        : <span className="form-clear" onTouchTap={this.clearControl.bind(this)}>
+        : <span className="form-clear" onTouchTap={this.clearControl}>
             <Icon name="close" />
           </span>;
 
     let control = null;
 
     // Tuning change callbacks
-    props.onChange = this.changeControl.bind(this);
+    props.onChange = this.changeControl;
 
     switch (type) {
     case 'date':

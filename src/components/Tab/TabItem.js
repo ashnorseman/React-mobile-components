@@ -8,8 +8,8 @@ import './TabItem.less';
 import React, { Component, PropTypes } from 'react';
 
 import mixClass from '../../common/utils/mix-class';
-import Badge from '../Badge/Badge';
-import Icon from '../Icon/Icon';
+import Badge from '../Badge';
+import Icon from '../Icon';
 
 
 export default function TabItem({

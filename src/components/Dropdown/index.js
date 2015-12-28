@@ -9,9 +9,9 @@ import React, { Component, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 import mixClass from '../../common/utils/mix-class';
-import CheckButton from '../CheckButton/CheckButton';
-import Icon from '../Icon/Icon';
-import Mask from '../Mask/Mask';
+import CheckButton from '../CheckButton';
+import Icon from '../Icon';
+import Mask from '../Mask';
 import DropDownTitle from './DropdownTitle';
 import DropDownItem from './DropdownItem';
 import DropDownMenu from './DropdownMenu';
@@ -39,6 +39,8 @@ export default class Dropdown extends Component {
     });
 
     this.state = this._query;
+
+    this.toggleButton = this.toggleButton.bind(this);
   }
 
   componentDidMount() {
@@ -311,7 +313,7 @@ export default class Dropdown extends Component {
       checkToggle = toggle
         ? <CheckButton className="pull-right"
                        checked={this.state[toggle.name]}
-                       onToggle={this.toggleButton.bind(this)}>
+                       onToggle={this.toggleButton}>
             {toggle.text}
           </CheckButton>
         : null,

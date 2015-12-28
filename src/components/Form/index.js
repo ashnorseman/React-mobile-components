@@ -10,7 +10,7 @@ import React, { Component, PropTypes } from 'react';
 import mixClass from '../../common/utils/mix-class';
 import validate from './validate';
 import FormControl from './FormControl';
-import Button from '../Button/Button';
+import Button from '../Button';
 
 
 export default class Form extends Component {
@@ -22,6 +22,8 @@ export default class Form extends Component {
       valid: this._validate(this.props.controls),
       submitting: false
     };
+
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -146,7 +148,7 @@ export default class Form extends Component {
       });
 
     return (
-      <form action={action} {...props} onSubmit={this.onFormSubmit.bind(this)}>
+      <form action={action} {...props} onSubmit={this.onFormSubmit}>
         <div className="form-main">
           {formLines}
         </div>

@@ -7,7 +7,7 @@ import './TopAction.less';
 
 import React, { Component, PropTypes } from 'react';
 
-import Icon from '../Icon/Icon';
+import Icon from '../Icon';
 
 
 export default class TopAction extends Component {
@@ -62,7 +62,7 @@ export default class TopAction extends Component {
     return (
       <span className="top-action"
             style={visibilityStyle}
-            onTouchTap={this.scrollTop.bind(this)}>
+            onTouchTap={this.scrollTop}>
         <Icon name="top" />
       </span>
     );

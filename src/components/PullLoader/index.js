@@ -6,7 +6,7 @@
 import React, { Component, PropTypes } from 'react';
 
 import mixClass from '../../common/utils/mix-class';
-import Loading from '../Loading/Loading';
+import Loading from '../Loading';
 
 
 export default class PullLoader extends Component {

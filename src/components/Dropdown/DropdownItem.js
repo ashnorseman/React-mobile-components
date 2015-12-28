@@ -8,7 +8,7 @@ import './DropdownItem.less';
 import React, { Component, PropTypes } from 'react';
 
 import mixClass from '../../common/utils/mix-class';
-import Icon from '../Icon/Icon';
+import Icon from '../Icon';
 
 
 export default function DropdownItem({
