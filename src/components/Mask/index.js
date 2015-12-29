@@ -42,6 +42,8 @@ export default {
   },
 
   close() {
-    ReactDOM.unmountComponentAtNode(_maskHolder);
+    setTimeout(() => {
+      ReactDOM.unmountComponentAtNode(_maskHolder);
+    }, 15);
   }
 };

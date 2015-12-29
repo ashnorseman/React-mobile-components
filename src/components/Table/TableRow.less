@@ -26,8 +26,7 @@
 }
 
 .table-row-link {
-  .align-items(center);
-  .display-flex();
+  display: table;
   border-top: @border-width solid @color-border;
   color: @color-text-lighter;
   min-height: @control-base-size;
@@ -44,10 +43,8 @@
 }
 
 .table-row-left {
-  .flex(1);
-}
-
-.table-row-text {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .table-row-note {
@@ -59,5 +56,12 @@
 
 .table-row .iconfont,
 .table-row-content {
-  margin-right: @gap;
+  display: table-cell;
+  padding-right: @gap;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.table-row .iconfont {
+  width: 1px;
 }
