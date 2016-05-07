@@ -46,16 +46,16 @@ export default class Form extends Component {
    * @param {string} value
    */
   onControlChange(cb, name, value) {
+    if (this.props.onControlChange) {
+      this.props.onControlChange(name, value);
+    }
+
     this.setState({
       valid: this._validate(this.props.controls)
     });
 
     if (typeof cb === 'function') {
       cb(name, value);
-    }
-
-    if (this.props.onControlChange) {
-      this.props.onControlChange(name, value);
     }
   }
 
